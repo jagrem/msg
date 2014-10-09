@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA15DB4E-B53B-41EF-A482-39E15A80BA99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Msg.Domain</RootNamespace>
+    <AssemblyName>Msg.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transport\Broker.cs" />
+    <Compile Include="Transport\Client.cs" />
+    <Compile Include="Transport\Consumer.cs" />
+    <Compile Include="Transport\Container.cs" />
+    <Compile Include="Transport\Node.cs" />
+    <Compile Include="Transport\Producer.cs" />
+    <Compile Include="Transport\Queue.cs" />
+    <Compile Include="Transport\Connection.cs" />
+    <Compile Include="Transport\Channel.cs" />
+    <Compile Include="Transport\Session.cs" />
+    <Compile Include="Transport\Endpoint.cs" />
+    <Compile Include="Transport\Link.cs" />
+    <Compile Include="Transport\Frames\Frame.cs" />
+    <Compile Include="Transport\Frames\OpenFrame.cs" />
+    <Compile Include="Transport\Frames\BeginFrame.cs" />
+    <Compile Include="Transport\Frames\AttachFrame.cs" />
+    <Compile Include="Transport\Frames\FlowFrame.cs" />
+    <Compile Include="Transport\Frames\TransferFrame.cs" />
+    <Compile Include="Transport\Frames\DispositionFrame.cs" />
+    <Compile Include="Transport\Frames\DetachFrame.cs" />
+    <Compile Include="Transport\Frames\EndFrame.cs" />
+    <Compile Include="Transport\Frames\CloseFrame.cs" />
+    <Compile Include="Transport\Frames\Behaviour\IAmHandledAtConnectionLevel.cs" />
+    <Compile Include="Transport\Frames\Behaviour\IAmHandledAtTheLinkLevel.cs" />
+    <Compile Include="Transport\Frames\Behaviour\IAmHandledAtSessionLevel.cs" />
+    <Compile Include="Transport\Frames\Behaviour\IAmInterceptedAtConnectionLevel.cs" />
+    <Compile Include="Transport\Frames\Behaviour\IAmInterceptedAtTheSessionLevel.cs" />
+    <Compile Include="Transport\Version.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Transport\" />
+    <Folder Include="Transport\Frames\" />
+    <Folder Include="Transport\Frames\Behaviour\" />
+  </ItemGroup>
+</Project>
