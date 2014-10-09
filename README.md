@@ -1,4 +1,4 @@
 msg
 ===
 
-AMQP message broker implementation in Go
+AMQP message broker implementation in C#.
