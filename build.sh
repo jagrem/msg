@@ -1,3 +1,3 @@
 #!/bin/sh
 cd ./src
-xbuild Msg.sln /p:Configuration=Release
+EnableNugetPackageRestore=true xbuild Msg.sln /p:Configuration=Release
