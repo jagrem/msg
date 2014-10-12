@@ -64,7 +64,7 @@ namespace Msg.UnitTests
 		[Test]
 		public void Given_a_byte_array_that_is_too_short_When_converting_to_a_version_Then_an_exception_is_thrown()
 		{
-			var subject = new byte[] { (byte)'Z', (byte)'S', (byte)'X', (byte)'F', (byte)0, (byte)1, (byte)2 };
+			var subject = new byte[] { (byte)'A', (byte)'M', (byte)'Q', (byte)'P', (byte)0, (byte)1, (byte)2 };
 			Action result = () => convertByteArray (subject);
 			result.ShouldThrow<ArgumentException> ();
 		}
@@ -72,7 +72,7 @@ namespace Msg.UnitTests
 		[Test]
 		public void Given_a_byte_array_that_is_too_long_When_converting_to_a_version_Then_an_exception_is_thrown()
 		{
-			var subject = new byte[] { (byte)'Z', (byte)'S', (byte)'X', (byte)'F', (byte)0, (byte)1, (byte)2, (byte)3, (byte)4 };
+			var subject = new byte[] { (byte)'A', (byte)'M', (byte)'Q', (byte)'P', (byte)0, (byte)1, (byte)2, (byte)3, (byte)4 };
 			Action result = () => convertByteArray (subject);
 			result.ShouldThrow<ArgumentException> ();
 		}
@@ -80,7 +80,7 @@ namespace Msg.UnitTests
 		[Test]
 		public void Given_a_byte_array_with_an_fifth_byte_greater_than_zero_When_converting_to_a_version_Then_an_exception_is_thrown()
 		{
-			var subject = new byte[] { (byte)'Z', (byte)'S', (byte)'X', (byte)'F', (byte)7, (byte)1, (byte)2, (byte)3 };
+			var subject = new byte[] { (byte)'A', (byte)'M', (byte)'Q', (byte)'P', (byte)7, (byte)1, (byte)2, (byte)3 };
 			Action result = () => convertByteArray (subject);
 			result.ShouldThrow<ArgumentException> ();
 		}
@@ -89,6 +89,14 @@ namespace Msg.UnitTests
 		public void Given_a_byte_array_that_doesnt_start_with_AMQP_When_converting_to_a_version_Then_an_exception_is_thrown()
 		{
 			var subject = new byte[] { (byte)'Z', (byte)'S', (byte)'X', (byte)'F', (byte)7, (byte)1, (byte)2, (byte)3 };
+			Action result = () => convertByteArray (subject);
+			result.ShouldThrow<ArgumentException> ();
+		}
+
+		[Test]
+		public void Given_a_byte_array_where_AMQP_is_not_all_uppercase_When_converting_to_a_version_Then_an_exception_is_thrown()
+		{
+			var subject = new byte[] { (byte)'a', (byte)'M', (byte)'q', (byte)'P', (byte)7, (byte)1, (byte)2, (byte)3 };
 			Action result = () => convertByteArray (subject);
 			result.ShouldThrow<ArgumentException> ();
 		}
