@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Net;
-using System.IO;
 
 namespace Msg.ConsoleApp
 {
@@ -18,12 +17,12 @@ namespace Msg.ConsoleApp
 				var client = listener.AcceptTcpClient ();
 				Console.Write ("Connected");
 				var stream = client.GetStream ();
-				using(var writer = new StreamWriter(stream))
-				{
-					writer.Write ("tarzan");
-				}
+				byte[] version = new Msg.Domain.Version(1, 0, 0);
+				stream.Write (version, 0, version.Length);
 				client.Close ();
 				Console.Write ("Closed connection"); 
+			} catch(Exception e) {
+				Console.Write (e);
 			} finally {
 				listener.Stop ();
 			}

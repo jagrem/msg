@@ -1,6 +1,6 @@
 using System;
 
-namespace Msg.Acceptance.Tests
+namespace Msg.Infrastructure
 {
 	public class AmqpConnectionAttemptFailedException : Exception
 	{

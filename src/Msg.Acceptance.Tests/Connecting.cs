@@ -2,6 +2,7 @@
 using FluentAssertions;
 using System;
 using System.Threading.Tasks;
+using Msg.Infrastructure;
 
 namespace Msg.Acceptance.Tests
 {
