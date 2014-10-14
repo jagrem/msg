@@ -1,6 +1,5 @@
 ﻿using Msg.Infrastructure;
 using System.Threading.Tasks;
-using System;
 
 namespace Msg.ClientConsoleApp
 {
