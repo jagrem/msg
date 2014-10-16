@@ -36,6 +36,9 @@
     <Compile Include="IAmqpConnection.cs" />
     <Compile Include="AmqpConnectionAttemptFailedException.cs" />
     <Compile Include="AmqpTcpConnection.cs" />
+    <Compile Include="VersionNegotiator.cs" />
+    <Compile Include="AmqpServer.cs" />
+    <Compile Include="StreamExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

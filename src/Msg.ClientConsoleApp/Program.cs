@@ -1,5 +1,7 @@
 ﻿using Msg.Infrastructure;
 using System.Threading.Tasks;
+using Version = Msg.Domain.Version;
+using Msg.Domain;
 
 namespace Msg.ClientConsoleApp
 {
@@ -7,7 +9,7 @@ namespace Msg.ClientConsoleApp
 	{
 		public static void Main (string[] args)
 		{
-			var client = new AmqpClient ();
+			var client = new AmqpClient (Version.Exactly(1, 0, 0));
 			var t = Task.Factory.StartNew(async () => await client.ConnectAsync ());
 			t.Wait ();
 		}

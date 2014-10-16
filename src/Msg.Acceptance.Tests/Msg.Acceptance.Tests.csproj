@@ -53,6 +53,7 @@
     <Compile Include="Connecting.cs" />
     <Compile Include="ConnectionProperties.cs" />
     <Compile Include="TestScope.cs" />
+    <Compile Include="VersionNegotiation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

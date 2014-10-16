@@ -42,5 +42,9 @@
       <Project>{BA15DB4E-B53B-41EF-A482-39E15A80BA99}</Project>
       <Name>Msg.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Msg.Infrastructure\Msg.Infrastructure.csproj">
+      <Project>{A03D2DE4-0BF1-43EC-9DEF-B77B78D89F79}</Project>
+      <Name>Msg.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
