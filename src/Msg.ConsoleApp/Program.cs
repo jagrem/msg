@@ -7,7 +7,7 @@ namespace Msg.ConsoleApp
 	{
 		public static void Main (string[] args)
 		{
-			new AmqpServer(Version.UpTo(1, 0, 0)).Start ();
+			new AmqpServer(SupportedVersion.UpTo(1, 0, 0)).Start ();
 		}
 	}
 }

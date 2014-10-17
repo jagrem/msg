@@ -61,6 +61,7 @@
     <Compile Include="Transport\Frames\Behaviour\IAmInterceptedAtTheSessionLevel.cs" />
     <Compile Include="Transport\Version.cs" />
     <Compile Include="VersionRange.cs" />
+    <Compile Include="SupportedVersion.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

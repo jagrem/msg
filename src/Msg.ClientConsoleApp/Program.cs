@@ -9,7 +9,7 @@ namespace Msg.ClientConsoleApp
 	{
 		public static void Main (string[] args)
 		{
-			var client = new AmqpClient (Version.Exactly(1, 0, 0));
+			var client = new AmqpClient (SupportedVersion.Exactly(1, 0, 0));
 			var t = Task.Factory.StartNew(async () => await client.ConnectAsync ());
 			t.Wait ();
 		}
