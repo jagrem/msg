@@ -10,6 +10,7 @@ namespace Msg.Acceptance.Tests
 	public class VersionNegotiation
 	{
 		[Test]
+		[Property("Issue","2")]
 		public async Task Given_a_client_prefers_a_lower_version_than_the_version_the_server_prefers_When_negotiating_which_version_to_use_Then_the_server_returns_the_clients_preferred_version()
 		{
 			// Arrange
