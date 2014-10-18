@@ -24,7 +24,7 @@ namespace Msg.Infrastructure
 				await client.ConnectAsync (IPAddress.Loopback, 1984);
 				var stream = client.GetStream ();
 				var negotiatedVersion = await VersionNegotiator.NegotiateVersionWithServer (stream, supportedVersions);
-				return new AmqpTcpConnection (negotiatedVersion);
+				return AmqpTcpConnection.CreateSuccessfulConnection (negotiatedVersion);
 			} catch (Exception e) {
 				throw new AmqpConnectionAttemptFailedException (e);
 			}
