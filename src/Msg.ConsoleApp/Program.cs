@@ -1,5 +1,5 @@
 ﻿using Msg.Infrastructure;
-using Msg.Domain;
+using System;
 
 namespace Msg.ConsoleApp
 {
@@ -7,7 +7,17 @@ namespace Msg.ConsoleApp
 	{
 		public static void Main (string[] args)
 		{
-			new AmqpServer(SupportedVersion.UpTo(1, 0, 0)).Start ();
+			var settingsBuilder = new AmqpSettingsBuilder ()
+				.WithPort (1984)
+				.SupportsVersion (1, 0, 0);
+			var server = new AmqpServer(settingsBuilder);
+			Console.WriteLine ("MSG version 0.0.1 DEV");
+			server.Start ();
+			Console.WriteLine ("Started server.");
+			Console.WriteLine ("Press enter to stop...");
+			Console.ReadLine ();
+			server.Stop ();
+			Console.WriteLine ("Server stopped.");
 		}
 	}
 }

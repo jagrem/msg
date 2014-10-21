@@ -39,6 +39,16 @@
     <Compile Include="VersionNegotiator.cs" />
     <Compile Include="AmqpServer.cs" />
     <Compile Include="StreamExtensions.cs" />
+    <Compile Include="Events\AmqpServerStarted.cs" />
+    <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Events\AmqpServerFailedToStart.cs" />
+    <Compile Include="AmqpTcpListener.cs" />
+    <Compile Include="Events\AmqpTcpClientConnected.cs" />
+    <Compile Include="ClientRequestProcessor.cs" />
+    <Compile Include="AmqpSettings.cs" />
+    <Compile Include="AmqpSettingsBuilder.cs" />
+    <Compile Include="AmqpServerContext.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -46,5 +56,8 @@
       <Project>{BA15DB4E-B53B-41EF-A482-39E15A80BA99}</Project>
       <Name>Msg.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Events\" />
   </ItemGroup>
 </Project>

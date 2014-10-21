@@ -1,53 +1,46 @@
-﻿using System.Net.Sockets;
-using System.Net;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Version = Msg.Domain.Version;
-using System.Linq;
-using Msg.Domain;
+using System.Threading;
 
 namespace Msg.Infrastructure
 {
-	public class AmqpServer 
+	public class AmqpServer
 	{
-		readonly VersionRange[] supportedVersions;
+		readonly AmqpSettings settings;
 
-		public AmqpServer(params VersionRange[] supportedVersions)
+		readonly AmqpServerContext context;
+
+		public AmqpServer (AmqpSettingsBuilder settingsBuilder)
 		{
-			this.supportedVersions = supportedVersions;
+			this.settings = settingsBuilder.Build ();
+			this.context = new AmqpServerContext (new CancellationTokenSource ());
 		}
 
 		public void Start ()
 		{
-			Task.Run (async () => await StartListeningAsync());
+			Task.Run (async () => await StartAsync (), this.context.CancellationTokenSource.Token);
 		}
 
-		async Task StartListeningAsync()
+		public async Task StartAsync ()
 		{
-			var listener = new TcpListener (new IPEndPoint (IPAddress.Loopback, 1984));
-
 			try {
-				listener.Start ();
-				var client = await listener.AcceptTcpClientAsync ();
-				var stream = client.GetStream ();
-				var version = await stream.ReadVersionAsync ();
-
-				if(supportedVersions.Any(range => range.Contains(version)))
-				{
-					await stream.WriteVersionAsync (version);
-				} else{
-					await stream.WriteVersionAsync (supportedVersions.First().UpperBoundInclusive);
+				using (var listener = new AmqpTcpListener (this.settings, this.context)) {
+					while (!this.context.CancellationTokenSource.Token.IsCancellationRequested) {
+						await listener.AcceptTcpClientAsync (new ClientRequestProcessor (settings));
+					}
 				}
-
-				client.Close ();
-			}
-			catch (Exception e) {
-				// Do nothing
-			}
-			finally {
-				listener.Stop ();
+			} catch (Exception e) {
+				if (!this.context.CancellationTokenSource.IsCancellationRequested) {
+					this.context.CancellationTokenSource.Cancel ();
+				}
 			}
 		}
-	}
+
+		public void Stop ()
+		{
+			this.context.CancellationTokenSource.Cancel ();
+		}
+	}	
 }
 

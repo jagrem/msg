@@ -4,17 +4,17 @@ using System.Net;
 using System;
 using Msg.Infrastructure;
 using Msg.Domain;
+using System.Linq;
 
 namespace Msg.Infrastructure
 {
 	public class AmqpClient
 	{
-		readonly VersionRange[] supportedVersions;
+		readonly AmqpSettings settings;
 
-		public AmqpClient(params VersionRange[] supportedVersions)
+		public AmqpClient(AmqpSettingsBuilder settingsBuilder)
 		{
-			Array.Sort (supportedVersions);
-			this.supportedVersions = supportedVersions;
+			this.settings = settingsBuilder.Build ();
 		}
 
 		public async Task<IAmqpConnection> ConnectAsync ()
@@ -23,7 +23,7 @@ namespace Msg.Infrastructure
 				var client = new TcpClient ();
 				await client.ConnectAsync (IPAddress.Loopback, 1984);
 				var stream = client.GetStream ();
-				var negotiatedVersion = await VersionNegotiator.NegotiateVersionWithServer (stream, supportedVersions);
+				var negotiatedVersion = await VersionNegotiator.NegotiateVersionWithServer (stream, this.settings.SupportedVersions.ToArray());
 				return AmqpTcpConnection.CreateSuccessfulConnection (negotiatedVersion);
 			} catch (Exception e) {
 				throw new AmqpConnectionAttemptFailedException (e);

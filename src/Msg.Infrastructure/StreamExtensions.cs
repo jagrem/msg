@@ -1,9 +1,6 @@
-using System.Net.Sockets;
-using System.Net;
 using System;
 using System.Threading.Tasks;
 using Version = Msg.Domain.Version;
-using System.Linq;
 using System.IO;
 
 namespace Msg.Infrastructure
