@@ -1,2 +1,2 @@
-language: sharp
+language: csharp
 solution: ./src/Msg.sln
