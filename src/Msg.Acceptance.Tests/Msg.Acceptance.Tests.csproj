@@ -55,6 +55,7 @@
     <Compile Include="ConnectionProperties.cs" />
     <Compile Include="TestScope.cs" />
     <Compile Include="VersionNegotiation.cs" />
+    <Compile Include="TestDoubles\GarbageSpewingClient.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -73,5 +74,8 @@
       <Project>{BA15DB4E-B53B-41EF-A482-39E15A80BA99}</Project>
       <Name>Msg.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestDoubles\" />
   </ItemGroup>
 </Project>
