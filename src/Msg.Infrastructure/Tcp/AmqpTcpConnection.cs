@@ -1,7 +1,7 @@
 using Msg.Infrastructure;
 using Version = Msg.Domain.Transport.Version;
 
-namespace Msg.Infrastructure
+namespace Msg.Infrastructure.Tcp
 {
 	public class AmqpTcpConnection : IAmqpConnection
 	{

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Version = Msg.Domain.Transport.Version;
 using System.Threading;
+using Msg.Infrastructure.Tcp;
 
 namespace Msg.Infrastructure
 {

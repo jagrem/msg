@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System;
 using Msg.Infrastructure;
-using Msg.Domain;
 using System.Linq;
+using Msg.Infrastructure.Tcp;
 
 namespace Msg.Infrastructure
 {

@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Version = Msg.Domain.Transport.Version;
 
-namespace Msg.Infrastructure
+namespace Msg.Infrastructure.Tcp
 {
 
 	class AmqpTcpListener : IDisposable
