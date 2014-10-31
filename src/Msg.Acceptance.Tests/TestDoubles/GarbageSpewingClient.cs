@@ -4,9 +4,8 @@ using System;
 using System.Net.Sockets;
 using System.Net;
 
-namespace Msg.Acceptance.Tests
+namespace Msg.Acceptance.Tests.TestDoubles
 {
-
 	class GarbageSpewingClient
 	{
 		TcpClient client;
