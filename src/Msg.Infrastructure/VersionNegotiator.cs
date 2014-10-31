@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using System;
-using Version = Msg.Domain.Version;
+using Version = Msg.Domain.Transport.Version;
 using System.IO;
 using Msg.Domain;
 using System.Linq;

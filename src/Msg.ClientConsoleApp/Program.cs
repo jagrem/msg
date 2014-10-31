@@ -1,6 +1,6 @@
 ﻿using Msg.Infrastructure;
 using System.Threading.Tasks;
-using Version = Msg.Domain.Version;
+using Version = Msg.Domain.Transport.Version;
 
 namespace Msg.ClientConsoleApp
 {

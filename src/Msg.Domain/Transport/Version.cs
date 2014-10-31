@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Msg.Domain
+namespace Msg.Domain.Transport
 {
 	public class Version : IComparable, IComparable<Version>
 	{

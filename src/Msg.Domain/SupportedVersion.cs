@@ -1,4 +1,6 @@
-﻿namespace Msg.Domain
+﻿using Msg.Domain.Transport;
+
+namespace Msg.Domain
 {
 	public static class SupportedVersion
 	{

@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Msg.Domain;
 using FluentAssertions;
+using Msg.Domain.Transport;
 
 namespace Msg.UnitTests
 {

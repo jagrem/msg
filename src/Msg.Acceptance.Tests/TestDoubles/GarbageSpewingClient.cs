@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Version = Msg.Domain.Version;
+using Version = Msg.Domain.Transport.Version;
 using System;
 using System.Net.Sockets;
 using System.Net;

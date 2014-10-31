@@ -2,11 +2,8 @@
 using Msg.Infrastructure;
 using System.Threading.Tasks;
 using Msg.Domain;
-using Version = Msg.Domain.Version;
-using System;
-using System.Net.Sockets;
-using System.Net;
-using System.Threading;
+using Version = Msg.Domain.Transport.Version;
+using Msg.Acceptance.Tests.TestDoubles;
 
 namespace Msg.Acceptance.Tests
 {
@@ -92,26 +89,6 @@ namespace Msg.Acceptance.Tests
 			// Assert
 			Assert.That (result, Is.EqualTo (new Version (1, 0, 0)));
 			Assert.That (client.IsConnected (), Is.False);
-		}
-	}
-
-	class GarbageSpewingClient
-	{
-		TcpClient client;
-
-		public async Task<byte[]> ConnectAsync() {
-			client = new TcpClient ();
-			await client.ConnectAsync (IPAddress.Loopback, 1984);
-			var stream = client.GetStream ();
-			await stream.WriteAsync (new byte[] { 1, 9, 8, 4 }, 0, 4);
-			var buffer = new byte[8];
-			await stream.ReadAsync (buffer, 0, 8);
-			return buffer;
-		}
-
-		public bool IsConnected()
-		{
-			return client != null && client.Connected;
 		}
 	}
 }

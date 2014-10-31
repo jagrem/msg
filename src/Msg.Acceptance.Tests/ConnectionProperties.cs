@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Msg.Infrastructure;
-using Version = Msg.Domain.Version;
+using Version = Msg.Domain.Transport.Version;
 using Msg.Domain;
 
 namespace Msg.Acceptance.Tests

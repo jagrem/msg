@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
-using Msg.Domain;
 using FluentAssertions;
 using System;
-using Version = Msg.Domain.Version;
+using Version = Msg.Domain.Transport.Version;
 
 namespace Msg.UnitTests
 {
