@@ -1,5 +1,6 @@
 ﻿using Msg.Infrastructure;
 using System;
+using Msg.Infrastructure.Logging;
 
 namespace Msg.ConsoleApp
 {
@@ -7,6 +8,7 @@ namespace Msg.ConsoleApp
 	{
 		public static void Main (string[] args)
 		{
+			ConsoleLogger.Create ();
 			var settingsBuilder = new AmqpSettingsBuilder ()
 				.WithPort (1984)
 				.SupportsVersion (1, 0, 0);

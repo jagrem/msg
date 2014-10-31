@@ -3,6 +3,7 @@ using System.Net;
 using System;
 using System.Threading.Tasks;
 using Version = Msg.Domain.Transport.Version;
+using Msg.Infrastructure.Events;
 
 namespace Msg.Infrastructure.Tcp
 {
@@ -40,6 +41,7 @@ namespace Msg.Infrastructure.Tcp
 		public void Dispose ()
 		{
 			this.listener.Stop ();
+			Event.Publish (new AmqpServerStopped());
 		}
 	}
 }

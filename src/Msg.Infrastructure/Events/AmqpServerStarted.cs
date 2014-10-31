@@ -1,7 +1,8 @@
 ﻿using System.Net;
 
-namespace Msg.Infrastructure
+namespace Msg.Infrastructure.Events
 {
+	[Topic("Debug")]
 	public class AmqpServerStarted : IEvent
 	{
 		public AmqpServerStarted (IPAddress ipAddress, int port)

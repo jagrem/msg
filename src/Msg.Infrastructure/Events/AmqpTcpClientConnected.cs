@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Msg.Infrastructure
+namespace Msg.Infrastructure.Events
 {
 	public class AmqpTcpClientConnected : IEvent
 	{

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Msg.Infrastructure
+﻿namespace Msg.Infrastructure.Events
 {
 	public interface IEvent
 	{
