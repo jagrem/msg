@@ -1,7 +1,9 @@
 ﻿using System.Net;
+using Msg.Infrastructure.Events;
 
-namespace Msg.Infrastructure.Events
+namespace Msg.Infrastructure.Server.Events
 {
+	[Topic("events.server")]
 	public class AmqpServerFailedToStart : IEvent
 	{
 		public AmqpServerFailedToStart (IPAddress ipAddress, int port)

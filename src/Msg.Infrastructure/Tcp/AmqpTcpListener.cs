@@ -4,6 +4,8 @@ using System;
 using System.Threading.Tasks;
 using Version = Msg.Domain.Transport.Version;
 using Msg.Infrastructure.Events;
+using Msg.Infrastructure.Server.Events;
+using Msg.Infrastructure.Tcp.Events;
 
 namespace Msg.Infrastructure.Tcp
 {

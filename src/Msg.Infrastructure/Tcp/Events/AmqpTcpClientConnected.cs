@@ -1,7 +1,9 @@
 ﻿using System.Net;
+using Msg.Infrastructure.Events;
 
-namespace Msg.Infrastructure.Events
+namespace Msg.Infrastructure.Tcp.Events
 {
+	[Topic("events.tcp")]
 	public class AmqpTcpClientConnected : IEvent
 	{
 		public AmqpTcpClientConnected (EndPoint localEndpoint, EndPoint remoteEndpoint)

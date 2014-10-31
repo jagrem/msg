@@ -37,22 +37,22 @@
     <Compile Include="AmqpConnectionAttemptFailedException.cs" />
     <Compile Include="VersionNegotiator.cs" />
     <Compile Include="StreamExtensions.cs" />
-    <Compile Include="Events\AmqpServerStarted.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\IEvent.cs" />
-    <Compile Include="Events\AmqpServerFailedToStart.cs" />
-    <Compile Include="Events\AmqpTcpClientConnected.cs" />
     <Compile Include="AmqpSettings.cs" />
     <Compile Include="AmqpSettingsBuilder.cs" />
     <Compile Include="Tcp\AmqpTcpConnection.cs" />
     <Compile Include="Tcp\AmqpTcpListener.cs" />
-    <Compile Include="Events\AmqpServerStopped.cs" />
     <Compile Include="Server\AmqpServer.cs" />
     <Compile Include="Server\AmqpServerContext.cs" />
     <Compile Include="Server\ClientRequestProcessor.cs" />
     <Compile Include="Events\EventSubscriber.cs" />
     <Compile Include="Logging\ConsoleLogger.cs" />
     <Compile Include="Events\TopicAttribute.cs" />
+    <Compile Include="Server\Events\AmqpServerStarted.cs" />
+    <Compile Include="Server\Events\AmqpServerStopped.cs" />
+    <Compile Include="Server\Events\AmqpServerFailedToStart.cs" />
+    <Compile Include="Tcp\Events\AmqpTcpClientConnected.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -66,5 +66,7 @@
     <Folder Include="Tcp\" />
     <Folder Include="Server\" />
     <Folder Include="Logging\" />
+    <Folder Include="Server\Events\" />
+    <Folder Include="Tcp\Events\" />
   </ItemGroup>
 </Project>

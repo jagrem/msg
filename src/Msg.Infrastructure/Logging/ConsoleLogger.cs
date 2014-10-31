@@ -12,7 +12,8 @@ namespace Msg.Infrastructure.Logging
 
 		ConsoleLogger()
 		{
-			EventSubscriber.SubscribeTo ("Debug", WriteEvent);
+			EventSubscriber.SubscribeTo ("events.server", WriteEvent);
+			EventSubscriber.SubscribeTo ("events.tcp", WriteEvent);
 		}
 
 		void WriteEvent(IEvent @event)
