@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Msg.Domain
+namespace Msg.Domain.Transport
 {
 	public class Container
 	{

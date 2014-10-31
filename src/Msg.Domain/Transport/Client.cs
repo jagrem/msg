@@ -1,4 +1,4 @@
-﻿namespace Msg.Domain
+﻿namespace Msg.Domain.Transport
 {
 	public class Client : Container
 	{
