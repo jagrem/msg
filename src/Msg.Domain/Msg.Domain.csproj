@@ -67,11 +67,25 @@
     <Compile Include="Transport\Frames\ByteArrayExtensions.cs" />
     <Compile Include="Transport\Frames\FrameHeaderType.cs" />
     <Compile Include="Transport\Frames\FrameBody.cs" />
+    <Compile Include="Transport\Frames\Constants\FrameHeaders.cs" />
+    <Compile Include="Transport\Frames\Assertions\FrameHeaderAssertions.cs" />
+    <Compile Include="Transport\Frames\Resources\ExceptionMessages.Designer.cs">
+      <DependentUpon>ExceptionMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Transport\" />
     <Folder Include="Transport\Frames\" />
     <Folder Include="Transport\Frames\Behaviour\" />
+    <Folder Include="Transport\Frames\Constants\" />
+    <Folder Include="Transport\Frames\Assertions\" />
+    <Folder Include="Transport\Frames\Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@ namespace Msg.UnitTests.Transport.Frames
 			var bytes = new byte[] { 0, 0, 0, 0, 255, 0, 0, 0 };
 			Action action = () => new FrameHeader (bytes);
 			action.ShouldThrow<MalformedFrameException> ()
-				.WithMessage ("The reported size of the frame header is less than 8 bytes.");
+				.WithMessage ("Data offset cannot be less than 8 bytes.");
 		}
 
 		[Test]

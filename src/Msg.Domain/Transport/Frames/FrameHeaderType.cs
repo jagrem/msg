@@ -1,5 +1,3 @@
-using System;
-
 namespace Msg.Domain.Transport.Frames
 {
 
