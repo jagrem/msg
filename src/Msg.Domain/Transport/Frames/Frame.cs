@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Msg.Domain.Transport.Frames
+﻿namespace Msg.Domain.Transport.Frames
 {
 	public class Frame
 	{
@@ -8,7 +6,7 @@ namespace Msg.Domain.Transport.Frames
 		{
 		}
 
-		public Frame(FrameHeader header, byte[] extendedHeader, byte[] frameBody)
+		public Frame(FrameHeader header, byte[] extendedHeader, FrameBody frameBody)
 		{
 			Header = header;
 			ExtendedHeader = extendedHeader;
@@ -19,7 +17,7 @@ namespace Msg.Domain.Transport.Frames
 
 		public byte[] ExtendedHeader { get; private set; }
 
-		public byte[] FrameBody  { get; private set; }
+		public FrameBody FrameBody  { get; private set; }
 	}
 }
 

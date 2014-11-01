@@ -66,6 +66,7 @@
     <Compile Include="Transport\Frames\MalformedFrameException.cs" />
     <Compile Include="Transport\Frames\ByteArrayExtensions.cs" />
     <Compile Include="Transport\Frames\FrameHeaderType.cs" />
+    <Compile Include="Transport\Frames\FrameBody.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
