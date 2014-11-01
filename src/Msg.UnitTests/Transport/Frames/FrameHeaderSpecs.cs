@@ -108,6 +108,14 @@ namespace Msg.UnitTests.Transport.Frames
 			action.ShouldThrow<NotSupportedException> ()
 				.WithMessage ("The frame header type is not supported.");
 		}
+
+		[Test]
+		public void Given_a_channel_id_field_of_257_When_creating_a_frame_header_from_a_byte_array_Then_channel_id_equals_257()
+		{
+			var bytes = new byte[] { 0, 0, 0, 255, 4, 0, 1, 1 };
+			var subject = new FrameHeader (bytes);
+			subject.DataOffset.Should ().Be (16);
+		}
 	}
 
 	class FrameHeaderTestCases

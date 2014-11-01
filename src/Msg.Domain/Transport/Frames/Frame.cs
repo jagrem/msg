@@ -15,8 +15,6 @@ namespace Msg.Domain.Transport.Frames
 			FrameBody = frameBody;
 		}
 
-		public int ChannelId { get; private set; }
-
 		public FrameHeader Header { get; private set; }
 
 		public byte[] ExtendedHeader { get; private set; }

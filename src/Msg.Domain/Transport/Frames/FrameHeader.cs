@@ -16,7 +16,7 @@ namespace Msg.Domain.Transport.Frames
 				throw new ArgumentException ("A frame header has a fixed length of 8 bytes.", "frameHeaderBytes");
 			}
 
-			var size = frameHeaderBytes.ReadInt32 (0);
+			var size = frameHeaderBytes.GetUnsignedInteger (0);
 
 			if(size < FrameHeaderLengthInBytes) {
 				throw new MalformedFrameException ("The reported size of the frame header is less than 8 bytes.");
@@ -39,6 +39,8 @@ namespace Msg.Domain.Transport.Frames
 			}
 
 			Type = (FrameHeaderType)type;
+
+			ChannelId = frameHeaderBytes.GetUnsignedShort (6);
 		}
 
 		public uint Size { get; private set; }
@@ -46,5 +48,7 @@ namespace Msg.Domain.Transport.Frames
 		public uint DataOffset { get; private set; }
 
 		public FrameHeaderType Type { get; private set; }
+
+		public uint ChannelId { get; private set; }
 	}
 }
