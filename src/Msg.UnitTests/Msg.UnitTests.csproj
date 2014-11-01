@@ -45,6 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VersionSpecs.cs" />
     <Compile Include="VersionRangeSpecs.cs" />
+    <Compile Include="Transport\Frames\FrameHeaderSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -59,5 +60,9 @@
       <Project>{A03D2DE4-0BF1-43EC-9DEF-B77B78D89F79}</Project>
       <Name>Msg.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Transport\" />
+    <Folder Include="Transport\Frames\" />
   </ItemGroup>
 </Project>
