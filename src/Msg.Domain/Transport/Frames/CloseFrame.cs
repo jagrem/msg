@@ -4,6 +4,10 @@ namespace Msg.Domain.Transport.Frames
 {
 	public class CloseFrame : Frame, IAmHandledAtConnectionLevel
 	{
+		public CloseFrame(Frame baseFrame)
+			:base(baseFrame)
+		{
+		}
 	}
 }
 

@@ -5,8 +5,11 @@ namespace Msg.Domain.Transport.Frames
 {
 	public class Frame
 	{
-		public Frame()
+		public Frame(Frame baseFrame)
 		{
+			Header = baseFrame.Header;
+			ExtendedHeader = baseFrame.ExtendedHeader;
+			Body = baseFrame.Body;
 		}
 
 		public Frame(byte[] bytes)
@@ -16,19 +19,19 @@ namespace Msg.Domain.Transport.Frames
 			Header = new FrameHeader(frameHeaderBytes);
 
 			var extendHeaderBytes = new byte[Header.DataOffset - FrameHeaders.FixedLengthInBytes];
-			Array.Copy (bytes, 8, extendHeaderBytes, 0, extendHeaderBytes.Length);
+			Array.Copy (bytes, FrameHeaders.FixedLengthInBytes, extendHeaderBytes, 0, extendHeaderBytes.Length);
 			ExtendedHeader = extendHeaderBytes;
 
 			var frameBodyBytes = new byte[Header.Size - Header.DataOffset];
 			Array.Copy (bytes, Header.DataOffset, frameBodyBytes, 0, frameBodyBytes.Length);
-			FrameBody = new FrameBody(frameBodyBytes);
+			Body = new FrameBody(frameBodyBytes);
 		}
 
 		public FrameHeader Header { get; private set; }
 
 		public byte[] ExtendedHeader { get; private set; }
 
-		public FrameBody FrameBody  { get; private set; }
+		public FrameBody Body  { get; private set; }
 	}
 }
 

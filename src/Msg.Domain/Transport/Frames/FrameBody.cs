@@ -5,6 +5,7 @@ namespace Msg.Domain.Transport.Frames
 	{
 		public FrameBody(byte[] frameBodyBytes)
 		{
+
 			Payload = frameBodyBytes;
 		}
 
