@@ -1,11 +1,11 @@
 using System;
 using Msg.Domain.Transport.Frames.Constants;
 using Msg.Domain.Transport.Frames.Assertions;
+using Msg.Domain.Transport.Frames.Extensions;
 
 namespace Msg.Domain.Transport.Frames.Factories
 {
-
-	static class FrameHeaderFactory
+	public static class FrameHeaderFactory
 	{
 		public static FrameHeader GetFrameHeaderFromBytes(byte[] frameHeaderBytes) {
 			FrameHeaderAssertions.AssertByteArrayLengthEqualsHeaderSize (frameHeaderBytes);

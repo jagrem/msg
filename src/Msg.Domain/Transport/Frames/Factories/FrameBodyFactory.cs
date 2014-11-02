@@ -1,19 +1,25 @@
 using System.IO;
 using System.Threading.Tasks;
+using System;
 
 namespace Msg.Domain.Transport.Frames.Factories
 {
-
-	static class FrameBodyFactory
+	public static class FrameBodyFactory
 	{
 		public static async Task<FrameBody> GetFrameBodyFromBytes(byte[] frameBodyBytes)
 		{
 			using(var reader = new StreamReader(new MemoryStream(frameBodyBytes)))
 			{
-				await reader.ReadToEndAsync ();
-			}
+				var content = await reader.ReadToEndAsync ();
 
-			return new FrameBody (null, null);
+				foreach(var performative in Performative.All){
+					if(performative.ContainsTypeOf (content)){
+						return performative.GetFrameBody (frameBodyBytes);
+					}
+				}
+
+				throw new MalformedFrameException ("Unrecognised frame type.");
+			}
 		}
 	}
 }

@@ -64,7 +64,6 @@
     <Compile Include="SupportedVersion.cs" />
     <Compile Include="Transport\Frames\FrameHeader.cs" />
     <Compile Include="Transport\Frames\MalformedFrameException.cs" />
-    <Compile Include="Transport\Frames\ByteArrayExtensions.cs" />
     <Compile Include="Transport\Frames\FrameHeaderType.cs" />
     <Compile Include="Transport\Frames\FrameBody.cs" />
     <Compile Include="Transport\Frames\Constants\FrameHeaders.cs" />
@@ -76,6 +75,11 @@
     <Compile Include="Transport\Frames\Factories\FrameBodyFactory.cs" />
     <Compile Include="Transport\Frames\Factories\FrameFactory.cs" />
     <Compile Include="Transport\Frames\Factories\FrameHeaderFactory.cs" />
+    <Compile Include="Transport\Frames\Constants\PerformativeType.cs" />
+    <Compile Include="Transport\Frames\Constants\Performatives.cs" />
+    <Compile Include="Transport\Frames\Performative.cs" />
+    <Compile Include="Transport\Frames\Extensions\ByteArrayExtensions.cs" />
+    <Compile Include="Transport\Frames\Extensions\StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -86,6 +90,7 @@
     <Folder Include="Transport\Frames\Assertions\" />
     <Folder Include="Transport\Frames\Resources\" />
     <Folder Include="Transport\Frames\Factories\" />
+    <Folder Include="Transport\Frames\Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">

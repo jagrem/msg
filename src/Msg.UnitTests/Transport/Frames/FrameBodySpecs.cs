@@ -3,6 +3,9 @@ using System;
 using Msg.Domain.Transport.Frames;
 using FluentAssertions;
 using System.Text;
+using Msg.Domain.Transport.Frames.Factories;
+using System.Threading.Tasks;
+using Msg.Domain.Transport.Frames.Constants;
 
 namespace Msg.UnitTests.Transport.Frames
 {
@@ -13,18 +16,26 @@ namespace Msg.UnitTests.Transport.Frames
 		public void Given_a_frame_body_byte_array_with_no_performative_When_creating_a_frame_body_Then_throw_exception()
 		{
 			var frameBodyBytes = new byte[] { 0, 0, 0, 0, 0 };
-			Action action = () => new FrameBody (frameBodyBytes);
+			Func<Task> action = async () => await FrameBodyFactory.GetFrameBodyFromBytes (frameBodyBytes);
 			action.ShouldThrow<MalformedFrameException> ()
 				.WithMessage ("Cannot determine the type of frame.");
 		}
-
+			
 		[Test]
-		[TestCase("begin")]
-		public void Given_a_frame_body_byte_array_with_a_performative_When_creating_a_frame_body_Then_performative_equals_byte_array_performative(string expectedPerformative)
+		[TestCase("Attach", PerformativeType.Attach)]
+		[TestCase("Begin", PerformativeType.Begin)]
+		[TestCase("Open", PerformativeType.Open)]
+		[TestCase("Flow", PerformativeType.Flow)]
+		[TestCase("Transfer", PerformativeType.Transfer)]
+		[TestCase("Disposition", PerformativeType.Disposition)]
+		[TestCase("Close", PerformativeType.Close)]
+		[TestCase("Detach", PerformativeType.Detach)]
+		[TestCase("End", PerformativeType.End)]
+		public async Task Given_a_frame_body_byte_array_with_a_performative_When_creating_a_frame_body_Then_performative_equals_byte_array_performative(string performative, PerformativeType expectedType)
 		{
-			var frameBodyBytes = ConvertToByteArray (expectedPerformative);
-			var subject = new FrameBody (frameBodyBytes);
-			subject.Performative.Should ().Be (expectedPerformative);
+			var frameBodyBytes = ConvertToByteArray (performative);
+			var result = await FrameBodyFactory.GetFrameBodyFromBytes (frameBodyBytes);
+			result.Performative.Should ().Be (expectedType);
 		}
 
 		static byte[] ConvertToByteArray (string expectedPerformative)

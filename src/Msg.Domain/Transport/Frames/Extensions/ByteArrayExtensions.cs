@@ -1,6 +1,6 @@
 using System;
 
-namespace Msg.Domain.Transport.Frames
+namespace Msg.Domain.Transport.Frames.Extensions
 {
 
 	public static class ByteArrayExtensions
