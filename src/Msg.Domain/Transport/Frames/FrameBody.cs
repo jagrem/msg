@@ -3,10 +3,14 @@ namespace Msg.Domain.Transport.Frames
 
 	public class FrameBody 
 	{
-		public FrameBody(byte[] frameBodyBytes)
+		public FrameBody(string performative, byte[] payloadBytes)
 		{
+			if(string.IsNullOrEmpty(performative)){
+				throw new MalformedFrameException ("Cannot determine the type of frame.");
+			}
 
-			Payload = frameBodyBytes;
+			Performative = performative;
+			Payload = payloadBytes;
 		}
 
 		public string Performative { get; private set; }

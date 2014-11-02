@@ -4,8 +4,7 @@ namespace Msg.Domain.Transport.Frames
 {
 	public class EndFrame : Frame, IAmInterceptedAtConnectionLevel, IAmHandledAtSessionLevel
 	{
-		public EndFrame (Frame baseFrame)
-			: base (baseFrame)
+		public EndFrame (Frame baseFrame) : base (baseFrame.Header, baseFrame.ExtendedHeader, baseFrame.Body)
 		{
 		}
 	}

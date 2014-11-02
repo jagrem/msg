@@ -1,28 +1,13 @@
-using System;
-using Msg.Domain.Transport.Frames.Constants;
-using Msg.Domain.Transport.Frames.Assertions;
-
 namespace Msg.Domain.Transport.Frames
 {
 	public class FrameHeader 
 	{
-		public FrameHeader(byte[] frameHeaderBytes)
+		public FrameHeader(uint size, uint dataOffset, FrameHeaderType type, uint channelId)
 		{
-			FrameHeaderAssertions.AssertByteArrayLengthEqualsHeaderSize (frameHeaderBytes);
-
-			var size = frameHeaderBytes.GetUnsignedInteger (0);
-			FrameHeaderAssertions.AssertReportedSizeIsGreaterThanOrEqualToHeaderSize (size);
 			Size = size;
-
-			var dataOffset = (uint)frameHeaderBytes [4] * FrameHeaders.DataOffsetMultiplicationFactor;
-			FrameHeaderAssertions.AssertDataOffsetIsGreaterThanOrEqualToHeaderSize (dataOffset);
 			DataOffset = dataOffset;
-
-			var type = frameHeaderBytes [5];
-			FrameHeaderAssertions.AssertFrameHeaderTypeIsSupported (type);
-			Type = (FrameHeaderType)type;
-
-			ChannelId = frameHeaderBytes.GetUnsignedShort (6);
+			Type = type;
+			ChannelId = channelId;
 		}
 
 		public uint Size { get; private set; }

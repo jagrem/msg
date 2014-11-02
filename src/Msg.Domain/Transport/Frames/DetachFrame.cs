@@ -4,8 +4,7 @@ namespace Msg.Domain.Transport.Frames
 {
 	public class DetachFrame : Frame, IAmInterceptedAtTheSessionLevel, IAmHandledAtTheLinkLevel
 	{
-		public DetachFrame (Frame baseFrame)
-			: base (baseFrame)
+		public DetachFrame (Frame baseFrame) : base (baseFrame.Header, baseFrame.ExtendedHeader, baseFrame.Body)
 		{
 		}
 	}
