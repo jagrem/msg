@@ -33,7 +33,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AmqpClient.cs" />
-    <Compile Include="IAmqpConnection.cs" />
     <Compile Include="AmqpConnectionAttemptFailedException.cs" />
     <Compile Include="VersionNegotiator.cs" />
     <Compile Include="StreamExtensions.cs" />

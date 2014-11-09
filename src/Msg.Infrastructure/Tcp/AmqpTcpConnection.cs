@@ -1,5 +1,5 @@
-using Msg.Infrastructure;
 using Version = Msg.Domain.Transport.Version;
+using Msg.Domain.Transport.Connections;
 
 namespace Msg.Infrastructure.Tcp
 {

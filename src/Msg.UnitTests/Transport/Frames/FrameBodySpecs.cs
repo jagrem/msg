@@ -18,7 +18,7 @@ namespace Msg.UnitTests.Transport.Frames
 			var frameBodyBytes = new byte[] { 0, 0, 0, 0, 0 };
 			Func<Task> action = async () => await FrameBodyFactory.GetFrameBodyFromBytes (frameBodyBytes);
 			action.ShouldThrow<MalformedFrameException> ()
-				.WithMessage ("Cannot determine the type of frame.");
+				.WithMessage ("Unrecognised frame type.");
 		}
 			
 		[Test]

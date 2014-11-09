@@ -47,6 +47,7 @@
     <Compile Include="VersionRangeSpecs.cs" />
     <Compile Include="Transport\Frames\FrameHeaderSpecs.cs" />
     <Compile Include="Transport\Frames\FrameBodySpecs.cs" />
+    <Compile Include="Transport\ConnectorSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

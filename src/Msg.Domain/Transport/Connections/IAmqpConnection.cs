@@ -1,6 +1,6 @@
 using Version = Msg.Domain.Transport.Version;
 
-namespace Msg.Infrastructure
+namespace Msg.Domain.Transport.Connections
 {
 
 	public interface IAmqpConnection

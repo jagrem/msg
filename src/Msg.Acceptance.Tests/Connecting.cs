@@ -3,6 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading.Tasks;
 using Msg.Infrastructure;
+using Msg.Domain.Transport.Connections;
 
 namespace Msg.Acceptance.Tests
 {

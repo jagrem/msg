@@ -5,6 +5,7 @@ using System;
 using Msg.Infrastructure;
 using System.Linq;
 using Msg.Infrastructure.Tcp;
+using Msg.Domain.Transport.Connections;
 
 namespace Msg.Infrastructure
 {

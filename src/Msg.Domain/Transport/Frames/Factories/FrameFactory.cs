@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace Msg.Domain.Transport.Frames.Factories
 {
-	class FrameFactory 
+	class FrameFactory
 	{
-		public async Task<Frame> GetFrameFromBytes(byte[] frameBytes)
+		public async Task<Frame> GetFrameFromBytes (byte[] frameBytes)
 		{
 			var frameHeaderBytes = new byte[FrameHeaders.FixedLengthInBytes];
 			Array.Copy (frameBytes, 0, frameHeaderBytes, 0, frameHeaderBytes.Length);
@@ -21,6 +21,16 @@ namespace Msg.Domain.Transport.Frames.Factories
 			var body = await FrameBodyFactory.GetFrameBodyFromBytes (frameBodyBytes);
 
 			return new Frame (header, extendedHeader, body);
+		}
+
+		public static OpenFrame CreateOpenFrame ()
+		{
+			return new OpenFrame (new Frame (new FrameHeader (13, 8, FrameHeaderType.AMQP, 0), new FrameExtendedHeader (new byte[0]), new FrameBody (PerformativeType.Open, new byte[0])));
+		}
+
+		public static CloseFrame CreateCloseFrame ()
+		{
+			return new CloseFrame (new Frame (new FrameHeader (14, 8, FrameHeaderType.AMQP, 0), new FrameExtendedHeader (new byte[0]), new FrameBody (PerformativeType.Close, new byte[0])));
 		}
 	}
 }

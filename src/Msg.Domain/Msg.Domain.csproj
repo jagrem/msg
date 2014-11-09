@@ -80,6 +80,12 @@
     <Compile Include="Transport\Frames\Performative.cs" />
     <Compile Include="Transport\Frames\Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Transport\Frames\Extensions\StringExtensions.cs" />
+    <Compile Include="Transport\Frames\Constants\Defaults.cs" />
+    <Compile Include="Transport\Connections\IAmqpConnection.cs" />
+    <Compile Include="Transport\Connections\Connector.cs" />
+    <Compile Include="Transport\Frames\FrameSender.cs" />
+    <Compile Include="Transport\Frames\FrameSendResult.cs" />
+    <Compile Include="Transport\Connections\ConnectionFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -91,6 +97,7 @@
     <Folder Include="Transport\Frames\Resources\" />
     <Folder Include="Transport\Frames\Factories\" />
     <Folder Include="Transport\Frames\Extensions\" />
+    <Folder Include="Transport\Connections\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">
