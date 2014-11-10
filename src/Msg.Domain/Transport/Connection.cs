@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Msg.Domain.Transport
 {
-	public class Connection : Endpoint
+	public class Connection : Endpoint, IConnection
 	{
 		public bool IsConnected { get; private set; }
 

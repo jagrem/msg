@@ -86,6 +86,10 @@
     <Compile Include="Transport\Frames\FrameSender.cs" />
     <Compile Include="Transport\Frames\FrameSendResult.cs" />
     <Compile Include="Transport\Connections\ConnectionFactory.cs" />
+    <Compile Include="Transport\IConnection.cs" />
+    <Compile Include="Transport\Connections\OpenConnectionFailedException.cs" />
+    <Compile Include="Transport\Connections\CloseConnectionFailedException.cs" />
+    <Compile Include="Transport\Connections\ConnectionFailedException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
