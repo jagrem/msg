@@ -92,6 +92,9 @@
     <Compile Include="Transport\Frames\Behaviour\InterceptedAtSessionLevelAttribute.cs" />
     <Compile Include="Transport\Frames\Behaviour\HandlingBehaviourAttribute.cs" />
     <Compile Include="Transport\Frames\Behaviour\InterceptionBehaviourAttribute.cs" />
+    <Compile Include="Transport\Connections\Tcp\TcpConnection.cs" />
+    <Compile Include="Transport\Connections\Http\HttpConnection.cs" />
+    <Compile Include="Transport\Connections\WebSockets\WebSocketConnection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -105,6 +108,9 @@
     <Folder Include="Transport\Frames\Extensions\" />
     <Folder Include="Transport\Connections\" />
     <Folder Include="Versioning\" />
+    <Folder Include="Transport\Connections\Tcp\" />
+    <Folder Include="Transport\Connections\Http\" />
+    <Folder Include="Transport\Connections\WebSockets\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">

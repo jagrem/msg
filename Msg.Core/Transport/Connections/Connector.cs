@@ -8,7 +8,7 @@ namespace Msg.Core.Transport.Connections
 	{
 		public static async Task<IConnection> OpenConnectionAsync ()
 		{
-			var connection = await ConnectionFactory.CreateTcpConnectionAsync ();
+			var connection = await ConnectionFactory.CreateConnectionAsync ();
 			var openFrame = FrameFactory.CreateOpenFrame ();
 			var result = await FrameSender.SendFrame (connection, openFrame);
 
