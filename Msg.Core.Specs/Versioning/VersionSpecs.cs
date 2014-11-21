@@ -3,7 +3,7 @@ using FluentAssertions;
 using System;
 using Version = Msg.Core.Versioning.Version;
 
-namespace Msg.Core.Specs.Transport
+namespace Msg.Core.Specs.Versioning
 {
 	[TestFixture]
 	public class VersionSpecs

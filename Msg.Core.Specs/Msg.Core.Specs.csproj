@@ -46,12 +46,12 @@
     <Compile Include="Transport\Frames\FrameHeaderSpecs.cs" />
     <Compile Include="Transport\Frames\FrameBodySpecs.cs" />
     <Compile Include="Versioning\VersionRangeSpecs.cs" />
-    <Compile Include="Transport\VersionSpecs.cs" />
     <Compile Include="Transport\Connections\ConnectorSpecs.cs" />
     <Compile Include="Transport\Connections\ConnectionFactoryExtensions.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayConnection.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayException.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayExpectation.cs" />
+    <Compile Include="Versioning\VersionSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
