@@ -50,4 +50,17 @@ Global
 		{728F2372-180C-4F72-B14E-21F990608667} = {8D7D9D0A-DCF1-4311-AFE0-ED0A67DE8E45}
 		{A03D2DE4-0BF1-43EC-9DEF-B77B78D89F79} = {8D7D9D0A-DCF1-4311-AFE0-ED0A67DE8E45}
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 160
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.AfterDelegateDeclarationParameterComma = True
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
 EndGlobal
