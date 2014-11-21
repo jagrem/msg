@@ -11,7 +11,7 @@ namespace Msg.Core.Transport
 			connection.Version = version;
 		}
 
-		public static void Support(this Connection connection, VersionRange versions)
+		public static void Supports(this Connection connection, VersionRange versions)
 		{
 			var supportedVersions = connection.SupportedVersions.ToList ();
 			supportedVersions.Add (versions);

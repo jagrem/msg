@@ -17,7 +17,7 @@ namespace Msg.Core.Transport.Connections.Replay
 			return this;
 		}
 
-		public ReplayConnection AllowConnection()
+		public ReplayConnection AllowClientToConnect()
 		{
 			this.Open ();
 			return this;

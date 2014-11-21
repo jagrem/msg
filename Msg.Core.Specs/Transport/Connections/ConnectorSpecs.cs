@@ -20,11 +20,11 @@ namespace Msg.Core.Specs.Transport.Connections
 			// Arrange
 			//-----------------------------------------------------------------------------------------------------------
 			var connection = new ReplayConnection ()
-					.AllowConnection ()
+					.AllowClientToConnect ()
 					.Expect (FrameFactory.CreateOpenFrame ())
 					.ThenAcknowledgeButDontClose ();
 
-			connection.Support (Version.Exactly (1, 0, 0));
+			connection.Supports (Version.Exactly (1, 0, 0));
 
 			//-----------------------------------------------------------------------------------------------------------
 			// Act
@@ -46,7 +46,7 @@ namespace Msg.Core.Specs.Transport.Connections
 			var connection = new ReplayConnection ()
 				.ThrowAnyException ();
 
-			connection.Support (Version.Exactly (1, 0, 0));
+			connection.Supports (Version.Exactly (1, 0, 0));
 
 			//-----------------------------------------------------------------------------------------------------------
 			// Act
@@ -66,7 +66,7 @@ namespace Msg.Core.Specs.Transport.Connections
 			// Arrange
 			//-----------------------------------------------------------------------------------------------------------
 			var connection = new ReplayConnection ()
-					.AllowConnection ()
+					.AllowClientToConnect ()
 					.Expect (FrameFactory.CreateCloseFrame ())
 					.ThenClose ();
 
