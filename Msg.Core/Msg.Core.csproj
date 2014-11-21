@@ -95,6 +95,7 @@
     <Compile Include="Transport\Connections\Tcp\TcpConnection.cs" />
     <Compile Include="Transport\Connections\Http\HttpConnection.cs" />
     <Compile Include="Transport\Connections\WebSockets\WebSocketConnection.cs" />
+    <Compile Include="Transport\Connections\Replay\ReplayConnection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -111,6 +112,7 @@
     <Folder Include="Transport\Connections\Tcp\" />
     <Folder Include="Transport\Connections\Http\" />
     <Folder Include="Transport\Connections\WebSockets\" />
+    <Folder Include="Transport\Connections\Replay\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">

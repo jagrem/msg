@@ -17,5 +17,10 @@ namespace Msg.Core.Transport.Frames
 		public FrameHeaderType Type { get; private set; }
 
 		public uint ChannelId { get; private set; }
+
+		public override string ToString ()
+		{
+			return string.Format ("[FrameHeader: Size={0}, DataOffset={1}, Type={2}, ChannelId={3}]", Size, DataOffset, Type, ChannelId);
+		}
 	}
 }

@@ -2,6 +2,7 @@
 using Msg.Core.Transport.Connections.Tcp;
 using Msg.Core.Transport.Connections.Http;
 using Msg.Core.Transport.Connections.WebSockets;
+using Msg.Core.Transport.Connections.Replay;
 
 namespace Msg.Core.Transport.Connections
 {
@@ -32,6 +33,13 @@ namespace Msg.Core.Transport.Connections
 			// TODO: Replace with implementation to create WebSockets connection.
 			await Task.Yield ();
 			return new WebSocketConnection ();
+		}
+
+		public static async Task<ReplayConnection> CreateReplayConnectionAsync()
+		{
+			// TODO: Replace with implementation to create a replay connection for testing.
+			await Task.Yield ();
+			return new ReplayConnection ();
 		}
 	}
 }
