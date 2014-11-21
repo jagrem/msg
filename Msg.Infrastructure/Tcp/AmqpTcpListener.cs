@@ -2,7 +2,7 @@ using System.Net.Sockets;
 using System.Net;
 using System;
 using System.Threading.Tasks;
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 using Msg.Infrastructure.Events;
 using Msg.Infrastructure.Server.Events;
 using Msg.Infrastructure.Tcp.Events;

@@ -1,4 +1,4 @@
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 using Msg.Core.Versioning;
 using System.Net;
 using System.Collections.Generic;

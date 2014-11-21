@@ -1,4 +1,4 @@
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 using Msg.Core.Versioning;
 using System.Net;
 using System.Collections.Generic;
@@ -15,13 +15,13 @@ namespace Msg.Infrastructure
 
 		public AmqpSettingsBuilder SupportsVersion(byte major, byte minor, byte revision)
 		{
-			this.supportedVersions.Add (SupportedVersion.Exactly (major, minor, revision));
+			this.supportedVersions.Add (Version.Exactly (major, minor, revision));
 			return this;
 		}
 
 		public AmqpSettingsBuilder SupportsUpToVersion(byte major, byte minor, byte revision)
 		{
-			this.supportedVersions.Add (SupportedVersion.UpTo (major, minor, revision));
+			this.supportedVersions.Add (Version.UpTo (major, minor, revision));
 			return this;
 		}
 

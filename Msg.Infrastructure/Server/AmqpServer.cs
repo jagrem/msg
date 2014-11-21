@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 using System.Threading;
 using Msg.Infrastructure.Tcp;
 

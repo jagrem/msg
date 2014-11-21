@@ -1,6 +1,7 @@
 ﻿using System;
+using Msg.Core.Versioning;
 
-namespace Msg.Core.Transport
+namespace Msg.Core.Versioning
 {
 	public class Version : IComparable, IComparable<Version>
 	{
@@ -114,6 +115,21 @@ namespace Msg.Core.Transport
 		}
 
 		public static Version Any = new Version(0,0,0);
+
+		public static VersionRange From(byte major, byte minor, byte revision)
+		{
+			return new VersionRange (new Version(major, minor, revision), Version.Any);
+		}
+
+		public static VersionRange UpTo(byte major, byte minor, byte revision)
+		{
+			return new VersionRange (Version.Any, new Version(major, minor, revision));
+		}
+
+		public static VersionRange Exactly(byte major, byte minor, byte revision)
+		{
+			return new VersionRange (new Version(major, minor, revision), new Version(major, minor, revision));
+		}
 	}
 }
 

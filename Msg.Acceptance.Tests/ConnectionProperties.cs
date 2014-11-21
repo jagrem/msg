@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Msg.Infrastructure;
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 
 namespace Msg.Acceptance.Tests
 {

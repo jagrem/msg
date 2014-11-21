@@ -20,9 +20,14 @@ namespace Msg.Core.Transport.Connections.Replay
 			return connection.ReplyWithFrame (expectedFrame, frame);
 		}
 
-		public ReplayConnection ThenReplyWithNothing ()
+		public ReplayConnection ThenClose ()
 		{
-			return connection.Acknowledge (expectedFrame);
+			return connection.AcknowledgeAndClose (expectedFrame);
+		}
+
+		public ReplayConnection ThenAcknowledgeButDontClose()
+		{
+			return connection.AcknowledgeButDontClose (expectedFrame);
 		}
 	}
 }

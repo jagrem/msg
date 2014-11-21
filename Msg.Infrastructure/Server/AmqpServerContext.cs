@@ -1,4 +1,4 @@
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 using System.Threading;
 
 namespace Msg.Infrastructure.Server

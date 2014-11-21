@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transport\Frames\FrameHeaderSpecs.cs" />
     <Compile Include="Transport\Frames\FrameBodySpecs.cs" />
-    <Compile Include="Transport\ConnectorSpecs.cs" />
     <Compile Include="Versioning\VersionRangeSpecs.cs" />
     <Compile Include="Transport\VersionSpecs.cs" />
+    <Compile Include="Transport\Connections\ConnectorSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -57,6 +57,7 @@
     <Folder Include="Transport\" />
     <Folder Include="Transport\Frames\" />
     <Folder Include="Versioning\" />
+    <Folder Include="Transport\Connections\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Msg.Core\Msg.Core.csproj">

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Msg.Core.Transport.Frames;
 using System.Threading.Tasks;
+using Msg.Core.Versioning;
 
 namespace Msg.Core.Transport.Connections.Replay
 {
@@ -13,6 +14,12 @@ namespace Msg.Core.Transport.Connections.Replay
 		public ReplayConnection Replay (Func<byte[], byte[]> replayFunction)
 		{
 			replays.Enqueue (replayFunction);
+			return this;
+		}
+
+		public ReplayConnection AllowConnection()
+		{
+			this.Open ();
 			return this;
 		}
 
@@ -31,13 +38,37 @@ namespace Msg.Core.Transport.Connections.Replay
 			return this;
 		}
 
-		public ReplayConnection Acknowledge (Frame expectedFrame)
+		public ReplayConnection AcknowledgeButDontClose(Frame expectedFrame)
+		{
+			Acknowledge (expectedFrame, false);
+			return this;
+		}
+
+		void Open()
+		{
+			this.IsConnected = true;
+			this.IsClosed = false;
+		}
+
+		void Close ()
+		{
+			this.IsClosed = true;
+			this.IsConnected = false;
+		}
+
+		void Acknowledge(Frame expectedFrame, bool shouldClose)
 		{
 			replays.Enqueue (actualBytes => {
 				var expectedBytes = expectedFrame.GetBytes ();
 				AssertAreEqual (expectedBytes, actualBytes);
+				if(shouldClose) Close ();
 				return null;
 			});
+		}
+
+		public ReplayConnection AcknowledgeAndClose (Frame expectedFrame)
+		{
+			Acknowledge (expectedFrame, true);
 			return this;
 		}
 
@@ -72,11 +103,6 @@ namespace Msg.Core.Transport.Connections.Replay
 
 		public override async Task<byte[]> SendAsync (byte[] message)
 		{
-			if (replays.Count == 1) {
-				this.IsClosed = true;
-				this.IsConnected = false;
-			}
-
 			return await Task.FromResult (replays.Dequeue () (message));
 		}
 	}

@@ -54,7 +54,6 @@
     <Compile Include="Transport\Frames\DetachFrame.cs" />
     <Compile Include="Transport\Frames\EndFrame.cs" />
     <Compile Include="Transport\Frames\CloseFrame.cs" />
-    <Compile Include="Transport\Version.cs" />
     <Compile Include="Transport\Frames\FrameHeader.cs" />
     <Compile Include="Transport\Frames\MalformedFrameException.cs" />
     <Compile Include="Transport\Frames\FrameHeaderType.cs" />
@@ -83,7 +82,6 @@
     <Compile Include="Transport\Connections\OpenConnectionFailedException.cs" />
     <Compile Include="Transport\Connections\CloseConnectionFailedException.cs" />
     <Compile Include="Transport\Connections\ConnectionFailedException.cs" />
-    <Compile Include="Versioning\SupportedVersion.cs" />
     <Compile Include="Versioning\VersionRange.cs" />
     <Compile Include="Transport\Frames\Behaviour\HandledAtConnectionlevelAttribute.cs" />
     <Compile Include="Transport\Frames\Behaviour\HandledAtSessionLevelAttribute.cs" />
@@ -98,6 +96,10 @@
     <Compile Include="Transport\Connections\Replay\ReplayConnection.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayException.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayExpectation.cs" />
+    <Compile Include="Versioning\VersionNegotiator.cs" />
+    <Compile Include="Versioning\UnsupportedVersionException.cs" />
+    <Compile Include="Transport\ConnectionExtensions.cs" />
+    <Compile Include="Versioning\Version.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

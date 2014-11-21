@@ -1,4 +1,4 @@
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 
 namespace Msg.Core.Transport.Connections
 {

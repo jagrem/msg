@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Msg.Infrastructure;
 using System.Threading.Tasks;
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 using Msg.Acceptance.Tests.TestDoubles;
 using Msg.Infrastructure.Server;
 using Msg.Core.Versioning;
@@ -16,7 +16,7 @@ namespace Msg.Acceptance.Tests
 		public async Task Given_a_client_prefers_a_lower_version_than_the_version_the_server_prefers_When_negotiating_which_version_to_use_Then_the_server_returns_the_clients_preferred_version()
 		{
 			// Arrange
-			var serverSettings = new AmqpSettingsBuilder ().SupportsVersions (SupportedVersion.From (0, 9, 0).To (1, 0, 0));
+			var serverSettings = new AmqpSettingsBuilder ().SupportsVersions (Version.From (0, 9, 0).To (1, 0, 0));
 			new AmqpServer (serverSettings).Start();
 			var clientSettings = new AmqpSettingsBuilder ().SupportsVersion (0, 9, 0);
 			var client = new AmqpClient (clientSettings);
@@ -32,7 +32,7 @@ namespace Msg.Acceptance.Tests
 		public async Task Given_a_client_prefers_a_version_which_the_server_does_not_support_When_negotiating_which_version_to_use_Then_the_server_returns_its_preferred_version_And_closes_the_connection()
 		{
 			// Arrange
-			var serverSettings = new AmqpSettingsBuilder ().SupportsVersions (SupportedVersion.From (0, 9, 0).To (1, 0, 0));
+			var serverSettings = new AmqpSettingsBuilder ().SupportsVersions (Version.From (0, 9, 0).To (1, 0, 0));
 			new AmqpServer (serverSettings).Start();
 			var clientSettings = new AmqpSettingsBuilder ().SupportsVersion (0, 8, 0);
 			var client = new AmqpClient (clientSettings);

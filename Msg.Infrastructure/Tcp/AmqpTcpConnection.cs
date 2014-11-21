@@ -1,4 +1,4 @@
-using Version = Msg.Core.Transport.Version;
+using Version = Msg.Core.Versioning.Version;
 using Msg.Core.Transport.Connections;
 
 namespace Msg.Infrastructure.Tcp

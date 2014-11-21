@@ -8,7 +8,12 @@ namespace Msg.Core.Transport.Frames
 
 		public static FrameSendResult SendSucceeded()
 		{
-			return new FrameSendResult () { SendWasSuccessful = true };
+			return new FrameSendResult { SendWasSuccessful = true };
+		}
+
+		public static FrameSendResult SendFailed() 
+		{
+			return new FrameSendResult { SendWasSuccessful = false };
 		}
 	}
 }

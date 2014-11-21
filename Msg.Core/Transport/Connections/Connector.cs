@@ -1,14 +1,17 @@
 using Msg.Core.Transport.Frames;
 using System.Threading.Tasks;
 using Msg.Core.Transport.Frames.Factories;
+using Msg.Core.Versioning;
 
 namespace Msg.Core.Transport.Connections
 {
 	public static class Connector
 	{
-		public static async Task<IConnection> OpenConnectionAsync ()
+		public static async Task<IConnection> OpenConnectionAsync (Connection connection)
 		{
-			var connection = await ConnectionFactory.CreateConnectionAsync ();
+			var version = await VersionNegotiator.NegotiateVersionAsync (connection.SupportedVersions);
+			connection.UseVersion (version);
+
 			var openFrame = FrameFactory.CreateOpenFrame ();
 			var result = await FrameSender.SendFrame (connection, openFrame);
 
