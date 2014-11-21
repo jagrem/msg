@@ -19,12 +19,13 @@ namespace Msg.Core.Specs.Transport.Connections
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var connection = new ReplayConnection ()
+            var factory = new ConnectionFactory ();
+            var connection = await factory.CreateReplayConnectionAsync ();
+            connection.Supports (Version.Exactly (1, 0, 0));
+            connection
 				.AllowClientToConnect ()
 				.Expect (FrameFactory.CreateOpenFrame ())
 				.ThenAcknowledgeButDontClose ();
-
-            connection.Supports (Version.Exactly (1, 0, 0));
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -38,15 +39,15 @@ namespace Msg.Core.Specs.Transport.Connections
         }
 
         [Test]
-        public void When_opening_a_connection_fails_Then_it_should_throw ()
+        public async Task When_opening_a_connection_fails_Then_it_should_throw ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var connection = new ReplayConnection ()
-				.ThrowAnyException ();
-
+            var factory = new ConnectionFactory ();
+            var connection = await factory.CreateReplayConnectionAsync ();
             connection.Supports (Version.Exactly (1, 0, 0));
+            connection.ThrowAnyException ();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -65,8 +66,11 @@ namespace Msg.Core.Specs.Transport.Connections
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var connection = new ReplayConnection ()
-				.AllowClientToConnect ()
+            var factory = new ConnectionFactory ();
+            var connection = await factory.CreateReplayConnectionAsync ();
+            connection.Supports (Version.Exactly (1, 0, 0));
+			connection
+                .AllowClientToConnect ()
 				.Expect (FrameFactory.CreateCloseFrame ())
 				.ThenClose ();
 
@@ -82,13 +86,15 @@ namespace Msg.Core.Specs.Transport.Connections
         }
 
         [Test]
-        public void When_closing_a_connection_fails_Then_it_should_throw ()
+        public async Task When_closing_a_connection_fails_Then_it_should_throw ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var connection = new ReplayConnection ()
-				.ThrowAnyException ();
+            var factory = new ConnectionFactory ();
+            var connection = await factory.CreateReplayConnectionAsync ();
+            connection.Supports (Version.Exactly (1, 0, 0));
+            connection.ThrowAnyException ();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
