@@ -96,6 +96,8 @@
     <Compile Include="Transport\Connections\Http\HttpConnection.cs" />
     <Compile Include="Transport\Connections\WebSockets\WebSocketConnection.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayConnection.cs" />
+    <Compile Include="Transport\Connections\Replay\ReplayException.cs" />
+    <Compile Include="Transport\Connections\Replay\ReplayExpectation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

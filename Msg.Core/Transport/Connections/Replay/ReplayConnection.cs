@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Msg.Core.Transport.Frames;
+using System.Threading.Tasks;
 
 namespace Msg.Core.Transport.Connections.Replay
 {
@@ -9,73 +10,74 @@ namespace Msg.Core.Transport.Connections.Replay
 	{
 		private readonly Queue<Func<byte[],byte[]>> replays = new Queue<Func<byte[],byte[]>> ();
 
-		public ReplayConnection Replay(Func<byte[], byte[]> replayFunction)
+		public ReplayConnection Replay (Func<byte[], byte[]> replayFunction)
 		{
 			replays.Enqueue (replayFunction);
 			return this;
 		}
 
-		public ReplayExpectation Expect(Frame frame)
+		public ReplayExpectation Expect (Frame frame)
 		{
 			return new ReplayExpectation (this, frame);
 		}
 
-		public ReplayConnection Reply(Frame expectedFrame, Frame responseFrame)
+		public ReplayConnection ReplyWithFrame (Frame expectedFrame, Frame responseFrame)
 		{
-			replays.Enqueue (actualBytes =>  {
+			replays.Enqueue (actualBytes => {
 				var expectedBytes = expectedFrame.GetBytes ();
-
-				if(expectedBytes != actualBytes)
-				{
-					throw new ReplayException(expectedBytes, actualBytes);
-				}
-
+				AssertAreEqual (expectedBytes, actualBytes);
 				return responseFrame.GetBytes ();
 			});
 			return this;
 		}
 
-		public ReplayConnection ThrowException(Exception exception)
+		public ReplayConnection Acknowledge (Frame expectedFrame)
 		{
-			replays.Enqueue (message => { throw exception; });
+			replays.Enqueue (actualBytes => {
+				var expectedBytes = expectedFrame.GetBytes ();
+				AssertAreEqual (expectedBytes, actualBytes);
+				return null;
+			});
 			return this;
 		}
 
-		public ReplayConnection ThrowAnyException()
+		static void AssertAreEqual (byte[] expected, byte[] actual)
 		{
-			replays.Enqueue (message => { throw new Exception(); });
+			if (expected.Length != actual.Length) {
+				throw new ReplayException (expected, actual);
+			}
+
+			for (int i = 0; i < expected.Length; i++) {
+				if (expected [i] != actual [i]) {
+					throw new ReplayException (expected, actual);
+				}
+			}
+		}
+
+		public ReplayConnection ThrowException (Exception exception)
+		{
+			replays.Enqueue (message => {
+				throw exception;
+			});
 			return this;
 		}
-	}
 
-	public class ReplayException : Exception
-	{
-		public ReplayException(byte[] expected, byte[] actual)
+		public ReplayConnection ThrowAnyException ()
 		{
-			this.Actual = actual;
-			this.Expected = expected;
+			replays.Enqueue (message => {
+				throw new Exception ();
+			});
+			return this;
 		}
 
-		public byte[] Expected { get; private set; }
-
-		public byte[] Actual { get; private set; }
-	}
-
-	public class ReplayExpectation
-	{
-		readonly ReplayConnection connection;
-
-		readonly Frame expectedFrame;
-
-		public ReplayExpectation(ReplayConnection connection, Frame expectedFrame)
+		public override async Task<byte[]> SendAsync (byte[] message)
 		{
-			this.expectedFrame = expectedFrame;
-			this.connection = connection;
-		}
+			if (replays.Count == 1) {
+				this.IsClosed = true;
+				this.IsConnected = false;
+			}
 
-		public ReplayConnection ThenReplyWith(Frame frame)
-		{
-			return connection.Reply (expectedFrame, frame);
+			return await Task.FromResult (replays.Dequeue () (message));
 		}
 	}
 }

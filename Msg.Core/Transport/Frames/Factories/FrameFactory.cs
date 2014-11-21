@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Msg.Core.Transport.Frames.Factories
 {
-	class FrameFactory
+	public class FrameFactory
 	{
 		public async Task<Frame> GetFrameFromBytes (byte[] frameBytes)
 		{

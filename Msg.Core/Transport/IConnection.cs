@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace Msg.Core.Transport
 {
 	public interface IConnection
@@ -7,5 +9,7 @@ namespace Msg.Core.Transport
 		bool IsClosed { get; }
 
 		long MaximumFrameSize { get; }
+
+		Task<byte[]> SendAsync (byte[] message);
 	}
 }
