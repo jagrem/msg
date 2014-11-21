@@ -16,7 +16,7 @@ namespace Msg.Core.Specs.Transport.Frames
         {
             Action action = () => FrameHeaderFactory.GetFrameHeaderFromBytes (bytes);
             action.ShouldThrow<ArgumentException> ()
-				.WithMessage ("A frame header has a fixed length of 8 bytes.*");
+                .WithMessage ("A frame header has a fixed length of 8 bytes.*");
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace Msg.Core.Specs.Transport.Frames
             var bytes = new byte[] { 0, 0, 0, 0, 255, 0, 0, 0 };
             Action action = () => FrameHeaderFactory.GetFrameHeaderFromBytes (bytes);
             action.ShouldThrow<MalformedFrameException> ()
-				.WithMessage ("Data offset cannot be less than 8 bytes.");
+                .WithMessage ("Data offset cannot be less than 8 bytes.");
         }
 
         [Test]
