@@ -2,8 +2,8 @@
 
 namespace Msg.Core.Transport.Frames.Behaviour
 {
-	public abstract class InterceptionBehaviourAttribute : Attribute
-	{
-	}
+    public abstract class InterceptionBehaviourAttribute : Attribute
+    {
+    }
 }
 

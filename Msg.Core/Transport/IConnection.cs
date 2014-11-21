@@ -2,14 +2,14 @@ using System.Threading.Tasks;
 
 namespace Msg.Core.Transport
 {
-	public interface IConnection
-	{
-		bool IsConnected { get; }
+    public interface IConnection
+    {
+        bool IsConnected { get; }
 
-		bool IsClosed { get; }
+        bool IsClosed { get; }
 
-		long MaximumFrameSize { get; }
+        long MaximumFrameSize { get; }
 
-		Task<byte[]> SendAsync (byte[] message);
-	}
+        Task<byte[]> SendAsync (byte[] message);
+    }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Msg.Core.Transport
 {
-	public class Consumer : Node
-	{
-	}
+    public class Consumer : Node
+    {
+    }
 }
-

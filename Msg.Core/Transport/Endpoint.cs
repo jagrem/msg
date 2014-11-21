@@ -1,7 +1,7 @@
 ﻿namespace Msg.Core.Transport
 {
-	public class Endpoint
-	{
-	}
+    public class Endpoint
+    {
+    }
 }
 

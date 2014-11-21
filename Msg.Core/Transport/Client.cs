@@ -1,7 +1,7 @@
 ﻿namespace Msg.Core.Transport
 {
-	public class Client : Container
-	{
-	}
+    public class Client : Container
+    {
+    }
 }
 

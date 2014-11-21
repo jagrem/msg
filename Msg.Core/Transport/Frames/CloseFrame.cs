@@ -2,12 +2,12 @@
 
 namespace Msg.Core.Transport.Frames
 {
-	[HandledAtConnectionlevel]
-	public class CloseFrame : Frame
-	{
-		public CloseFrame(Frame baseFrame) : base (baseFrame.Header, baseFrame.ExtendedHeader, baseFrame.Body)
-		{
-		}
-	}
+    [HandledAtConnectionlevel]
+    public class CloseFrame : Frame
+    {
+        public CloseFrame (Frame baseFrame) : base (baseFrame.Header, baseFrame.ExtendedHeader, baseFrame.Body)
+        {
+        }
+    }
 }
 
