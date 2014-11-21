@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace Msg.Core.Transport.Connections
 {
-	
 	public class CloseConnectionFailedException : ConnectionFailedException
 	{
 		public CloseConnectionFailedException ()
@@ -12,7 +11,6 @@ namespace Msg.Core.Transport.Connections
 
 		public CloseConnectionFailedException (string message) : base (message)
 		{
-
 		}
 
 		public CloseConnectionFailedException (string message, Exception innerException) : base (message, innerException)
