@@ -32,6 +32,5 @@ namespace Msg.Core.Specs.Transport.Connections.Replay
             return await Task.FromResult (replays.Dequeue () (message));
         }
     }
-
 }
 
