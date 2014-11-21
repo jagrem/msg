@@ -52,6 +52,7 @@
     <Compile Include="Transport\Connections\Replay\ReplayException.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayExpectation.cs" />
     <Compile Include="Versioning\VersionSpecs.cs" />
+    <Compile Include="Transport\Connections\Replay\ReplayConnectionExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
