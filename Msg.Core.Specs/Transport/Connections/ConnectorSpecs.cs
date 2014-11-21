@@ -3,7 +3,7 @@ using FluentAssertions;
 using Msg.Core.Transport.Connections;
 using System.Threading.Tasks;
 using Msg.Core.Transport;
-using Msg.Core.Transport.Connections.Replay;
+using Msg.Core.Specs.Transport.Connections.Replay;
 using Msg.Core.Transport.Frames.Factories;
 using Version = Msg.Core.Versioning.Version;
 using System;

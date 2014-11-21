@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace Msg.Core.Transport.Connections.Replay
+namespace Msg.Core.Specs.Transport.Connections.Replay
 {
 	/* Replays test data */
 

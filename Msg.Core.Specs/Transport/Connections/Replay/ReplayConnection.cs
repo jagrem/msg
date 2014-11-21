@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Msg.Core.Transport.Frames;
 using System.Threading.Tasks;
-using Msg.Core.Versioning;
+using Msg.Core.Transport;
 
-namespace Msg.Core.Transport.Connections.Replay
+namespace Msg.Core.Specs.Transport.Connections.Replay
 {
 	/* Replays test data */
 	public class ReplayConnection : Connection
