@@ -20,9 +20,9 @@ namespace Msg.Core.Specs.Transport.Connections
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
             var connection = new ReplayConnection ()
-					.AllowClientToConnect ()
-					.Expect (FrameFactory.CreateOpenFrame ())
-					.ThenAcknowledgeButDontClose ();
+				.AllowClientToConnect ()
+				.Expect (FrameFactory.CreateOpenFrame ())
+				.ThenAcknowledgeButDontClose ();
 
             connection.Supports (Version.Exactly (1, 0, 0));
 
@@ -66,9 +66,9 @@ namespace Msg.Core.Specs.Transport.Connections
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
             var connection = new ReplayConnection ()
-					.AllowClientToConnect ()
-					.Expect (FrameFactory.CreateCloseFrame ())
-					.ThenClose ();
+				.AllowClientToConnect ()
+				.Expect (FrameFactory.CreateCloseFrame ())
+				.ThenClose ();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
