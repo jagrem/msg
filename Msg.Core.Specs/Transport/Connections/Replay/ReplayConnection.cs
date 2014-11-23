@@ -9,10 +9,17 @@ namespace Msg.Core.Specs.Transport.Connections.Replay
     {
         readonly Queue<Func<byte[],byte[]>> replays = new Queue<Func<byte[],byte[]>> ();
 
-        internal ReplayConnection Replay (Func<byte[], byte[]> replayFunction)
+        int expectedNumberOfReplays = 0;
+
+        internal ReplayConnection Record (Func<byte[], byte[]> replayFunction)
         {
             replays.Enqueue (replayFunction);
             return this;
+        }
+
+        internal void Replay()
+        {
+            expectedNumberOfReplays = replays.Count;
         }
 
         internal void Open ()

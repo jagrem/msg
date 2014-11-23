@@ -18,53 +18,44 @@ namespace Msg.Core.Specs.Transport.Connections.Replay
 
         public static ReplayConnection ThrowException (this ReplayConnection connection, Exception exception)
         {
-            connection.Replay (message => {
+            return connection.Record (message => {
                 throw exception;
             });
-            return connection;
         }
 
         public static ReplayConnection ThrowAnyException (this ReplayConnection connection)
         {
-            connection.Replay (message => {
-                throw new Exception ();
-            });
-            return connection;
+            return ThrowException (connection, new Exception ());
         }
 
         public static ReplayConnection ReplyWithFrame (this ReplayConnection connection, Frame expectedFrame, Frame responseFrame)
         {
-            connection.Replay (actualBytes => {
+            return connection.Record (actualBytes => {
                 var expectedBytes = expectedFrame.GetBytes ();
                 AssertAreEqual (expectedBytes, actualBytes);
                 return responseFrame.GetBytes ();
             });
-            return connection;
         }
 
         public static ReplayConnection Acknowledge (this ReplayConnection connection, Frame expectedFrame, bool shouldClose)
         {
-            connection.Replay (actualBytes => {
+            return connection.Record (actualBytes => {
                 var expectedBytes = expectedFrame.GetBytes ();
                 AssertAreEqual (expectedBytes, actualBytes);
                 if (shouldClose)
                     connection.Close ();
                 return null;
             });
-
-            return connection;
         }
 
         public static ReplayConnection AcknowledgeAndClose (this ReplayConnection connection, Frame expectedFrame)
         {
-            connection.Acknowledge (expectedFrame, true);
-            return connection;
+            return connection.Acknowledge (expectedFrame, true);
         }
 
         public static ReplayConnection AcknowledgeButDontClose (this ReplayConnection connection, Frame expectedFrame)
         {
-            connection.Acknowledge (expectedFrame, false);
-            return connection;
+            return connection.Acknowledge (expectedFrame, false);
         }
 
         static void AssertAreEqual (byte[] expected, byte[] actual)
