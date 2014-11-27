@@ -7,7 +7,7 @@ namespace Msg.Core.Transport.Connections
 {
     public static class Connector
     {
-        public static async Task<IConnection> OpenConnectionAsync (Connection connection)
+        public static async Task<IConnection> OpenConnectionAsync (IConnection connection)
         {
             var version = await VersionNegotiator.NegotiateVersionAsync (connection.SupportedVersions);
             connection.UseVersion (version);
@@ -22,7 +22,7 @@ namespace Msg.Core.Transport.Connections
             return connection;
         }
 
-        public static async Task<IConnection> CloseConnectionAsync (Connection connection)
+        public static async Task<IConnection> CloseConnectionAsync (IConnection connection)
         {
             var closeFrame = FrameFactory.CreateCloseFrame ();
             var result = await FrameSender.SendFrame (connection, closeFrame);

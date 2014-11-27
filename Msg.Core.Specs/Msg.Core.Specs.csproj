@@ -40,6 +40,9 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.8.0.0\lib\net45\NSubstitute.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -48,11 +51,12 @@
     <Compile Include="Versioning\VersionRangeSpecs.cs" />
     <Compile Include="Transport\Connections\ConnectorSpecs.cs" />
     <Compile Include="Transport\Connections\ConnectionFactoryExtensions.cs" />
-    <Compile Include="Transport\Connections\Replay\ReplayConnection.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayException.cs" />
-    <Compile Include="Transport\Connections\Replay\ReplayExpectation.cs" />
     <Compile Include="Versioning\VersionSpecs.cs" />
     <Compile Include="Transport\Connections\Replay\ReplayConnectionExtensions.cs" />
+    <Compile Include="Transport\Connections\Replay\ReplayItem.cs" />
+    <Compile Include="Transport\Connections\Replay\ReplayContext.cs" />
+    <Compile Include="Transport\Connections\Replay\ReplayResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

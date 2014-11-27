@@ -23,9 +23,9 @@ namespace Msg.Core.Specs.Transport.Connections
             var connection = await factory.CreateReplayConnectionAsync ();
             connection.Supports (Version.Exactly (1, 0, 0));
             connection
-                .AllowClientToConnect ()
+                .Connect ()
                 .Expect (FrameFactory.CreateOpenFrame ())
-                .ThenAcknowledgeButDontClose ();
+                .Close();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -70,9 +70,9 @@ namespace Msg.Core.Specs.Transport.Connections
             var connection = await factory.CreateReplayConnectionAsync ();
             connection.Supports (Version.Exactly (1, 0, 0));
             connection
-                .AllowClientToConnect ()
+                .Connect ()
                 .Expect (FrameFactory.CreateCloseFrame ())
-                .ThenClose ();
+                .Close ();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act

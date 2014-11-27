@@ -1,14 +1,15 @@
 ﻿using Msg.Core.Transport.Connections;
-using Msg.Core.Specs.Transport.Connections.Replay;
 using System.Threading.Tasks;
+using NSubstitute;
+using Msg.Core.Transport;
 
 namespace Msg.Core.Specs.Transport.Connections
 {
     public static class ConnectionFactoryExtensions
     {
-        public static async Task<ReplayConnection> CreateReplayConnectionAsync (this ConnectionFactory factory)
+        public static async Task<Connection> CreateReplayConnectionAsync (this ConnectionFactory factory)
         {
-            return await Task.FromResult(new ReplayConnection ());
+            return await Task.FromResult(Substitute.For<Connection> ());
         }
     }
 }

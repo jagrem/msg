@@ -1,61 +1,38 @@
-using System;
 using Msg.Core.Transport.Frames;
+using Msg.Core.Transport;
+using NSubstitute;
+using System.Threading.Tasks;
+using System;
 
 namespace Msg.Core.Specs.Transport.Connections.Replay
 {
     public static class ReplayConnectionExtensions
     {
-        public static ReplayConnection AllowClientToConnect (this ReplayConnection connection)
+        public static IConnection Connect (this IConnection connection)
         {
-            connection.Open ();
+            connection.IsConnected.Returns (true);
+            connection.IsClosed.Returns (false);
             return connection;
         }
 
-        public static ReplayExpectation Expect (this ReplayConnection connection, Frame frame)
+        public static IConnection Expect (this IConnection connection, Frame frame)
         {
-            return new ReplayExpectation (connection, frame);
+            connection.SendAsync (frame.GetBytes ());
+            return connection;
         }
 
-        public static ReplayConnection ThrowException (this ReplayConnection connection, Exception exception)
+        public static IConnection ThrowAnyException(this IConnection connection)
         {
-            return connection.Record (message => {
-                throw exception;
-            });
+            connection.SendAsync (Arg.Any<byte[]> ())
+                .Returns (new Task<byte[]>(() => { throw new Exception(); }));
+            return connection;
         }
 
-        public static ReplayConnection ThrowAnyException (this ReplayConnection connection)
+        public static IConnection Close(this IConnection connection)
         {
-            return ThrowException (connection, new Exception ());
-        }
-
-        public static ReplayConnection ReplyWithFrame (this ReplayConnection connection, Frame expectedFrame, Frame responseFrame)
-        {
-            return connection.Record (actualBytes => {
-                var expectedBytes = expectedFrame.GetBytes ();
-                AssertAreEqual (expectedBytes, actualBytes);
-                return responseFrame.GetBytes ();
-            });
-        }
-
-        public static ReplayConnection Acknowledge (this ReplayConnection connection, Frame expectedFrame, bool shouldClose)
-        {
-            return connection.Record (actualBytes => {
-                var expectedBytes = expectedFrame.GetBytes ();
-                AssertAreEqual (expectedBytes, actualBytes);
-                if (shouldClose)
-                    connection.Close ();
-                return null;
-            });
-        }
-
-        public static ReplayConnection AcknowledgeAndClose (this ReplayConnection connection, Frame expectedFrame)
-        {
-            return connection.Acknowledge (expectedFrame, true);
-        }
-
-        public static ReplayConnection AcknowledgeButDontClose (this ReplayConnection connection, Frame expectedFrame)
-        {
-            return connection.Acknowledge (expectedFrame, false);
+            connection.IsClosed.Returns (true);
+            connection.IsConnected.Returns (false);
+            return connection;
         }
 
         static void AssertAreEqual (byte[] expected, byte[] actual)
