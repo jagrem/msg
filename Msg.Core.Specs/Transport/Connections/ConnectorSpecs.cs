@@ -3,8 +3,6 @@ using FluentAssertions;
 using Msg.Core.Transport.Connections;
 using System.Threading.Tasks;
 using Msg.Core.Transport;
-using Msg.Core.Specs.Transport.Connections.Replay;
-using Msg.Core.Transport.Frames.Factories;
 using Version = Msg.Core.Versioning.Version;
 using System;
 
@@ -20,12 +18,7 @@ namespace Msg.Core.Specs.Transport.Connections
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
             var factory = new ConnectionFactory ();
-            var connection = await factory.CreateReplayConnectionAsync ();
-            connection.Supports (Version.Exactly (1, 0, 0));
-            connection
-                .Connect ()
-                .Expect (FrameFactory.CreateOpenFrame ())
-                .Close();
+            var connection = await factory.CreateConnectionThatShouldOpenAsync ();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -45,9 +38,7 @@ namespace Msg.Core.Specs.Transport.Connections
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
             var factory = new ConnectionFactory ();
-            var connection = await factory.CreateReplayConnectionAsync ();
-            connection.Supports (Version.Exactly (1, 0, 0));
-            connection.ThrowAnyException ();
+            var connection = await factory.CreateClosedConnectionAsync ();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -67,12 +58,7 @@ namespace Msg.Core.Specs.Transport.Connections
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
             var factory = new ConnectionFactory ();
-            var connection = await factory.CreateReplayConnectionAsync ();
-            connection.Supports (Version.Exactly (1, 0, 0));
-            connection
-                .Connect ()
-                .Expect (FrameFactory.CreateCloseFrame ())
-                .Close ();
+            var connection = await factory.CreateOpenConnectionAsync ();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -92,10 +78,8 @@ namespace Msg.Core.Specs.Transport.Connections
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
             var factory = new ConnectionFactory ();
-            var connection = await factory.CreateReplayConnectionAsync ();
-            connection.Supports (Version.Exactly (1, 0, 0));
-            connection.ThrowAnyException ();
-
+            var connection = await factory.CreateClosedConnectionAsync ();
+           
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------

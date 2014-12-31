@@ -11,7 +11,7 @@ namespace Msg.Core.Transport.Frames
                 await connection.SendAsync (frame.GetBytes ());
                 return FrameSendResult.SendSucceeded ();
             } catch (Exception exception) {
-                return FrameSendResult.SendFailed ();
+                throw;
             }
         }
     }

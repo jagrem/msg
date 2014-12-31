@@ -8,14 +8,14 @@ namespace Msg.Core.Transport
     {
         public static void UseVersion (this IConnection connection, Version version)
         {
-            connection.Version = version;
+            //connection.Version = version;
         }
 
         public static void Supports (this IConnection connection, VersionRange versions)
         {
             var supportedVersions = connection.SupportedVersions.ToList ();
             supportedVersions.Add (versions);
-            connection.SupportedVersions = supportedVersions;
+            //connection.SupportedVersions = supportedVersions;
         }
     }
 }

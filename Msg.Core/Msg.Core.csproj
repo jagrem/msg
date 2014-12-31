@@ -98,6 +98,8 @@
     <Compile Include="Transport\ConnectionExtensions.cs" />
     <Compile Include="Versioning\Version.cs" />
     <Compile Include="Transport\Connections\ConnectionFactoryExtensions.cs" />
+    <Compile Include="Transport\Connections\OpenConnection.cs" />
+    <Compile Include="Transport\Connections\ClosedConnection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

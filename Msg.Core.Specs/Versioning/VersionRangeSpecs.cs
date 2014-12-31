@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using FluentAssertions;
-using Msg.Core.Transport;
 using Msg.Core.Versioning;
 
 namespace Msg.Core.Specs.Versioning

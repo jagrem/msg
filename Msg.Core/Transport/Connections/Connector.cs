@@ -1,7 +1,8 @@
 using Msg.Core.Transport.Frames;
 using System.Threading.Tasks;
 using Msg.Core.Transport.Frames.Factories;
-using Msg.Core.Versioning;
+using Msg.Core.Transport;
+using System;
 
 namespace Msg.Core.Transport.Connections
 {
@@ -9,29 +10,25 @@ namespace Msg.Core.Transport.Connections
     {
         public static async Task<IConnection> OpenConnectionAsync (IConnection connection)
         {
-            var version = await VersionNegotiator.NegotiateVersionAsync (connection.SupportedVersions);
-            connection.UseVersion (version);
-
-            var openFrame = FrameFactory.CreateOpenFrame ();
-            var result = await FrameSender.SendFrame (connection, openFrame);
-
-            if (!result.SendWasSuccessful) {
-                throw new OpenConnectionFailedException ();
+            try {
+                var openFrame = FrameFactory.CreateOpenFrame ();
+                var result = await FrameSender.SendFrame (connection, openFrame);
+                return new OpenConnection (connection);
+            } catch (Exception exception) {
+                throw new OpenConnectionFailedException ("Connection failed.", exception);
             }
-
-            return connection;
         }
 
         public static async Task<IConnection> CloseConnectionAsync (IConnection connection)
         {
-            var closeFrame = FrameFactory.CreateCloseFrame ();
-            var result = await FrameSender.SendFrame (connection, closeFrame);
-
-            if (!result.SendWasSuccessful) {
-                throw new CloseConnectionFailedException ();
+            try {
+                var closeFrame = FrameFactory.CreateCloseFrame ();
+                var result = await FrameSender.SendFrame (connection, closeFrame);
+                return new ClosedConnection ();
+            } catch (Exception exception) {
+                throw new CloseConnectionFailedException ("Closing connection failed.", exception);
             }
-
-            return connection;
         }
     }
+
 }
