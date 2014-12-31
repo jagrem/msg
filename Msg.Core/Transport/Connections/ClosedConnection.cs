@@ -5,9 +5,13 @@ using Msg.Core.Transport;
 namespace Msg.Core.Transport.Connections
 {
 
-    public class ClosedConnection : IConnection 
+    public class ClosedConnection : IConnection
     {
         const string exceptionMessage = "The connection is closed.";
+
+        internal ClosedConnection ()
+        {
+        }
 
         public Task<byte[]> SendAsync (byte[] message)
         {

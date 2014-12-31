@@ -19,10 +19,10 @@ namespace Msg.Core.Specs.Transport.Connections
             return await Task.FromResult (new ClosedConnection ());
         }
 
-        public static async Task<Connection> CreateOpenConnectionAsync(this ConnectionFactory factory)
+        public static async Task<IConnection> CreateOpenConnectionAsync(this ConnectionFactory factory)
         {
             var connection = Substitute.For<Connection> ();
-            return await Task.FromResult (connection);
+            return await Task.FromResult (new OpenConnection(connection));
         }
 
         public static async Task<Connection> CreateOpenConnectionThatShouldThrowAsync(this ConnectionFactory factory, Exception exception)

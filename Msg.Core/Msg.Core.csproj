@@ -6,7 +6,7 @@
     <ProjectGuid>{BA15DB4E-B53B-41EF-A482-39E15A80BA99}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Msg.Core</RootNamespace>
-    <AssemblyName>Msg.Domain</AssemblyName>
+    <AssemblyName>Msg.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -101,6 +101,8 @@
     <Compile Include="Transport\Connections\OpenConnection.cs" />
     <Compile Include="Transport\Connections\ClosedConnection.cs" />
     <Compile Include="Transport\Frames\FrameSendFailedException.cs" />
+    <Compile Include="Transport\Sessions\SessionFactory.cs" />
+    <Compile Include="Transport\Sessions\SessionFactoryExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -117,6 +119,7 @@
     <Folder Include="Transport\Connections\Tcp\" />
     <Folder Include="Transport\Connections\Http\" />
     <Folder Include="Transport\Connections\WebSockets\" />
+    <Folder Include="Transport\Sessions\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">
