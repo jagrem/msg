@@ -12,7 +12,7 @@ namespace Msg.Core.Transport.Connections
         {
             try {
                 var openFrame = FrameFactory.CreateOpenFrame ();
-                var result = await FrameSender.SendFrame (connection, openFrame);
+                await FrameSender.SendFrame (connection, openFrame);
                 return new OpenConnection (connection);
             } catch (Exception exception) {
                 throw new OpenConnectionFailedException ("Connection failed.", exception);
@@ -23,7 +23,7 @@ namespace Msg.Core.Transport.Connections
         {
             try {
                 var closeFrame = FrameFactory.CreateCloseFrame ();
-                var result = await FrameSender.SendFrame (connection, closeFrame);
+                await FrameSender.SendFrame (connection, closeFrame);
                 return new ClosedConnection ();
             } catch (Exception exception) {
                 throw new CloseConnectionFailedException ("Closing connection failed.", exception);

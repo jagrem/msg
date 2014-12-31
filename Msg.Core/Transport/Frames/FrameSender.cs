@@ -5,13 +5,12 @@ namespace Msg.Core.Transport.Frames
 {
     public static class FrameSender
     {
-        public static async Task<FrameSendResult> SendFrame (IConnection connection, Frame frame)
+        public static async Task SendFrame (IConnection connection, Frame frame)
         {
             try {
                 await connection.SendAsync (frame.GetBytes ());
-                return FrameSendResult.SendSucceeded ();
             } catch (Exception exception) {
-                throw;
+                throw new FrameSendFailedException ("Frame send failed.", exception);
             }
         }
     }
