@@ -51,13 +51,10 @@
     <Compile Include="Versioning\VersionRangeSpecs.cs" />
     <Compile Include="Transport\Connections\ConnectorSpecs.cs" />
     <Compile Include="Transport\Connections\ConnectionFactoryExtensions.cs" />
-    <Compile Include="Transport\Connections\Replay\ReplayException.cs" />
     <Compile Include="Versioning\VersionSpecs.cs" />
-    <Compile Include="Transport\Connections\Replay\ReplayConnectionExtensions.cs" />
-    <Compile Include="Transport\Connections\Replay\ReplayItem.cs" />
-    <Compile Include="Transport\Connections\Replay\ReplayContext.cs" />
-    <Compile Include="Transport\Connections\Replay\ReplayResult.cs" />
     <Compile Include="Transport\Sessions\SessionFactorySpecs.cs" />
+    <Compile Include="Transport\Connections\Tcp\TcpConnectionSpecs.cs" />
+    <Compile Include="Transport\Connections\Tcp\TcpServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -69,6 +66,7 @@
     <Folder Include="Versioning\" />
     <Folder Include="Transport\Connections\" />
     <Folder Include="Transport\Sessions\" />
+    <Folder Include="Transport\Connections\Tcp\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Msg.Core\Msg.Core.csproj">
