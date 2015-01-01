@@ -14,6 +14,7 @@ namespace Msg.Core.Specs.Transport.Common
         }
 
         [Test]
+        [TestCase(65999)]
         public void Given_a_value_greater_than_the_maximum_port_number_allowed_When_casting_to_a_port_number_Then_it_should_throw (int value)
         {
             //-----------------------------------------------------------------------------------------------------------
