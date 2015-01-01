@@ -55,6 +55,8 @@
     <Compile Include="Transport\Sessions\SessionFactorySpecs.cs" />
     <Compile Include="Transport\Connections\Tcp\TcpConnectionSpecs.cs" />
     <Compile Include="Transport\Connections\Tcp\TcpServer.cs" />
+    <Compile Include="Transport\Common\PortNumberSpecs.cs" />
+    <Compile Include="Transport\Connections\Tcp\DataStreamReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -67,6 +69,7 @@
     <Folder Include="Transport\Connections\" />
     <Folder Include="Transport\Sessions\" />
     <Folder Include="Transport\Connections\Tcp\" />
+    <Folder Include="Transport\Common\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Msg.Core\Msg.Core.csproj">
