@@ -30,12 +30,14 @@ namespace Msg.Core.Specs.Versioning
 
         [Test]
         [Property ("Issue", "3")]
-        public void Given_a_client_prefers_a_version_which_the_server_does_not_support_When_negotiating_which_version_to_use_Then_the_server_returns_its_preferred_version_And_closes_the_connection ()
+        [TestCase(1,0,0)]
+        [TestCase(1,2,0)]
+        public void Given_a_client_prefers_a_version_which_the_server_does_not_support_When_negotiating_which_version_to_use_Then_the_server_returns_its_preferred_version_And_closes_the_connection (byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var clientVersion = new ClientVersion (1, 0, 0);
+            var clientVersion = new ClientVersion (major, minor, revision);
             var serverSupportedVersions = new ServerSupportedVersions (Version.Exactly (1, 1, 0));
 
             //-----------------------------------------------------------------------------------------------------------
