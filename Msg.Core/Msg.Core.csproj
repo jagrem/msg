@@ -103,6 +103,8 @@
     <Compile Include="Transport\Frames\FrameSendFailedException.cs" />
     <Compile Include="Transport\Sessions\SessionFactory.cs" />
     <Compile Include="Transport\Sessions\SessionFactoryExtensions.cs" />
+    <Compile Include="Transport\Common\PortNumber.cs" />
+    <Compile Include="Transport\Common\TcpEndpoint.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -120,6 +122,7 @@
     <Folder Include="Transport\Connections\Http\" />
     <Folder Include="Transport\Connections\WebSockets\" />
     <Folder Include="Transport\Sessions\" />
+    <Folder Include="Transport\Common\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">
