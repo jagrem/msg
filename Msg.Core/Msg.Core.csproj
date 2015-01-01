@@ -110,6 +110,7 @@
     <Compile Include="Versioning\AcceptedVersion.cs" />
     <Compile Include="Versioning\ClientVersion.cs" />
     <Compile Include="Versioning\ServerVersion.cs" />
+    <Compile Include="Versioning\ServerSupportedVersionsExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

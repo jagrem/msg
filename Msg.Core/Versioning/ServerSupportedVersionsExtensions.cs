@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Linq;
 using Version = Msg.Core.Versioning;
 
@@ -10,7 +8,7 @@ namespace Msg.Core.Versioning
 
         public static bool Contains(this ServerSupportedVersions supportedVersions, Version version)
         {
-            supportedVersions.Any (versionRange => versionRange.Contains (version));
+            return supportedVersions.Any (versionRange => versionRange.Contains (version));
         }
 
         public static ServerVersion GetHighestVersion(this ServerSupportedVersions supportedVersions)
