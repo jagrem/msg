@@ -8,7 +8,7 @@ namespace Msg.Core.Specs.Transport.Common
     [TestFixture]
     public class PortNumberSpecs
     {
-        static PortNumber CastTo (int value)
+        static PortNumber CastIntToPortNumber (int value)
         {
             return (PortNumber)value;
         }
@@ -19,7 +19,7 @@ namespace Msg.Core.Specs.Transport.Common
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            Action result = () => CastTo (value);
+            Action result = () => CastIntToPortNumber (value);
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
@@ -35,7 +35,7 @@ namespace Msg.Core.Specs.Transport.Common
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            Action result = () => CastTo (value);
+            Action result = () => CastIntToPortNumber (value);
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
@@ -44,18 +44,20 @@ namespace Msg.Core.Specs.Transport.Common
         }
 
         [Test]
-        public void Given_a_value_When_casting_to_a_port_number_Then_the_port_number_equals_the_value ()
+        [TestCase(1)]
+        [TestCase(1024)]
+        public void Given_a_value_When_casting_to_a_port_number_Then_the_port_number_equals_the_value (int value)
         {
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            var result = CastTo (1028);
+            var result = CastIntToPortNumber (value);
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
             result.Should ().BeOfType<PortNumber> ();
-            ((int)result).Should ().Be (1028);
+            ((int)result).Should ().Be (value);
         }
     }
 }
