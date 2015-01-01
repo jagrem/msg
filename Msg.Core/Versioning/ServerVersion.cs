@@ -2,7 +2,7 @@
 {
     public class ServerVersion : Version
     {
-        public ServerVersion(byte major, byte minor, byte revision) : base(major, minor, revision)
+        public ServerVersion(Version version) : base(version.Major, version.Minor, version.Revision)
         {
         }
     }
