@@ -57,15 +57,8 @@ namespace Msg.Core.Specs.Transport.Connections.Tcp
         {
             using (var client = await server.AcceptTcpClientAsync ())
             using (var stream = client.GetStream ()) {
-                result.SetResult (await ReadDataAsync (stream));
+                result.SetResult (await DataStreamReader.ReadDataAsync (stream));
             }
-        }
-
-        static async Task<byte[]> ReadDataAsync (NetworkStream stream)
-        {
-            var buffer = new byte[4];
-            await stream.ReadAsync (buffer, 0, buffer.Length);
-            return buffer;
         }
     }
 }
