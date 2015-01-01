@@ -24,9 +24,7 @@ namespace Msg.Infrastructure.Server
 				} else {
 					await stream.WriteVersionAsync (this.settings.PreferredVersion);
 				}
-			} catch {
-				await stream.WriteVersionAsync (this.settings.PreferredVersion);
-			} finally {
+            } finally {
 				if (client.Connected) {
 					client.Close ();
 				}
