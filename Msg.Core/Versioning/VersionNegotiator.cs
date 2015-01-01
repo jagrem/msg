@@ -11,6 +11,11 @@ namespace Msg.Core.Versioning
         {
             return await Task.FromResult (supportedVersions.First ().UpperBoundInclusive);
         }
+
+        public static Version Select (ClientSupportedVersions client, ServerSupportedVersions server)
+        {
+            return new Version(0,0,0);
+        }
     }
 }
 

@@ -105,6 +105,10 @@
     <Compile Include="Transport\Sessions\SessionFactoryExtensions.cs" />
     <Compile Include="Transport\Common\PortNumber.cs" />
     <Compile Include="Transport\Common\TcpEndpoint.cs" />
+    <Compile Include="Versioning\ClientSupportedVersions.cs" />
+    <Compile Include="Versioning\SupportedVersions.cs" />
+    <Compile Include="Versioning\ServerSupportedVersions.cs" />
+    <Compile Include="Versioning\AcceptedVersion.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
