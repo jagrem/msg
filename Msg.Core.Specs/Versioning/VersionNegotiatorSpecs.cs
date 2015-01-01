@@ -25,7 +25,7 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().Be (new AcceptedVersion (1, 0, 0));
+            result.Should ().Be (new AcceptedVersion (clientVersion));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().Be (new AcceptedVersion (1, 0, 0));
+            result.Should ().Be (new AcceptedVersion (clientVersion));
         }
     }
 }

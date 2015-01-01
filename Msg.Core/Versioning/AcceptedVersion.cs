@@ -2,7 +2,7 @@
 {
     public class AcceptedVersion : Version
     {
-        public AcceptedVersion (byte major, byte minor, byte revision) : base(major, minor, revision)
+        public AcceptedVersion (Version version) : base(version.Major, version.Minor, version.Revision)
         {
         }
     }
