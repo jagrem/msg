@@ -13,9 +13,20 @@ namespace Msg.Core.Versioning
             return await Task.FromResult (supportedVersions.First ().UpperBoundInclusive);
         }
 
-        public static Version Select (ClientVersion client, ServerSupportedVersions server)
+        public static Version Select (ClientVersion clientVersion, ServerSupportedVersions serverSupportedVersions)
         {
-            return new ServerVersion(0,0,0);
+            var serverVersion = GetDefaultServerVersion (serverSupportedVersions);
+            return clientVersion == serverVersion ? new AcceptedVersion (clientVersion) : serverVersion;
+        }
+
+        static ServerVersion GetDefaultServerVersion (IEnumerable<VersionRange> supportedVersions)
+        {
+            var highestSupportedVersion = supportedVersions
+                .OrderBy (x => x.UpperBoundInclusive)
+                .First ()
+                .UpperBoundInclusive;
+
+            return new ServerVersion (highestSupportedVersion.Major, highestSupportedVersion.Minor, highestSupportedVersion.Revision);
         }
     }
 }
