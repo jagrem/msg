@@ -6,12 +6,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle ("Msg.Core")]
 [assembly: AssemblyDescription ("Msg core library.")]
-[assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("")]
-[assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("James G. McAuley 2014")]
-[assembly: AssemblyTrademark ("")]
-[assembly: AssemblyCulture ("")]
+[assembly: AssemblyCopyright ("James G. McAuley 2015")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,
@@ -24,6 +19,5 @@ using System.Runtime.CompilerServices;
 
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
-
 
 [assembly: InternalsVisibleToAttribute("Msg.Core.Specs")]
