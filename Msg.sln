@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.Infrastructure", "Msg.I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{E2CD85FC-8B6F-4B81-AB9C-B413244E1379}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.App.Broker", "Msg.App.Broker\Msg.App.Broker.csproj", "{3711A573-3E12-4FD8-960C-31565FCB3078}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.App.Broker", "App\Msg.App.Broker\Msg.App.Broker.csproj", "{3711A573-3E12-4FD8-960C-31565FCB3078}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.App.Client", "Msg.App.Client\Msg.App.Client.csproj", "{9DBF84BA-810C-4B68-8230-DA72D7E1393F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.App.Client", "App\Msg.App.Client\Msg.App.Client.csproj", "{9DBF84BA-810C-4B68-8230-DA72D7E1393F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AD748154-583D-4975-9E36-BE57C6560F09}"
 EndProject
