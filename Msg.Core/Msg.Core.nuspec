@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Msg.Core</id>
+    <version>$version$</version>
+    <title>Msg Core</title>
+    <authors>James G. McAuley</authors>
+    <owners>James G. McAuley</owners>
+    <licenseUrl>https://github.com/jagrem/msg/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/jagrem/msg</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Msg AMQP core library.</description>
+    <releaseNotes>First version.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>AMQP</tags>
+  </metadata>
+  <files>
+    <file src="bin/Release/*.dll" target="lib/Net45" />
+</files>
+</package>
