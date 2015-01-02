@@ -29,7 +29,7 @@ namespace Msg.Core.Transport.Frames.Resources {
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Msg.Domain.Transport.Frames.Resources.ExceptionMessages", typeof(ExceptionMessages).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Msg.Core.Transport.Frames.Resources.ExceptionMessages", typeof(ExceptionMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
