@@ -63,7 +63,7 @@
     <Folder Include="Tcp\Events\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Msg.Core\Msg.Core.csproj">
+    <ProjectReference Include="..\Core\Msg.Core\Msg.Core.csproj">
       <Project>{BA15DB4E-B53B-41EF-A482-39E15A80BA99}</Project>
       <Name>Msg.Core</Name>
     </ProjectReference>

@@ -66,7 +66,7 @@
       <Project>{A03D2DE4-0BF1-43EC-9DEF-B77B78D89F79}</Project>
       <Name>Msg.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Msg.Core\Msg.Core.csproj">
+    <ProjectReference Include="..\Core\Msg.Core\Msg.Core.csproj">
       <Project>{BA15DB4E-B53B-41EF-A482-39E15A80BA99}</Project>
       <Name>Msg.Core</Name>
     </ProjectReference>
