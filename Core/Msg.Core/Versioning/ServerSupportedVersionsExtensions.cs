@@ -6,7 +6,7 @@ namespace Msg.Core.Versioning
 
     public static class ServerSupportedVersionsExtensions {
 
-        public static bool Contains(this ServerSupportedVersions supportedVersions, Version version)
+        public static bool HasVersionMatching(this ServerSupportedVersions supportedVersions, Version version)
         {
             return supportedVersions.Any (versionRange => versionRange.Contains (version));
         }

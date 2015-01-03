@@ -15,7 +15,7 @@ namespace Msg.Core.Versioning
 
         public static Version Select (ClientVersion clientVersion, ServerSupportedVersions supportedVersions)
         {
-            if (supportedVersions.Contains (clientVersion))
+            if (clientVersion.IsNotMalformed () && supportedVersions.HasVersionMatching (clientVersion))
                 return new AcceptedVersion (clientVersion);
 
             return supportedVersions.GetHighestVersion ();

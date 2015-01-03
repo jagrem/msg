@@ -71,6 +71,26 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             result.Should ().Be (new AcceptedVersion (clientVersion));
         }
+
+        [Test]
+        public void Given_a_malformed_client_version_When_negotiating_which_version_to_use_Then_the_server_returns_its_preferred_version() 
+        {
+            //-----------------------------------------------------------------------------------------------------------
+            // Arrange
+            //-----------------------------------------------------------------------------------------------------------
+            var clientVersion = new MalformedClientVersion ();
+            var serverSupportedVersions = new ServerSupportedVersions (Version.Exactly (1, 1, 0));
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Act
+            //-----------------------------------------------------------------------------------------------------------
+            var result = VersionNegotiator.Select (clientVersion, serverSupportedVersions);
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Assert
+            //-----------------------------------------------------------------------------------------------------------
+            result.Should ().Be (new ServerVersion (new Version (1, 1, 0)));
+        }
     }
 }
 

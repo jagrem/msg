@@ -112,6 +112,8 @@
     <Compile Include="Versioning\ClientVersion.cs" />
     <Compile Include="Versioning\ServerVersion.cs" />
     <Compile Include="Versioning\ServerSupportedVersionsExtensions.cs" />
+    <Compile Include="Versioning\MalformedClientVersion.cs" />
+    <Compile Include="Versioning\ClientVersionExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
