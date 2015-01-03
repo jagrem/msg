@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToRefactor", "ToRefactor", "{8D7D9D0A-DCF1-4311-AFE0-ED0A67DE8E45}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToDelete", "ToDelete", "{8D7D9D0A-DCF1-4311-AFE0-ED0A67DE8E45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.Acceptance.Tests", "Msg.Acceptance.Tests\Msg.Acceptance.Tests.csproj", "{728F2372-180C-4F72-B14E-21F990608667}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.Acceptance.Tests", "ToDelete\Msg.Accepetance.Tests\Msg.Acceptance.Tests.csproj", "{728F2372-180C-4F72-B14E-21F990608667}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.Infrastructure", "Msg.Infrastructure\Msg.Infrastructure.csproj", "{A03D2DE4-0BF1-43EC-9DEF-B77B78D89F79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msg.Infrastructure", "ToDelete\Msg.Infrastructure\Msg.Infrastructure.csproj", "{A03D2DE4-0BF1-43EC-9DEF-B77B78D89F79}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{E2CD85FC-8B6F-4B81-AB9C-B413244E1379}"
 EndProject

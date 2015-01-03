@@ -38,7 +38,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\Msg.Infrastructure\Msg.Infrastructure.csproj">
+    <ProjectReference Include="..\..\ToDelete\Msg.Infrastructure\Msg.Infrastructure.csproj">
       <Project>{A03D2DE4-0BF1-43EC-9DEF-B77B78D89F79}</Project>
       <Name>Msg.Infrastructure</Name>
     </ProjectReference>
