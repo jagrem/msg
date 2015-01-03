@@ -1,4 +1,4 @@
-﻿namespace Msg.Core.Transport
+﻿namespace Msg.Core.Peers
 {
     public class Consumer : Node
     {

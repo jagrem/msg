@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Msg.Core.Transport
+namespace Msg.Core.Peers
 {
     public abstract class Container
     {

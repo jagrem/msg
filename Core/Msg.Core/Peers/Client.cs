@@ -1,11 +1,12 @@
-﻿namespace Msg.Core.Transport
+﻿namespace Msg.Core.Peers
 {
-    public class Broker : Container
+    public class Client : Container
     {
         public override void Start ()
         {
             throw new System.NotImplementedException ();
         }
+
         public override void Stop ()
         {
             throw new System.NotImplementedException ();

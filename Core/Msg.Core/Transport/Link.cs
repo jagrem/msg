@@ -1,4 +1,5 @@
 ﻿using System;
+using Msg.Core.Peers;
 
 namespace Msg.Core.Transport
 {

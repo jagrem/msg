@@ -34,13 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transport\Broker.cs" />
-    <Compile Include="Transport\Client.cs" />
-    <Compile Include="Transport\Consumer.cs" />
-    <Compile Include="Transport\Container.cs" />
-    <Compile Include="Transport\Node.cs" />
-    <Compile Include="Transport\Producer.cs" />
-    <Compile Include="Transport\Queue.cs" />
     <Compile Include="Transport\Connection.cs" />
     <Compile Include="Transport\Channel.cs" />
     <Compile Include="Transport\Session.cs" />
@@ -115,6 +108,13 @@
     <Compile Include="Versioning\ClientVersionExtensions.cs" />
     <Compile Include="Versioning\VersionSelector.cs" />
     <Compile Include="Versioning\VersionNegotiator.cs" />
+    <Compile Include="Peers\Container.cs" />
+    <Compile Include="Peers\Broker.cs" />
+    <Compile Include="Peers\Client.cs" />
+    <Compile Include="Peers\Node.cs" />
+    <Compile Include="Peers\Consumer.cs" />
+    <Compile Include="Peers\Producer.cs" />
+    <Compile Include="Peers\Queue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -133,6 +133,7 @@
     <Folder Include="Transport\Connections\WebSockets\" />
     <Folder Include="Transport\Sessions\" />
     <Folder Include="Transport\Common\" />
+    <Folder Include="Peers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">
