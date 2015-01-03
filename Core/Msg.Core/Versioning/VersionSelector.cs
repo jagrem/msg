@@ -5,7 +5,7 @@ using Version = Msg.Core.Versioning;
 
 namespace Msg.Core.Versioning
 {
-    public static class VersionNegotiator
+    public static class VersionSelector
     {
         [System.Obsolete ("This method is deprecated us VersionNegotiator.Select instead.")]
         public static async Task<Version> NegotiateVersionAsync (IEnumerable<VersionRange> supportedVersions)
