@@ -2,8 +2,12 @@
 
 namespace Msg.Core.Transport
 {
-    public class Container
+    public abstract class Container
     {
         public IEnumerable<Node> Nodes { get; private set; }
+
+        public abstract void Start ();
+
+        public abstract void Stop ();
     }
 }

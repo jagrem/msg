@@ -114,6 +114,7 @@
     <Compile Include="Versioning\MalformedClientVersion.cs" />
     <Compile Include="Versioning\ClientVersionExtensions.cs" />
     <Compile Include="Versioning\VersionSelector.cs" />
+    <Compile Include="Versioning\VersionNegotiator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

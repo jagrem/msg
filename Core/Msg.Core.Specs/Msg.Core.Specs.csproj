@@ -60,6 +60,7 @@
     <Compile Include="Transport\Common\PortNumberSpecs.cs" />
     <Compile Include="Transport\Connections\Tcp\DataStreamReader.cs" />
     <Compile Include="Versioning\VersionSelectorSpecs.cs" />
+    <Compile Include="Versioning\VersionNegotiatorSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
