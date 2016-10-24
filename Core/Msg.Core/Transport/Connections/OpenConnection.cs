@@ -4,7 +4,6 @@ using Msg.Core.Transport;
 
 namespace Msg.Core.Transport.Connections
 {
-
     public class OpenConnection : IConnection
     {
         readonly IConnection connection;
@@ -51,5 +50,4 @@ namespace Msg.Core.Transport.Connections
             }
         }
     }
-    
 }
