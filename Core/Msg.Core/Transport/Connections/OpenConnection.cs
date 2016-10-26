@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Msg.Core.Versioning;
-using Msg.Core.Transport;
 
 namespace Msg.Core.Transport.Connections
 {

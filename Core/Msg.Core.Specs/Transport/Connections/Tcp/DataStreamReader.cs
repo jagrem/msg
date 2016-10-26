@@ -1,11 +1,5 @@
 using System.Threading.Tasks;
-using System.Net.Sockets;
-using System.Net;
-using System.Threading;
-using System;
-using Msg.Core.Transport.Common;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace Msg.Core.Specs.Transport.Connections.Tcp
 {

@@ -1,7 +1,6 @@
 using Msg.Core.Transport.Frames;
 using System.Threading.Tasks;
 using Msg.Core.Transport.Frames.Factories;
-using Msg.Core.Transport;
 using System;
 
 namespace Msg.Core.Transport.Connections
