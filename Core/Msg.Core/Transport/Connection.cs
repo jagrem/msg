@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Version = Msg.Core.Versioning.Version;
 using Msg.Core.Versioning;
+using Msg.Core.Transport.Channels;
 
 namespace Msg.Core.Transport
 {
@@ -25,9 +26,9 @@ namespace Msg.Core.Transport
 
         public IEnumerable<Session> Sessions { get; protected set; }
 
-        public IEnumerable<Channel> IncomingChannels { get { return Sessions.Select (s => s.Receive); } }
+        public IEnumerable<IncomingChannel> IncomingChannels { get { return Enumerable.Empty<IncomingChannel> (); } }
 
-        public IEnumerable<Channel> OutgoingChannels { get { return Sessions.Select (s => s.Send); } }
+        public IEnumerable<OutgoingChannel> OutgoingChannels { get { return Enumerable.Empty<OutgoingChannel> (); } }
 
         public abstract Task<byte[]> SendAsync (byte[] message);
     }

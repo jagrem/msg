@@ -42,7 +42,6 @@
     <Compile Include="Transport\Producer.cs" />
     <Compile Include="Transport\Queue.cs" />
     <Compile Include="Transport\Connection.cs" />
-    <Compile Include="Transport\Channel.cs" />
     <Compile Include="Transport\Session.cs" />
     <Compile Include="Transport\Endpoint.cs" />
     <Compile Include="Transport\Link.cs" />
@@ -114,6 +113,9 @@
     <Compile Include="Versioning\MalformedClientVersion.cs" />
     <Compile Include="Versioning\ClientVersionExtensions.cs" />
     <Compile Include="Versioning\VersionSelector.cs" />
+    <Compile Include="Transport\Channels\Channel.cs" />
+    <Compile Include="Transport\Channels\IncomingChannel.cs" />
+    <Compile Include="Transport\Channels\OutgoingChannel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -132,6 +134,7 @@
     <Folder Include="Transport\Connections\WebSockets\" />
     <Folder Include="Transport\Sessions\" />
     <Folder Include="Transport\Common\" />
+    <Folder Include="Transport\Channels\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transport\Frames\Resources\ExceptionMessages.resx">

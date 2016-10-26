@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Msg.Core.Transport.Channels;
 
 namespace Msg.Core.Transport
 {
@@ -8,9 +9,8 @@ namespace Msg.Core.Transport
 
         public IEnumerable<Link> Links { get; private set; }
 
-        public Channel Send { get; private set; }
+        public OutgoingChannel Send { get; private set; }
 
-        public Channel Receive { get; private set; }
+        public IncomingChannel Receive { get; private set; }
     }
 }
-
