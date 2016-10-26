@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Msg.Core.Transport.Connections.Tcp;
 using FluentAssertions;
+using System.Net;
+using Msg.Core.Transport.Common;
 
 namespace Msg.Core.Specs.Transport.Connections.Tcp
 {
@@ -16,7 +18,7 @@ namespace Msg.Core.Specs.Transport.Connections.Tcp
             //-----------------------------------------------------------------------------------------------------------
             var server = new TcpServer ();
             await server.StartAsync ();
-            var connection = new TcpConnection ();
+            var connection = await TcpConnectionFactory.CreateTcpConnectionAsync (IPAddress.Loopback, (PortNumber)9876);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act

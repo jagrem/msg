@@ -116,6 +116,7 @@
     <Compile Include="Transport\Channels\Channel.cs" />
     <Compile Include="Transport\Channels\IncomingChannel.cs" />
     <Compile Include="Transport\Channels\OutgoingChannel.cs" />
+    <Compile Include="Transport\Connections\Tcp\TcpConnectionFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
