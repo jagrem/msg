@@ -10,8 +10,7 @@ namespace Msg.Core.Transport.Connections.Tcp
         {
             var client = new TcpClient ();
             await client.ConnectAsync (ipAddress, portNumber);
-            var stream = client.GetStream ();
-            return new TcpConnection (stream);
+            return new TcpConnection (client);
         }
     }
 }
