@@ -1,12 +1,9 @@
-language: objective-c
-
-env:
-  global:
-    - MONO_VERSION=3.10.0
+language: csharp
+solution: Msg.sln
 
 install:
-  - wget "http://download.mono-project.com/archive/${MONO_VERSION}/macos-10-x86/MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg"
-  - sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
-
+ - nuget restore Msg.sln
+ - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
- - ./build.sh
+ - xbuild /p:Configuration=Release Msg.sln
+ - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Core/Msg.Core.csproj
