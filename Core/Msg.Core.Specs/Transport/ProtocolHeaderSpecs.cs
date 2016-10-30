@@ -1,79 +1,121 @@
-﻿using NUnit.Framework;
+﻿using System;
 using FluentAssertions;
-using System;
+using Msg.Core.Transport;
+using Msg.Core.Transport.Common;
+using NUnit.Framework;
 using Version = Msg.Core.Versioning.Version;
 
-namespace Msg.Core.Specs.Versioning
+namespace Msg.Core.Specs.Transport
 {
     [TestFixture]
-    public class VersionSpecs
+    public class ProtocolHeaderSpecs
     {
-        static readonly Func<byte[],Version> convertByteArray = b => b;
+        static readonly Func<byte [], ProtocolHeader> convertByteArray = b => (ProtocolHeader)b;
 
         [Test]
-        public void Given_a_version_When_converting_to_a_byte_array_Then_the_first_byte_equals_the_major_version_number ()
+        public void Given_a_protocol_header_When_converting_to_a_byte_array_Then_it_starts_with_AMQP ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new Version (1, 2, 3);
+            var subject = new ProtocolHeader (ProtocolIds.AMQP, new Version (1, 2, 3));
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            byte[] result = subject;
+            byte [] result = subject;
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().HaveElementAt (0, (byte)1);
+            result.Should ().ContainInOrder ((byte)'A', (byte)'M', (byte)'Q', (byte)'P');
         }
 
         [Test]
-        public void Given_a_version_When_converting_to_a_byte_array_Then_the_second_byte_equals_the_minor_version_number ()
+        public void Given_a_protocol_header_When_converting_to_a_byte_array_Then_it_contains_the_protocol_id ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new Version (1, 2, 3);
+            var subject = new ProtocolHeader (ProtocolIds.AMQP, new Version (1, 2, 3));
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            byte[] result = subject;
+            byte [] result = subject;
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().HaveElementAt (1, (byte)2);
+            result.Should ().HaveElementAt (4, (byte)0);
         }
 
         [Test]
-        public void Given_a_version_When_converting_to_a_byte_array_Then_the_third_byte_equals_the_revision_number ()
+        public void Given_a_protocol_header_When_converting_to_a_byte_array_Then_it_contains_the_version ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new Version (1, 2, 3);
+            var subject = new ProtocolHeader (ProtocolIds.AMQP, new Version (1, 2, 3));
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            byte[] result = subject;
+            byte [] result = subject;
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().HaveElementAt (2, (byte)3);
+            result.Should ().ContainInOrder (new byte [] { 0, 1, 2, 3 });
         }
 
         [Test]
-        public void Given_an_empty_byte_array_When_converting_to_a_version_Then_an_exception_is_thrown ()
+        public void Given_a_byte_array_When_converting_to_a_protocol_header_Then_the_version_number_is_correct ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new byte[0];
+            var subject = new byte [] { (byte)'A', (byte)'M', (byte)'Q', (byte)'P', (byte)0, (byte)1, (byte)2, (byte)3 };
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Act
+            //-----------------------------------------------------------------------------------------------------------
+            var result = (ProtocolHeader)subject;
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Assert
+            //-----------------------------------------------------------------------------------------------------------
+            result.Version.Major.Should ().Be (1);
+            result.Version.Minor.Should ().Be (2);
+            result.Version.Revision.Should ().Be (3);
+        }
+
+        [Test]
+        public void Given_a_byte_array_When_converting_to_a_protocol_header_Then_protocol_id_is_correct ()
+        {
+            //-----------------------------------------------------------------------------------------------------------
+            // Arrange
+            //-----------------------------------------------------------------------------------------------------------
+            var subject = new byte [] { (byte)'A', (byte)'M', (byte)'Q', (byte)'P', (byte)0, (byte)1, (byte)2, (byte)3 };
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Act
+            //-----------------------------------------------------------------------------------------------------------
+            var result = (ProtocolHeader)subject;
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Assert
+            //-----------------------------------------------------------------------------------------------------------
+            result.ProtocolId.Should ().Be (ProtocolIds.AMQP);
+        }
+
+        [Test]
+        public void Given_an_empty_byte_array_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
+        {
+            //-----------------------------------------------------------------------------------------------------------
+            // Arrange
+            //-----------------------------------------------------------------------------------------------------------
+            var subject = new byte [0];
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -87,12 +129,12 @@ namespace Msg.Core.Specs.Versioning
         }
 
         [Test]
-        public void Given_a_byte_array_that_is_too_short_When_converting_to_a_version_Then_an_exception_is_thrown ()
+        public void Given_a_byte_array_that_is_too_short_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new byte[] { 1, 2 };
+            var subject = new byte [] { (byte)'A', (byte)'M', (byte)'Q', (byte)'P', (byte)0, (byte)1, (byte)2 };
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -106,12 +148,12 @@ namespace Msg.Core.Specs.Versioning
         }
 
         [Test]
-        public void Given_a_byte_array_that_is_too_long_When_converting_to_a_version_Then_an_exception_is_thrown ()
+        public void Given_a_byte_array_that_is_too_long_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new byte[] { 1, 2, 3, 4 };
+            var subject = new byte [] { (byte)'A', (byte)'M', (byte)'Q', (byte)'P', (byte)0, (byte)1, (byte)2, (byte)3, (byte)4 };
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -125,73 +167,41 @@ namespace Msg.Core.Specs.Versioning
         }
 
         [Test]
-        [TestCase (1, 0, 0, 0, 9, 11)]
-        [TestCase (0, 9, 1, 0, 8, 5)]
-        [TestCase (0, 1, 2, 0, 1, 1)]
-        public void Given_two_versions_When_comparing_them_Then_the_left_version_is_greater_than_the_right (byte leftMajor, byte leftMinor, byte leftRevision, byte rightMajor, byte rightMinor, byte rightRevision)
+        public void Given_a_byte_array_that_doesnt_start_with_AMQP_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new Version (leftMajor, leftMinor, leftRevision);
-            var right = new Version (rightMajor, rightMinor, rightRevision);
+            var subject = new byte [] { (byte)'Z', (byte)'S', (byte)'X', (byte)'F', (byte)0, (byte)1, (byte)2, (byte)3 };
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            var result = left > right;
+            Action result = () => convertByteArray (subject);
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().BeTrue ();
+            result.ShouldThrow<ArgumentException> ();
         }
 
         [Test]
-        [TestCase (1, 0, 0, 0, 9, 11)]
-        [TestCase (0, 9, 1, 0, 8, 5)]
-        [TestCase (0, 1, 2, 0, 1, 1)]
-        public void Given_two_versions_When_comparing_them_Then_the_right_version_is_less_than_the_right (byte leftMajor, byte leftMinor, byte leftRevision, byte rightMajor, byte rightMinor, byte rightRevision)
+        public void Given_a_byte_array_where_AMQP_is_not_all_uppercase_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new Version (leftMajor, leftMinor, leftRevision);
-            var right = new Version (rightMajor, rightMinor, rightRevision);
+            var subject = new byte [] { (byte)'a', (byte)'M', (byte)'q', (byte)'P', (byte)0, (byte)1, (byte)2, (byte)3 };
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            var result = right < left;
+            Action result = () => convertByteArray (subject);
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().BeTrue ();
-        }
-
-        [Test]
-        [TestCase (1, 0, 0)]
-        [TestCase (0, 9, 1)]
-        [TestCase (0, 1, 2)]
-        public void Given_two_versions_When_comparing_them_Then_they_have_value_equality (byte major, byte minor, byte revision)
-        {
-            //-----------------------------------------------------------------------------------------------------------
-            // Arrange
-            //-----------------------------------------------------------------------------------------------------------
-            var left = new Version (major, minor, revision);
-            var right = new Version (major, minor, revision);
-
-            //-----------------------------------------------------------------------------------------------------------
-            // Act
-            //-----------------------------------------------------------------------------------------------------------
-            var result = right == left;
-
-            //-----------------------------------------------------------------------------------------------------------
-            // Assert
-            //-----------------------------------------------------------------------------------------------------------
-            result.Should ().BeTrue ();
+            result.ShouldThrow<ArgumentException> ();
         }
     }
 }
-

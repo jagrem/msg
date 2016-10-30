@@ -1,17 +1,14 @@
 ﻿using System;
-using Msg.Core.Versioning;
 
 namespace Msg.Core.Versioning
 {
     public class Version : IComparable, IComparable<Version>
     {
-        static readonly byte[] AMQP = { 0x41, 0x4D, 0x51, 0x50 };
-
         public Version (byte major, byte minor, byte revision)
         {
-            this.Major = major;
-            this.Minor = minor;
-            this.Revision = revision;
+            Major = major;
+            Minor = minor;
+            Revision = revision;
         }
 
         public byte Major { get; private set; }
@@ -22,20 +19,16 @@ namespace Msg.Core.Versioning
 
         public static implicit operator byte[] (Version v)
         {
-            return new byte[] { AMQP [0], AMQP [1], AMQP [2], AMQP [3], 0, v.Major, v.Minor, v.Revision };
+            return new byte[] { v.Major, v.Minor, v.Revision };
         }
 
         public static implicit operator Version (byte[] version)
         {
-            if (version.Length != 8) {
+            if (version.Length != 3) {
                 throw new ArgumentException ("Version must be exactly 8 bytes.");
             }
 
-            if (!(version [0] == AMQP [0] && version [1] == AMQP [1] && version [2] == AMQP [2] && version [3] == AMQP [3] && version [4] == 0)) {
-                throw new ArgumentException ("Version must start with \"AMQP\" followed by zero.");
-            }
-
-            return new Version (version [5], version [6], version [7]);
+            return new Version (version [0], version [1], version [2]);
         }
 
         public int CompareTo (object obj)
@@ -71,13 +64,13 @@ namespace Msg.Core.Versioning
 
         public override bool Equals (object obj)
         {
-            Version other = obj as Version;
+            var other = obj as Version;
 
-            if (object.ReferenceEquals (other, null)) {
+            if (ReferenceEquals (other, null)) {
                 return false;
             }
 
-            return this.CompareTo (other) == 0;
+            return CompareTo (other) == 0;
         }
 
         public override int GetHashCode ()
@@ -87,8 +80,8 @@ namespace Msg.Core.Versioning
 
         public static bool operator == (Version left, Version right)
         {
-            if (object.ReferenceEquals (left, null)) {
-                return object.ReferenceEquals (right, null);
+            if (ReferenceEquals (left, null)) {
+                return ReferenceEquals (right, null);
             }
             return left.Equals (right);
         }

@@ -124,6 +124,9 @@
     <Compile Include="Transport\Connections\Tcp\ITcpConnection.cs" />
     <Compile Include="Transport\Connections\Http\IHttpConnection.cs" />
     <Compile Include="Transport\Connections\WebSockets\IWebSocketConnection.cs" />
+    <Compile Include="Transport\Common\ProtocolIds.cs" />
+    <Compile Include="Transport\ProtocolHeader.cs" />
+    <Compile Include="Transport\Common\ProtocolId.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
