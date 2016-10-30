@@ -116,7 +116,14 @@
     <Compile Include="Transport\Channels\Channel.cs" />
     <Compile Include="Transport\Channels\IncomingChannel.cs" />
     <Compile Include="Transport\Channels\OutgoingChannel.cs" />
-    <Compile Include="Transport\Connections\Tcp\TcpConnectionFactory.cs" />
+    <Compile Include="Transport\Connections\Tcp\TcpConnector.cs" />
+    <Compile Include="Transport\Connections\Tcp\UninitializedTcpConnection.cs" />
+    <Compile Include="Transport\Connections\UninitializedConnection.cs" />
+    <Compile Include="Transport\Connections\Http\UninitializedHttpConnection.cs" />
+    <Compile Include="Transport\Connections\WebSockets\UninitializedWebSocketConnection.cs" />
+    <Compile Include="Transport\Connections\Tcp\ITcpConnection.cs" />
+    <Compile Include="Transport\Connections\Http\IHttpConnection.cs" />
+    <Compile Include="Transport\Connections\WebSockets\IWebSocketConnection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

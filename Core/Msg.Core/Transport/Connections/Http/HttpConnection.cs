@@ -2,7 +2,7 @@
 
 namespace Msg.Core.Transport.Connections.Http
 {
-    public class HttpConnection : Connection
+    public class HttpConnection : Connection, IHttpConnection
     {
         public override Task<byte[]> SendAsync (byte[] message)
         {

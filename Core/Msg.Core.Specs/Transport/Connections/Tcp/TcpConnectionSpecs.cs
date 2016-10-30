@@ -18,7 +18,7 @@ namespace Msg.Core.Specs.Transport.Connections.Tcp
             //-----------------------------------------------------------------------------------------------------------
             var server = new TcpServer ();
             await server.StartAsync ();
-            var connection = await TcpConnectionFactory.CreateTcpConnectionAsync (IPAddress.Loopback, (PortNumber)9876);
+            var connection = await TcpConnector.OpenConnectionAsync (IPAddress.Loopback, (PortNumber)9876);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act

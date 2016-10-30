@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Msg.Core.Versioning;
-using Msg.Core.Transport;
 
 namespace Msg.Core.Transport.Connections
 {
@@ -13,7 +12,7 @@ namespace Msg.Core.Transport.Connections
         {
         }
 
-        public Task<byte[]> SendAsync (byte[] message)
+        public Task<byte []> SendAsync (byte [] message)
         {
             throw new System.InvalidOperationException (exceptionMessage);
         }

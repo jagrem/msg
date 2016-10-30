@@ -2,9 +2,11 @@
 using FluentAssertions;
 using Msg.Core.Transport.Connections;
 using System.Threading.Tasks;
-using Msg.Core.Transport;
-using Version = Msg.Core.Versioning.Version;
 using System;
+using Msg.Core.Transport.Connections.Tcp;
+using Msg.Core.Transport;
+using Msg.Core.Transport.Connections.Http;
+using Msg.Core.Transport.Connections.WebSockets;
 
 namespace Msg.Core.Specs.Transport.Connections
 {
@@ -12,33 +14,12 @@ namespace Msg.Core.Specs.Transport.Connections
     public class ConnectorSpecs
     {
         [Test]
-        public async Task When_opening_a_connection_Then_it_should_return_an_open_connection ()
+        public void When_opening_a_connection_that_has_already_been_initialized_Then_it_should_throw ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var factory = new ConnectionFactory ();
-            var connection = await factory.CreateConnectionThatShouldOpenAsync ();
-
-            //-----------------------------------------------------------------------------------------------------------
-            // Act
-            //-----------------------------------------------------------------------------------------------------------
-            var result = await Connector.OpenConnectionAsync (connection);
-
-            //-----------------------------------------------------------------------------------------------------------
-            // Assert
-            //-----------------------------------------------------------------------------------------------------------
-            result.IsConnected.Should ().BeTrue ();
-        }
-
-        [Test]
-        public async Task When_opening_a_connection_fails_Then_it_should_throw ()
-        {
-            //-----------------------------------------------------------------------------------------------------------
-            // Arrange
-            //-----------------------------------------------------------------------------------------------------------
-            var factory = new ConnectionFactory ();
-            var connection = await factory.CreateClosedConnectionAsync ();
+            var connection = new TcpConnection (null);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -48,7 +29,49 @@ namespace Msg.Core.Specs.Transport.Connections
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            act.ShouldThrow<OpenConnectionFailedException> ();
+            act.ShouldThrow<OpenConnectionFailedException> ()
+               .WithInnerException<InvalidOperationException> ();
+        }
+
+        [Test]
+        public void When_opening_a_connection_that_has_already_been_closed_Then_it_should_throw ()
+        {
+            //-----------------------------------------------------------------------------------------------------------
+            // Arrange
+            //-----------------------------------------------------------------------------------------------------------
+            var connection = new ClosedConnection();
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Act
+            //-----------------------------------------------------------------------------------------------------------
+            Func<Task> act = async () => await Connector.OpenConnectionAsync (connection);
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Assert
+            //-----------------------------------------------------------------------------------------------------------
+            act.ShouldThrow<OpenConnectionFailedException> ()
+               .WithInnerException<InvalidOperationException> ();
+        }
+
+        [TestCase (typeof (UninitializedHttpConnection))]
+        [TestCase (typeof (UninitializedWebSocketConnection))]
+        public void When_opening_an_unsupported_connection_Then_it_should_throw (Type unsupportedConnection)
+        {
+            //-----------------------------------------------------------------------------------------------------------
+            // Arrange
+            //-----------------------------------------------------------------------------------------------------------
+            var connection = (IConnection)Activator.CreateInstance (unsupportedConnection);
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Act
+            //-----------------------------------------------------------------------------------------------------------
+            Func<Task> act = async () => await Connector.OpenConnectionAsync (connection);
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Assert
+            //-----------------------------------------------------------------------------------------------------------
+            act.ShouldThrow<OpenConnectionFailedException> ()
+               .WithInnerException<NotSupportedException> ();
         }
 
         [Test]
@@ -58,7 +81,7 @@ namespace Msg.Core.Specs.Transport.Connections
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
             var factory = new ConnectionFactory ();
-            var connection = await factory.CreateOpenConnectionAsync ();
+            var connection = factory.CreateOpenConnection ();
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -72,14 +95,14 @@ namespace Msg.Core.Specs.Transport.Connections
         }
 
         [Test]
-        public async Task When_closing_a_connection_fails_Then_it_should_throw ()
+        public void When_closing_a_connection_fails_Then_it_should_throw ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
             var factory = new ConnectionFactory ();
-            var connection = await factory.CreateClosedConnectionAsync ();
-           
+            var connection = factory.CreateClosedConnection ();
+
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------

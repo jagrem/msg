@@ -1,13 +1,27 @@
 ﻿using System.Threading.Tasks;
 using System.Net.Sockets;
 using System;
+using Msg.Core.Transport.Common;
+using System.Net;
 
 namespace Msg.Core.Transport.Connections.Tcp
 {
-    public class TcpConnection : Connection, IDisposable
+    public class TcpConnection : Connection, IDisposable, ITcpConnection
     {
         readonly TcpClient client;
         bool disposedValue = false;
+
+        public IPAddress IpAddress {
+            get {
+                throw new NotImplementedException ();
+            }
+        }
+
+        public PortNumber PortNumber {
+            get {
+                throw new NotImplementedException ();
+            }
+        }
 
         public TcpConnection (TcpClient client)
         {

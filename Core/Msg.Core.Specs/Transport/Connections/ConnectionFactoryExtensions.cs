@@ -8,21 +8,20 @@ namespace Msg.Core.Specs.Transport.Connections
 {
     public static class ConnectionFactoryExtensions
     {
-        public static async Task<Connection> CreateConnectionThatShouldOpenAsync (this ConnectionFactory factory)
+        public static IConnection CreateConnectionThatShouldOpen (this ConnectionFactory factory)
         {
-            return await Task.FromResult(Substitute.For<Connection> ());
+            return Substitute.For<Connection> ();
         }
 
-        public static async Task<IConnection> CreateClosedConnectionAsync (this ConnectionFactory factory)
+        public static IConnection CreateClosedConnection (this ConnectionFactory factory)
         {
-            var connection = Substitute.For<Connection> ();
-            return await Task.FromResult (new ClosedConnection ());
+            return new ClosedConnection ();
         }
 
-        public static async Task<IConnection> CreateOpenConnectionAsync(this ConnectionFactory factory)
+        public static IConnection CreateOpenConnection(this ConnectionFactory factory)
         {
-            var connection = Substitute.For<Connection> ();
-            return await Task.FromResult (new OpenConnection(connection));
+            var connection = Substitute.For<IConnection> ();
+            return new OpenConnection(connection);
         }
 
         public static async Task<Connection> CreateOpenConnectionThatShouldThrowAsync(this ConnectionFactory factory, Exception exception)

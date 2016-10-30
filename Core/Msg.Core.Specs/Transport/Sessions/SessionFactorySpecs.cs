@@ -2,7 +2,6 @@
 using Msg.Core.Transport.Sessions;
 using FluentAssertions;
 using Msg.Core.Transport.Connections;
-using System.Threading.Tasks;
 using Msg.Core.Specs.Transport.Connections;
 
 namespace Msg.Core.Specs.Transport.Sessions
@@ -11,12 +10,12 @@ namespace Msg.Core.Specs.Transport.Sessions
     public class SessionFactorySpecs
     {
         [Test]
-        public async Task Given_a_connection_When_asked_for_a_session_Then_returns_a_different_session_each_time()
+        public void Given_a_connection_When_asked_for_a_session_Then_returns_a_different_session_each_time ()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var connection = await (new ConnectionFactory ()).CreateOpenConnectionAsync ();
+            var connection = new ConnectionFactory ().CreateOpenConnection ();
             var factory = new SessionFactory (connection);
 
             //-----------------------------------------------------------------------------------------------------------
