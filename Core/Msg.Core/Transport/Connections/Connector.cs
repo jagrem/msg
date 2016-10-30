@@ -24,8 +24,8 @@ namespace Msg.Core.Transport.Connections
         static async Task<IConnection> OpenUnderlyingConnectionAsync (IConnection connection)
         {
             if (!(connection is UninitializedConnection)) {
-                throw new InvalidOperationException ("Cannot re-open an existing connection.")
-;            }
+                throw new InvalidOperationException ("Cannot re-open an existing connection.");
+            }
 
             if (connection is ITcpConnection) {
                 var uninitializedTcpConnection = connection as ITcpConnection;
