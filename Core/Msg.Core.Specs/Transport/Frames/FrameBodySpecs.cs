@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using System;
 using Msg.Core.Transport.Frames;
 using FluentAssertions;
@@ -9,10 +9,9 @@ using Msg.Core.Transport.Frames.Constants;
 
 namespace Msg.Core.Specs.Transport.Frames
 {
-    [TestFixture]
     public class FrameBodySpecs
     {
-        [Test]
+        [Fact]
         public void Given_a_frame_body_byte_array_with_no_performative_When_creating_a_frame_body_Then_throw_exception ()
         {
             var frameBodyBytes = new byte[] { 0, 0, 0, 0, 0 };
@@ -21,16 +20,16 @@ namespace Msg.Core.Specs.Transport.Frames
                 .WithMessage ("Unrecognised frame type.");
         }
 
-        [Test]
-        [TestCase ("Attach", PerformativeType.Attach)]
-        [TestCase ("Begin", PerformativeType.Begin)]
-        [TestCase ("Open", PerformativeType.Open)]
-        [TestCase ("Flow", PerformativeType.Flow)]
-        [TestCase ("Transfer", PerformativeType.Transfer)]
-        [TestCase ("Disposition", PerformativeType.Disposition)]
-        [TestCase ("Close", PerformativeType.Close)]
-        [TestCase ("Detach", PerformativeType.Detach)]
-        [TestCase ("End", PerformativeType.End)]
+        [Theory]
+        [InlineData ("Attach", PerformativeType.Attach)]
+        [InlineData ("Begin", PerformativeType.Begin)]
+        [InlineData ("Open", PerformativeType.Open)]
+        [InlineData ("Flow", PerformativeType.Flow)]
+        [InlineData ("Transfer", PerformativeType.Transfer)]
+        [InlineData ("Disposition", PerformativeType.Disposition)]
+        [InlineData ("Close", PerformativeType.Close)]
+        [InlineData ("Detach", PerformativeType.Detach)]
+        [InlineData ("End", PerformativeType.End)]
         public async Task Given_a_frame_body_byte_array_with_a_performative_When_creating_a_frame_body_Then_performative_equals_byte_array_performative (string performative, PerformativeType expectedType)
         {
             var frameBodyBytes = ConvertToByteArray (performative);

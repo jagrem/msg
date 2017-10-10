@@ -1,35 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Version = Msg.Core.Versioning.Version;
-using Msg.Core.Versioning;
+using Msg.Core.Transport.Common.Versioning;
+using Msg.Core.Transport.Common.Protocol;
+using Msg.Core.Transport.Connections.Common;
 using Msg.Core.Transport.Channels;
 
 namespace Msg.Core.Transport
 {
-    public abstract class Connection : Endpoint, IConnection
+    public class Connection : Endpoint
     {
-        protected Connection ()
+        readonly ITransportLayerConnection _transportLayerConnection;
+        readonly IEnumerable<Session> _sessions;
+        readonly IEnumerable<IncomingChannel> _incomingChannels;
+        readonly IEnumerable<OutgoingChannel> _outgoingChannels;
+
+        internal Connection (ProtocolId protocol, AmqpVersion version, ITransportLayerConnection connection)
         {
-            SupportedVersions = new List<VersionRange> ();
+            Protocol = protocol;
+            Version = version;
+            this._transportLayerConnection = connection;
         }
 
-        public Version Version { get; internal set; }
+        public async Task<long> SendAsync (byte[] message) => await _transportLayerConnection.SendAsync (message);
 
-        public IEnumerable<VersionRange> SupportedVersions { get; internal set; }
+        public async Task<byte []> ReceiveAsync (long count) => await _transportLayerConnection.ReceiveAsync(count);
 
-        public bool IsConnected { get; protected set; }
+        public long MaximumFrameSize => 512L;
+        public ProtocolId Protocol { get; }
+        public AmqpVersion Version { get; }
 
-        public bool IsClosed { get; protected set; }
-
-        public long MaximumFrameSize { get; protected set; }
-
-        public IEnumerable<Session> Sessions { get; protected set; }
-
-        public IEnumerable<IncomingChannel> IncomingChannels { get { return Enumerable.Empty<IncomingChannel> (); } }
-
-        public IEnumerable<OutgoingChannel> OutgoingChannels { get { return Enumerable.Empty<OutgoingChannel> (); } }
-
-        public abstract Task<byte[]> SendAsync (byte[] message);
     }
 }

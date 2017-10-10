@@ -2,17 +2,16 @@
 using FluentAssertions;
 using Msg.Core.Transport;
 using Msg.Core.Transport.Common;
-using NUnit.Framework;
+using Xunit;
 using Version = Msg.Core.Versioning.Version;
 
 namespace Msg.Core.Specs.Transport
 {
-    [TestFixture]
     public class ProtocolHeaderSpecs
     {
         static readonly Func<byte [], ProtocolHeader> convertByteArray = b => (ProtocolHeader)b;
 
-        [Test]
+        [Fact]
         public void Given_a_protocol_header_When_converting_to_a_byte_array_Then_it_starts_with_AMQP ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -31,7 +30,7 @@ namespace Msg.Core.Specs.Transport
             result.Should ().ContainInOrder ((byte)'A', (byte)'M', (byte)'Q', (byte)'P');
         }
 
-        [Test]
+        [Fact]
         public void Given_a_protocol_header_When_converting_to_a_byte_array_Then_it_contains_the_protocol_id ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -50,7 +49,7 @@ namespace Msg.Core.Specs.Transport
             result.Should ().HaveElementAt (4, (byte)0);
         }
 
-        [Test]
+        [Fact]
         public void Given_a_protocol_header_When_converting_to_a_byte_array_Then_it_contains_the_version ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -69,7 +68,7 @@ namespace Msg.Core.Specs.Transport
             result.Should ().ContainInOrder (new byte [] { 0, 1, 2, 3 });
         }
 
-        [Test]
+        [Fact]
         public void Given_a_byte_array_When_converting_to_a_protocol_header_Then_the_version_number_is_correct ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -90,7 +89,7 @@ namespace Msg.Core.Specs.Transport
             result.Version.Revision.Should ().Be (3);
         }
 
-        [Test]
+        [Fact]
         public void Given_a_byte_array_When_converting_to_a_protocol_header_Then_protocol_id_is_correct ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -109,7 +108,7 @@ namespace Msg.Core.Specs.Transport
             result.ProtocolId.Should ().Be (ProtocolIds.AMQP);
         }
 
-        [Test]
+        [Fact]
         public void Given_an_empty_byte_array_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -128,7 +127,7 @@ namespace Msg.Core.Specs.Transport
             result.ShouldThrow<ArgumentException> ();
         }
 
-        [Test]
+        [Fact]
         public void Given_a_byte_array_that_is_too_short_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -147,7 +146,7 @@ namespace Msg.Core.Specs.Transport
             result.ShouldThrow<ArgumentException> ();
         }
 
-        [Test]
+        [Fact]
         public void Given_a_byte_array_that_is_too_long_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -166,7 +165,7 @@ namespace Msg.Core.Specs.Transport
             result.ShouldThrow<ArgumentException> ();
         }
 
-        [Test]
+        [Fact]
         public void Given_a_byte_array_that_doesnt_start_with_AMQP_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -185,7 +184,7 @@ namespace Msg.Core.Specs.Transport
             result.ShouldThrow<ArgumentException> ();
         }
 
-        [Test]
+        [Fact]
         public void Given_a_byte_array_where_AMQP_is_not_all_uppercase_When_converting_to_a_protocol_header_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------

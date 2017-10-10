@@ -1,16 +1,15 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using FluentAssertions;
 using System;
 using Version = Msg.Core.Versioning.Version;
 
 namespace Msg.Core.Specs.Versioning
 {
-    [TestFixture]
     public class VersionSpecs
     {
         static readonly Func<byte[],Version> convertByteArray = b => b;
 
-        [Test]
+        [Fact]
         public void Given_a_version_When_converting_to_a_byte_array_Then_the_first_byte_equals_the_major_version_number ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -29,7 +28,7 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().HaveElementAt (0, (byte)1);
         }
 
-        [Test]
+        [Fact]
         public void Given_a_version_When_converting_to_a_byte_array_Then_the_second_byte_equals_the_minor_version_number ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -48,7 +47,7 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().HaveElementAt (1, (byte)2);
         }
 
-        [Test]
+        [Fact]
         public void Given_a_version_When_converting_to_a_byte_array_Then_the_third_byte_equals_the_revision_number ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -67,7 +66,7 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().HaveElementAt (2, (byte)3);
         }
 
-        [Test]
+        [Fact]
         public void Given_an_empty_byte_array_When_converting_to_a_version_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -86,7 +85,7 @@ namespace Msg.Core.Specs.Versioning
             result.ShouldThrow<ArgumentException> ();
         }
 
-        [Test]
+        [Fact]
         public void Given_a_byte_array_that_is_too_short_When_converting_to_a_version_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -105,7 +104,7 @@ namespace Msg.Core.Specs.Versioning
             result.ShouldThrow<ArgumentException> ();
         }
 
-        [Test]
+        [Fact]
         public void Given_a_byte_array_that_is_too_long_When_converting_to_a_version_Then_an_exception_is_thrown ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -124,10 +123,10 @@ namespace Msg.Core.Specs.Versioning
             result.ShouldThrow<ArgumentException> ();
         }
 
-        [Test]
-        [TestCase (1, 0, 0, 0, 9, 11)]
-        [TestCase (0, 9, 1, 0, 8, 5)]
-        [TestCase (0, 1, 2, 0, 1, 1)]
+        [Theory]
+        [InlineData (1, 0, 0, 0, 9, 11)]
+        [InlineData (0, 9, 1, 0, 8, 5)]
+        [InlineData (0, 1, 2, 0, 1, 1)]
         public void Given_two_versions_When_comparing_them_Then_the_left_version_is_greater_than_the_right (byte leftMajor, byte leftMinor, byte leftRevision, byte rightMajor, byte rightMinor, byte rightRevision)
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -147,10 +146,10 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().BeTrue ();
         }
 
-        [Test]
-        [TestCase (1, 0, 0, 0, 9, 11)]
-        [TestCase (0, 9, 1, 0, 8, 5)]
-        [TestCase (0, 1, 2, 0, 1, 1)]
+        [Theory]
+        [InlineData (1, 0, 0, 0, 9, 11)]
+        [InlineData (0, 9, 1, 0, 8, 5)]
+        [InlineData (0, 1, 2, 0, 1, 1)]
         public void Given_two_versions_When_comparing_them_Then_the_right_version_is_less_than_the_right (byte leftMajor, byte leftMinor, byte leftRevision, byte rightMajor, byte rightMinor, byte rightRevision)
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -170,10 +169,10 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().BeTrue ();
         }
 
-        [Test]
-        [TestCase (1, 0, 0)]
-        [TestCase (0, 9, 1)]
-        [TestCase (0, 1, 2)]
+        [Theory]
+        [InlineData (1, 0, 0)]
+        [InlineData (0, 9, 1)]
+        [InlineData (0, 1, 2)]
         public void Given_two_versions_When_comparing_them_Then_they_have_value_equality (byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------

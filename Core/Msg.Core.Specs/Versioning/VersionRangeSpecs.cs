@@ -1,16 +1,15 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using FluentAssertions;
 using Msg.Core.Versioning;
 
 namespace Msg.Core.Specs.Versioning
 {
-    [TestFixture]
     public class VersionRangeSpecs
     {
-        [Test]
-        [TestCase (1, 0, 1)]
-        [TestCase (1, 0, 2)]
-        [TestCase (1, 0, 3)]
+        [Theory]
+        [InlineData (1, 0, 1)]
+        [InlineData (1, 0, 2)]
+        [InlineData (1, 0, 3)]
         public void Given_a_version_range_with_upper_and_lower_bounds_When_version_range_contains_version_Then_returns_true (byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -29,9 +28,9 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().BeTrue ();
         }
 
-        [Test]
-        [TestCase (1, 0, 0)]
-        [TestCase (1, 0, 4)]
+        [Theory]
+        [InlineData (1, 0, 0)]
+        [InlineData (1, 0, 4)]
         public void Given_a_version_range_with_upper_and_lower_bounds_When_version_range_does_not_contain_version_Then_returns_false (byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -50,10 +49,10 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().BeFalse ();
         }
 
-        [Test]
-        [TestCase (1, 0, 1)]
-        [TestCase (0, 9, 2)]
-        [TestCase (0, 0, 3)]
+        [Theory]
+        [InlineData (1, 0, 1)]
+        [InlineData (0, 9, 2)]
+        [InlineData (0, 0, 3)]
         public void Given_version_range_with_only_upper_bound_When_version_range_contains_version_Then_returns_true (byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -72,8 +71,8 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().BeTrue ();
         }
 
-        [Test]
-        [TestCase (1, 0, 2)]
+        [Theory]
+        [InlineData (1, 0, 2)]
         public void Given_a_version_range_with_only_upper_bound_When_version_range_does_not_contain_version_Then_returns_false (byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -92,7 +91,7 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().BeFalse ();
         }
 
-        [Test]
+        [Fact]
         public void Given_a_version_range_with_exactly_one_version_When_version_range_contains_version_Then_returns_true ()
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -111,9 +110,9 @@ namespace Msg.Core.Specs.Versioning
             result.Should ().BeTrue ();
         }
 
-        [Test]
-        [TestCase (1, 0, 2)]
-        [TestCase (1, 0, 0)]
+        [Theory]
+        [InlineData (1, 0, 2)]
+        [InlineData (1, 0, 0)]
         public void Given_a_version_range_with_exactly_one_version_When_version_range_does_not_contain_version_Then_returns_false (byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------

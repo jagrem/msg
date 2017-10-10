@@ -5,7 +5,7 @@ namespace Msg.Core.Transport.Frames
 {
     public static class FrameSender
     {
-        public static async Task SendFrame (IConnection connection, Frame frame)
+        public static async Task SendFrame (Connection connection, Frame frame)
         {
             try {
                 await connection.SendAsync (frame.GetBytes ());

@@ -1,84 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0B6F177A-4A8D-4367-AA88-3C24522D5B7F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Msg.Core.Specs</RootNamespace>
-    <AssemblyName>Msg.Core.Specs</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute">
-      <HintPath>..\..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions.Core">
-      <HintPath>..\..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions">
-      <HintPath>..\..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.dll</HintPath>
-    </Reference>
+    <PackageReference Include="FluentAssertions" Version="4.19.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
+    <PackageReference Include="NSubstitute" Version="3.0.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transport\Frames\FrameHeaderSpecs.cs" />
-    <Compile Include="Transport\Frames\FrameBodySpecs.cs" />
-    <Compile Include="Versioning\VersionRangeSpecs.cs" />
-    <Compile Include="Transport\Connections\ConnectorSpecs.cs" />
-    <Compile Include="Transport\Connections\ConnectionFactoryExtensions.cs" />
-    <Compile Include="Versioning\VersionSpecs.cs" />
-    <Compile Include="Transport\Sessions\SessionFactorySpecs.cs" />
-    <Compile Include="Transport\Connections\Tcp\TcpConnectionSpecs.cs" />
-    <Compile Include="Transport\Connections\Tcp\TcpServer.cs" />
-    <Compile Include="Transport\Common\PortNumberSpecs.cs" />
-    <Compile Include="Transport\Connections\Tcp\DataStreamReader.cs" />
-    <Compile Include="Versioning\VersionSelectorSpecs.cs" />
-    <Compile Include="Transport\ProtocolHeaderSpecs.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Transport\" />
-    <Folder Include="Transport\Frames\" />
-    <Folder Include="Versioning\" />
-    <Folder Include="Transport\Connections\" />
-    <Folder Include="Transport\Sessions\" />
-    <Folder Include="Transport\Connections\Tcp\" />
-    <Folder Include="Transport\Common\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Msg.Core\Msg.Core.csproj">
-      <Project>{BA15DB4E-B53B-41EF-A482-39E15A80BA99}</Project>
-      <Name>Msg.Core</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Msg.Core\Msg.Core.csproj" />
   </ItemGroup>
 </Project>

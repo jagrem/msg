@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using System.Threading.Tasks;
 using Msg.Core.Transport.Connections.Tcp;
 using FluentAssertions;
@@ -7,10 +7,9 @@ using Msg.Core.Transport.Common;
 
 namespace Msg.Core.Specs.Transport.Connections.Tcp
 {
-    [TestFixture]
     public class TcpConnectionSpecs
     {
-        [Test]
+        [Fact]
         public async Task Given_a_Tcp_server_When_sending_bytes_Then_the_server_receives_the_bytes()
         {
             //-----------------------------------------------------------------------------------------------------------

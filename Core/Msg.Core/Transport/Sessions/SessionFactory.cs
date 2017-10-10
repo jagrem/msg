@@ -2,7 +2,7 @@
 {
     public class SessionFactory
     {
-        public SessionFactory(IConnection connection)
+        public SessionFactory(Connection connection)
         {
         }
     }

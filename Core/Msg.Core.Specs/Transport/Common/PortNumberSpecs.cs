@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using Msg.Core.Transport.Common;
 using System;
 using FluentAssertions;
 
 namespace Msg.Core.Specs.Transport.Common
 {
-    [TestFixture]
     public class PortNumberSpecs
     {
         static PortNumber CastIntToPortNumber (int value)
@@ -13,8 +12,8 @@ namespace Msg.Core.Specs.Transport.Common
             return (PortNumber)value;
         }
 
-        [Test]
-        [TestCase(65999)]
+        [Theory]
+        [InlineData(65999)]
         public void Given_a_value_greater_than_the_maximum_port_number_allowed_When_casting_to_a_port_number_Then_it_should_throw (int value)
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -28,9 +27,9 @@ namespace Msg.Core.Specs.Transport.Common
             result.ShouldThrow<ArgumentOutOfRangeException> ();
         }
 
-        [Test]
-        [TestCase (0)]
-        [TestCase (-1)]
+        [Theory]
+        [InlineData (0)]
+        [InlineData (-1)]
         public void Given_a_value_less_than_or_equal_to_zero_When_casting_to_a_port_number_Then_it_should_throw (int value)
         {
             //-----------------------------------------------------------------------------------------------------------
@@ -44,9 +43,9 @@ namespace Msg.Core.Specs.Transport.Common
             result.ShouldThrow<ArgumentOutOfRangeException> ();
         }
 
-        [Test]
-        [TestCase(1)]
-        [TestCase(1024)]
+        [Theory]
+        [InlineData(1)]
+        [InlineData(1024)]
         public void Given_a_value_When_casting_to_a_port_number_Then_the_port_number_equals_the_value (int value)
         {
             //-----------------------------------------------------------------------------------------------------------

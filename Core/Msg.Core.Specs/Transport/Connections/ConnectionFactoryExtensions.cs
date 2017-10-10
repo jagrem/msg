@@ -21,7 +21,7 @@ namespace Msg.Core.Specs.Transport.Connections
         public static IConnection CreateOpenConnection(this ConnectionFactory factory)
         {
             var connection = Substitute.For<IConnection> ();
-            return new OpenConnection(connection);
+            return new AmqpConnection(connection);
         }
 
         public static async Task<Connection> CreateOpenConnectionThatShouldThrowAsync(this ConnectionFactory factory, Exception exception)

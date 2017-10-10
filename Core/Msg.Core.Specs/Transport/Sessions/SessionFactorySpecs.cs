@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using Msg.Core.Transport.Sessions;
 using FluentAssertions;
 using Msg.Core.Transport.Connections;
@@ -6,10 +6,9 @@ using Msg.Core.Specs.Transport.Connections;
 
 namespace Msg.Core.Specs.Transport.Sessions
 {
-    [TestFixture]
     public class SessionFactorySpecs
     {
-        [Test]
+        [Fact]
         public void Given_a_connection_When_asked_for_a_session_Then_returns_a_different_session_each_time ()
         {
             //-----------------------------------------------------------------------------------------------------------
