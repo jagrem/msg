@@ -1,13 +1,13 @@
 ﻿using Xunit;
 using FluentAssertions;
 using System;
-using Version = Msg.Core.Versioning.Version;
+using Msg.Core.Transport.Common.Versioning;
 
 namespace Msg.Core.Specs.Versioning
 {
-    public class VersionSpecs
+    public class AmqpVersionSpecs
     {
-        static readonly Func<byte[],Version> convertByteArray = b => b;
+        static readonly Func<byte[],AmqpVersion> convertByteArray = b => b;
 
         [Fact]
         public void Given_a_version_When_converting_to_a_byte_array_Then_the_first_byte_equals_the_major_version_number ()
@@ -15,7 +15,7 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new Version (1, 2, 3);
+            var subject = new AmqpVersion (1, 2, 3);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -34,7 +34,7 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new Version (1, 2, 3);
+            var subject = new AmqpVersion (1, 2, 3);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -53,7 +53,7 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new Version (1, 2, 3);
+            var subject = new AmqpVersion (1, 2, 3);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -132,8 +132,8 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new Version (leftMajor, leftMinor, leftRevision);
-            var right = new Version (rightMajor, rightMinor, rightRevision);
+            var left = new AmqpVersion (leftMajor, leftMinor, leftRevision);
+            var right = new AmqpVersion (rightMajor, rightMinor, rightRevision);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -155,8 +155,8 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new Version (leftMajor, leftMinor, leftRevision);
-            var right = new Version (rightMajor, rightMinor, rightRevision);
+            var left = new AmqpVersion (leftMajor, leftMinor, leftRevision);
+            var right = new AmqpVersion (rightMajor, rightMinor, rightRevision);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -178,13 +178,36 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new Version (major, minor, revision);
-            var right = new Version (major, minor, revision);
+            var left = new AmqpVersion (major, minor, revision);
+            var right = new AmqpVersion (major, minor, revision);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
             var result = right == left;
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Assert
+            //-----------------------------------------------------------------------------------------------------------
+            result.Should ().BeTrue ();
+        }
+
+        [Theory]
+        [InlineData (1, 0, 0)]
+        [InlineData (0, 9, 1)]
+        [InlineData (0, 1, 2)]
+        public void Given_two_different_versions_When_comparing_them_Then_they_do_not_have_value_equality (byte major, byte minor, byte revision)
+        {
+            //-----------------------------------------------------------------------------------------------------------
+            // Arrange
+            //-----------------------------------------------------------------------------------------------------------
+            var left = new AmqpVersion (2, 2, 2);
+            var right = new AmqpVersion (major, minor, revision);
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Act
+            //-----------------------------------------------------------------------------------------------------------
+            var result = right != left;
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert

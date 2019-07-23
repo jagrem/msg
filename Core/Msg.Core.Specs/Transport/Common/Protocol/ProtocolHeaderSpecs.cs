@@ -1,11 +1,11 @@
 ﻿using System;
 using FluentAssertions;
 using Msg.Core.Transport;
-using Msg.Core.Transport.Common;
+using Msg.Core.Transport.Common.Protocol;
+using Msg.Core.Transport.Common.Versioning;
 using Xunit;
-using Version = Msg.Core.Versioning.Version;
 
-namespace Msg.Core.Specs.Transport
+namespace Msg.Core.Specs.Transport.Common.Protocol
 {
     public class ProtocolHeaderSpecs
     {
@@ -17,7 +17,7 @@ namespace Msg.Core.Specs.Transport
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new ProtocolHeader (ProtocolIds.AMQP, new Version (1, 2, 3));
+            var subject = new ProtocolHeader (ProtocolIds.AMQP, new AmqpVersion (1, 2, 3));
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -36,7 +36,7 @@ namespace Msg.Core.Specs.Transport
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new ProtocolHeader (ProtocolIds.AMQP, new Version (1, 2, 3));
+            var subject = new ProtocolHeader (ProtocolIds.AMQP, new AmqpVersion (1, 2, 3));
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -55,7 +55,7 @@ namespace Msg.Core.Specs.Transport
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new ProtocolHeader (ProtocolIds.AMQP, new Version (1, 2, 3));
+            var subject = new ProtocolHeader (ProtocolIds.AMQP, new AmqpVersion (1, 2, 3));
 
             //-----------------------------------------------------------------------------------------------------------
             // Act

@@ -1,9 +1,10 @@
 ﻿using Xunit;
-using Msg.Core.Transport.Common;
+using Msg.Core.Transport.Connections.Tcp;
+using Msg.Core.Transport.Common.Versioning;
 using System;
 using FluentAssertions;
 
-namespace Msg.Core.Specs.Transport.Common
+namespace Msg.Core.Specs.Transport.Connections.Tcp
 {
     public class PortNumberSpecs
     {

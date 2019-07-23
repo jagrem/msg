@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
-using Msg.Core.Transport.Common;
+using Msg.Core.Transport.Connections.Tcp;
 
 namespace Msg.Core.Specs.Transport.Connections.Tcp
 {

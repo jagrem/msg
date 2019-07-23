@@ -1,4 +1,6 @@
-﻿namespace Msg.Core.Transport.Common.Protocol
+﻿using System;
+
+namespace Msg.Core.Transport.Common.Protocol
 {
     public class ProtocolId
     {
@@ -24,6 +26,14 @@
             var protocolId = obj as ProtocolId;
             return protocolId != null && value.Equals (protocolId.value);
         }
+
+        public static bool operator ==(ProtocolId left, ProtocolId right) =>
+            !ReferenceEquals(left, null)
+            && !ReferenceEquals(right, null)
+            && left.Equals(right);
+
+        public static bool operator !=(ProtocolId left, ProtocolId right) =>
+            !(left == right);
 
         public override int GetHashCode ()
         {

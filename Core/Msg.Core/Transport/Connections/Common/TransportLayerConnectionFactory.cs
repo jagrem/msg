@@ -5,7 +5,7 @@ using Msg.Core.Transport.Common;
 
 namespace Msg.Core.Transport.Connections.Common
 {
-    public class TransportLayerConnectionFactory
+    public class TransportLayerConnectionFactory : ITransportLayerConnectionFactory
     {
         public async Task<ITransportLayerConnection> OpenConnectionAsync()
         {

@@ -2,28 +2,20 @@
 {
     public class Frame
     {
-        public Frame (FrameHeader header, FrameExtendedHeader extendedHeader, FrameBody body)
+        public FrameHeader Header { get; }
+        public FrameExtendedHeader ExtendedHeader { get; }
+        public FrameBody Body { get; }
+
+        public Frame(FrameHeader header, FrameExtendedHeader extendedHeader, FrameBody body)
         {
             Header = header;
             ExtendedHeader = extendedHeader;
             Body = body;
         }
 
-        public FrameHeader Header { get; private set; }
-
-        public FrameExtendedHeader ExtendedHeader { get; private set; }
-
-        public FrameBody Body  { get; private set; }
-
-        public byte[] GetBytes ()
+        public override string ToString()
         {
-            return new byte[0];
-        }
-
-        public override string ToString ()
-        {
-            return string.Format ("[Frame: Header={0}, ExtendedHeader={1}, Body={2}]", Header, ExtendedHeader, Body);
+            return string.Format("[Frame: Header={0}, ExtendedHeader={1}, Body={2}]", Header, ExtendedHeader, Body);
         }
     }
 }
-

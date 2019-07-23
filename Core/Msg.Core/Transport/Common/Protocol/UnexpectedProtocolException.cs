@@ -11,7 +11,7 @@ namespace Msg.Core.Transport.Common.Protocol
         }
 
         public UnexpectedProtocolException (ProtocolId expectedProtocolId, ProtocolId actualProtocolId)
-            : base ($"Expected protocol {expectedProtocolId} but received {actualProtocolId}")
+            : base ($"Expected protocol ID { (int)expectedProtocolId } but received { (int)actualProtocolId }")
         {
         }
 
