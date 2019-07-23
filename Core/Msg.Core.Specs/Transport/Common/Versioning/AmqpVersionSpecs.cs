@@ -7,15 +7,15 @@ namespace Msg.Core.Specs.Versioning
 {
     public class AmqpVersionSpecs
     {
-        static readonly Func<byte[],AmqpVersion> convertByteArray = b => b;
+        static readonly Func<byte[], AmqpVersion> convertByteArray = b => b;
 
         [Fact]
-        public void Given_a_version_When_converting_to_a_byte_array_Then_the_first_byte_equals_the_major_version_number ()
+        public void Given_a_version_When_converting_to_a_byte_array_Then_the_first_byte_equals_the_major_version_number()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new AmqpVersion (1, 2, 3);
+            var subject = new AmqpVersion(1, 2, 3);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -25,16 +25,16 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().HaveElementAt (0, (byte)1);
+            result.Should().HaveElementAt(0, (byte)1);
         }
 
         [Fact]
-        public void Given_a_version_When_converting_to_a_byte_array_Then_the_second_byte_equals_the_minor_version_number ()
+        public void Given_a_version_When_converting_to_a_byte_array_Then_the_second_byte_equals_the_minor_version_number()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new AmqpVersion (1, 2, 3);
+            var subject = new AmqpVersion(1, 2, 3);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -44,16 +44,16 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().HaveElementAt (1, (byte)2);
+            result.Should().HaveElementAt(1, (byte)2);
         }
 
         [Fact]
-        public void Given_a_version_When_converting_to_a_byte_array_Then_the_third_byte_equals_the_revision_number ()
+        public void Given_a_version_When_converting_to_a_byte_array_Then_the_third_byte_equals_the_revision_number()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var subject = new AmqpVersion (1, 2, 3);
+            var subject = new AmqpVersion(1, 2, 3);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -63,11 +63,11 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().HaveElementAt (2, (byte)3);
+            result.Should().HaveElementAt(2, (byte)3);
         }
 
         [Fact]
-        public void Given_an_empty_byte_array_When_converting_to_a_version_Then_an_exception_is_thrown ()
+        public void Given_an_empty_byte_array_When_converting_to_a_version_Then_an_exception_is_thrown()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
@@ -77,16 +77,16 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            Action result = () => convertByteArray (subject);
+            Action result = () => convertByteArray(subject);
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.ShouldThrow<ArgumentException> ();
+            result.Should().Throw<ArgumentException>();
         }
 
         [Fact]
-        public void Given_a_byte_array_that_is_too_short_When_converting_to_a_version_Then_an_exception_is_thrown ()
+        public void Given_a_byte_array_that_is_too_short_When_converting_to_a_version_Then_an_exception_is_thrown()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
@@ -96,16 +96,16 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            Action result = () => convertByteArray (subject);
+            Action result = () => convertByteArray(subject);
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.ShouldThrow<ArgumentException> ();
+            result.Should().Throw<ArgumentException>();
         }
 
         [Fact]
-        public void Given_a_byte_array_that_is_too_long_When_converting_to_a_version_Then_an_exception_is_thrown ()
+        public void Given_a_byte_array_that_is_too_long_When_converting_to_a_version_Then_an_exception_is_thrown()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
@@ -115,25 +115,25 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Act
             //-----------------------------------------------------------------------------------------------------------
-            Action result = () => convertByteArray (subject);
+            Action result = () => convertByteArray(subject);
 
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.ShouldThrow<ArgumentException> ();
+            result.Should().Throw<ArgumentException>();
         }
 
         [Theory]
-        [InlineData (1, 0, 0, 0, 9, 11)]
-        [InlineData (0, 9, 1, 0, 8, 5)]
-        [InlineData (0, 1, 2, 0, 1, 1)]
-        public void Given_two_versions_When_comparing_them_Then_the_left_version_is_greater_than_the_right (byte leftMajor, byte leftMinor, byte leftRevision, byte rightMajor, byte rightMinor, byte rightRevision)
+        [InlineData(1, 0, 0, 0, 9, 11)]
+        [InlineData(0, 9, 1, 0, 8, 5)]
+        [InlineData(0, 1, 2, 0, 1, 1)]
+        public void Given_two_versions_When_comparing_them_Then_the_left_version_is_greater_than_the_right(byte leftMajor, byte leftMinor, byte leftRevision, byte rightMajor, byte rightMinor, byte rightRevision)
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new AmqpVersion (leftMajor, leftMinor, leftRevision);
-            var right = new AmqpVersion (rightMajor, rightMinor, rightRevision);
+            var left = new AmqpVersion(leftMajor, leftMinor, leftRevision);
+            var right = new AmqpVersion(rightMajor, rightMinor, rightRevision);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -143,20 +143,20 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().BeTrue ();
+            result.Should().BeTrue();
         }
 
         [Theory]
-        [InlineData (1, 0, 0, 0, 9, 11)]
-        [InlineData (0, 9, 1, 0, 8, 5)]
-        [InlineData (0, 1, 2, 0, 1, 1)]
-        public void Given_two_versions_When_comparing_them_Then_the_right_version_is_less_than_the_right (byte leftMajor, byte leftMinor, byte leftRevision, byte rightMajor, byte rightMinor, byte rightRevision)
+        [InlineData(1, 0, 0, 0, 9, 11)]
+        [InlineData(0, 9, 1, 0, 8, 5)]
+        [InlineData(0, 1, 2, 0, 1, 1)]
+        public void Given_two_versions_When_comparing_them_Then_the_right_version_is_less_than_the_right(byte leftMajor, byte leftMinor, byte leftRevision, byte rightMajor, byte rightMinor, byte rightRevision)
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new AmqpVersion (leftMajor, leftMinor, leftRevision);
-            var right = new AmqpVersion (rightMajor, rightMinor, rightRevision);
+            var left = new AmqpVersion(leftMajor, leftMinor, leftRevision);
+            var right = new AmqpVersion(rightMajor, rightMinor, rightRevision);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -166,20 +166,20 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().BeTrue ();
+            result.Should().BeTrue();
         }
 
         [Theory]
-        [InlineData (1, 0, 0)]
-        [InlineData (0, 9, 1)]
-        [InlineData (0, 1, 2)]
-        public void Given_two_versions_When_comparing_them_Then_they_have_value_equality (byte major, byte minor, byte revision)
+        [InlineData(1, 0, 0)]
+        [InlineData(0, 9, 1)]
+        [InlineData(0, 1, 2)]
+        public void Given_two_versions_When_comparing_them_Then_they_have_value_equality(byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new AmqpVersion (major, minor, revision);
-            var right = new AmqpVersion (major, minor, revision);
+            var left = new AmqpVersion(major, minor, revision);
+            var right = new AmqpVersion(major, minor, revision);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -189,20 +189,20 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().BeTrue ();
+            result.Should().BeTrue();
         }
 
         [Theory]
-        [InlineData (1, 0, 0)]
-        [InlineData (0, 9, 1)]
-        [InlineData (0, 1, 2)]
-        public void Given_two_different_versions_When_comparing_them_Then_they_do_not_have_value_equality (byte major, byte minor, byte revision)
+        [InlineData(1, 0, 0)]
+        [InlineData(0, 9, 1)]
+        [InlineData(0, 1, 2)]
+        public void Given_two_different_versions_When_comparing_them_Then_they_do_not_have_value_equality(byte major, byte minor, byte revision)
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
             //-----------------------------------------------------------------------------------------------------------
-            var left = new AmqpVersion (2, 2, 2);
-            var right = new AmqpVersion (major, minor, revision);
+            var left = new AmqpVersion(2, 2, 2);
+            var right = new AmqpVersion(major, minor, revision);
 
             //-----------------------------------------------------------------------------------------------------------
             // Act
@@ -212,7 +212,7 @@ namespace Msg.Core.Specs.Versioning
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should ().BeTrue ();
+            result.Should().BeTrue();
         }
     }
 }

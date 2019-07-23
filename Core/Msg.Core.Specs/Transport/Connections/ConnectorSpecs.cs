@@ -87,7 +87,7 @@ namespace Msg.Core.Specs.Transport.Connections
             // Assert
             //-----------------------------------------------------------------------------------------------------------
             act
-                .ShouldThrow<OpenConnectionFailedException>()
+                .Should().Throw<OpenConnectionFailedException>()
                 .WithInnerException<UnsupportedVersionException>();
         }
 
@@ -128,7 +128,7 @@ namespace Msg.Core.Specs.Transport.Connections
             // Assert
             //-----------------------------------------------------------------------------------------------------------
             act
-                .ShouldThrow<OpenConnectionFailedException>()
+                .Should().Throw<OpenConnectionFailedException>()
                 .WithInnerException<UnexpectedProtocolException>();
         }
     }

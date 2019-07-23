@@ -19,7 +19,7 @@ namespace Msg.Core.Specs.Transport.Frames
 
             // Assert
             action
-                .ShouldThrow<MalformedFrameException>()
+                .Should().Throw<MalformedFrameException>()
                 .WithMessage("Frame must contain at least the mandatory frame header.");
         }
 
@@ -36,7 +36,7 @@ namespace Msg.Core.Specs.Transport.Frames
 
             // Assert
             action
-                .ShouldThrow<MalformedFrameException>()
+                .Should().Throw<MalformedFrameException>()
                 .WithMessage("Frame size must be at least the size of the mandatory frame header.");
         }
 
@@ -53,7 +53,7 @@ namespace Msg.Core.Specs.Transport.Frames
 
             // Assert
             action
-                .ShouldThrow<MalformedFrameException>()
+                .Should().Throw<MalformedFrameException>()
                 .WithMessage("Frame size must match the number of bytes in the frame.");
         }
 
@@ -70,7 +70,7 @@ namespace Msg.Core.Specs.Transport.Frames
 
             // Assert
             action
-                .ShouldThrow<MalformedFrameException>()
+                .Should().Throw<MalformedFrameException>()
                 .WithMessage("Data offset must be at least the size of the mandatory frame header.");
         }
 
@@ -104,7 +104,7 @@ namespace Msg.Core.Specs.Transport.Frames
 
             // Assert
             action
-                .ShouldThrow<NotSupportedException>()
+                .Should().Throw<NotSupportedException>()
                 .WithMessage("The frame header type is not supported.");
         }
 
@@ -171,7 +171,7 @@ namespace Msg.Core.Specs.Transport.Frames
 
             // Assert
             action
-                .ShouldThrow<MalformedFrameException>()
+                .Should().Throw<MalformedFrameException>()
                 .WithMessage("Frame size must be at least the size of the mandatory frame header.");
         }
 
@@ -186,7 +186,7 @@ namespace Msg.Core.Specs.Transport.Frames
 
             // Assert
             action
-                .ShouldThrow<MalformedFrameException>()
+                .Should().Throw<MalformedFrameException>()
                 .WithMessage("Data offset must be at least the size of the mandatory frame header.");
         }
 
@@ -201,7 +201,7 @@ namespace Msg.Core.Specs.Transport.Frames
 
             // Assert
             action
-                .ShouldThrow<MalformedFrameException>()
+                .Should().Throw<MalformedFrameException>()
                 .WithMessage("Frame size must match the number of bytes in the frame.");
         }
     }
