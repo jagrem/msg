@@ -7,7 +7,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtLinkLevel]
     public class AttachFrame : AmqpFrame
     {
-        public AttachFrame(ushort channelId) : base(channelId, PerformativeType.Attach, new byte[0])
+        public AttachFrame(ChannelId channelId) : base(channelId, PerformativeType.Attach, new byte[0])
         {
         }
     }

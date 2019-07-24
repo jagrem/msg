@@ -7,7 +7,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtLinkLevel]
     public class TransferFrame : AmqpFrame
     {
-        public TransferFrame(ushort channelId) : base(channelId, PerformativeType.Transfer, new byte[0])
+        public TransferFrame(ChannelId channelId) : base(channelId, PerformativeType.Transfer, new byte[0])
         {
         }
     }

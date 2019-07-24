@@ -6,8 +6,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtConnectionlevel]
     public class OpenFrame : AmqpFrame
     {
-        public OpenFrame(ushort channelId)
-            : base(channelId, PerformativeType.Open, new byte[0])
+        public OpenFrame(ChannelId channelId) : base(channelId, PerformativeType.Open, new byte[0])
         {
         }
     }

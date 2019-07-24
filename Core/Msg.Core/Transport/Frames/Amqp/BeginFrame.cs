@@ -7,7 +7,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtSessionLevel]
     public class BeginFrame : AmqpFrame
     {
-        public BeginFrame(ushort channelId) : base(channelId, PerformativeType.Begin, new byte[0])
+        public BeginFrame(ChannelId channelId) : base(channelId, PerformativeType.Begin, new byte[0])
         {
         }
     }

@@ -7,7 +7,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtSessionLevel]
     public class EndFrame : AmqpFrame
     {
-        public EndFrame(ushort channelId) : base(channelId, PerformativeType.End, new byte[0])
+        public EndFrame(ChannelId channelId) : base(channelId, PerformativeType.End, new byte[0])
         {
         }
     }

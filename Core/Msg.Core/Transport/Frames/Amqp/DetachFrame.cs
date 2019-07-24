@@ -7,7 +7,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtLinkLevel]
     public class DetachFrame : AmqpFrame
     {
-        public DetachFrame(ushort channelId) : base(channelId, PerformativeType.Detach, new byte[0])
+        public DetachFrame(ChannelId channelId) : base(channelId, PerformativeType.Detach, new byte[0])
         {
         }
     }

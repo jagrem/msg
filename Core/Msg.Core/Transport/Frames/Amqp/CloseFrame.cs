@@ -6,7 +6,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtConnectionlevel]
     public class CloseFrame : AmqpFrame
     {
-        public CloseFrame(ushort channelId)
+        public CloseFrame(ChannelId channelId)
             : base(channelId, PerformativeType.Close, new byte[0])
         {
         }
