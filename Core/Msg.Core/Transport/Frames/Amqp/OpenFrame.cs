@@ -20,8 +20,26 @@ namespace Msg.Core.Transport.Frames.Amqp
         public IReadOnlyList<Symbol> DesiredCapabilities { get; }
         // public Fields Properties { get; }
 
-        public OpenFrame(ChannelId channelId) : base(channelId, PerformativeType.Open, new byte[0])
+        public OpenFrame(
+            ChannelId channelId,
+            Option<string> hostname,
+            Option<uint> maxFrameSize,
+            Option<ushort> channelMax,
+            Option<Millisecond> idleTimeOut,
+            IReadOnlyList<IETFLanguageTag> outgoingLocales,
+            IReadOnlyList<IETFLanguageTag> incomingLocales,
+            IReadOnlyList<Symbol> offeredCapabilities,
+            IReadOnlyList<Symbol> desiredCapabilities)
+            : base(channelId, PerformativeType.Open)
         {
+            Hostname = hostname;
+            MaxFrameSize = maxFrameSize;
+            ChannelMax = channelMax;
+            IdleTimeOut = idleTimeOut;
+            OutgoingLocales = outgoingLocales;
+            IncomingLocales = incomingLocales;
+            OfferedCapabilities = offeredCapabilities;
+            DesiredCapabilities = desiredCapabilities;
         }
     }
 }

@@ -19,8 +19,24 @@ namespace Msg.Core.Transport.Frames.Amqp
         public IReadOnlyList<Symbol> DesiredCapabilities { get; }
         // public Fields Properties { get; }
 
-        public BeginFrame(ChannelId channelId) : base(channelId, PerformativeType.Begin, new byte[0])
+        public BeginFrame(
+            ChannelId channelId,
+            Option<ushort> remoteChannel,
+            TransferNumber nextOutgoingId,
+            uint incomingWindow,
+            uint outgoingWindow,
+            Option<Handle> handleMax,
+            IReadOnlyList<Symbol> offeredCapabilities,
+            IReadOnlyList<Symbol> desiredCapabilities)
+            : base(channelId, PerformativeType.Begin)
         {
+            remoteChannel = RemoteChannel;
+            NextOutgoingId = nextOutgoingId;
+            IncomingWindow = incomingWindow;
+            OutgoingWindow = outgoingWindow;
+            HandleMax = handleMax;
+            OfferedCapabilities = offeredCapabilities;
+            DesiredCapabilities = desiredCapabilities;
         }
     }
 }

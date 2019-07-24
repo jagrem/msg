@@ -7,7 +7,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtLinkLevel]
     public class FlowFrame : AmqpFrame
     {
-        public FlowFrame(ChannelId channelId) : base(channelId, PerformativeType.Flow, new byte[0])
+        public FlowFrame(ChannelId channelId) : base(channelId, PerformativeType.Flow)
         {
         }
     }

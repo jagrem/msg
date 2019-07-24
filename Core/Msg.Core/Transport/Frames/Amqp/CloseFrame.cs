@@ -9,9 +9,10 @@ namespace Msg.Core.Transport.Frames.Amqp
     public class CloseFrame : AmqpFrame
     {
         public Option<Error> Error { get; }
-        public CloseFrame(ChannelId channelId)
-            : base(channelId, PerformativeType.Close, new byte[0])
+        public CloseFrame(ChannelId channelId, Option<Error> error)
+            : base(channelId, PerformativeType.Close)
         {
+            Error = error;
         }
     }
 }

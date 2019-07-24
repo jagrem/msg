@@ -8,11 +8,10 @@ namespace Msg.Core.Transport.Frames.Amqp
         public PerformativeType Peformative { get; }
         public byte[] Payload { get; }
 
-        public AmqpFrame(ChannelId channelId, PerformativeType performative, byte[] payload)
+        public AmqpFrame(ChannelId channelId, PerformativeType performative)
         {
             ChannelId = channelId;
             Peformative = performative;
-            Payload = payload;
         }
     }
 }

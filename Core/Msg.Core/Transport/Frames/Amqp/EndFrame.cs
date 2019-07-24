@@ -11,8 +11,9 @@ namespace Msg.Core.Transport.Frames.Amqp
     {
         public Option<Error> Error { get; }
 
-        public EndFrame(ChannelId channelId) : base(channelId, PerformativeType.End, new byte[0])
+        public EndFrame(ChannelId channelId, Option<Error> error) : base(channelId, PerformativeType.End)
         {
+            Error = error;
         }
     }
 }

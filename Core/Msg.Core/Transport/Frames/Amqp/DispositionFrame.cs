@@ -7,7 +7,7 @@ namespace Msg.Core.Transport.Frames.Amqp
     [HandledAtLinkLevel]
     public class DispositionFrame : AmqpFrame
     {
-        public DispositionFrame(ChannelId channelId) : base(channelId, PerformativeType.Disposition, new byte[0])
+        public DispositionFrame(ChannelId channelId) : base(channelId, PerformativeType.Disposition)
         {
         }
     }
