@@ -4,7 +4,7 @@ namespace Msg.Core.Transport.Frames
 {
     public class FrameHeader
     {
-        public FrameHeader(uint size, byte dataOffset, FrameHeaderType type, ushort channelId)
+        public FrameHeader(FrameSize size, DataOffset dataOffset, FrameHeaderType type, ushort channelId)
         {
             Size = size;
             DataOffset = dataOffset;
@@ -12,13 +12,13 @@ namespace Msg.Core.Transport.Frames
             ChannelId = channelId;
         }
 
-        public uint Size { get; private set; }
+        public FrameSize Size { get; }
 
-        public byte DataOffset { get; private set; }
+        public DataOffset DataOffset { get; }
 
-        public FrameHeaderType Type { get; private set; }
+        public FrameHeaderType Type { get; }
 
-        public ushort ChannelId { get; private set; }
+        public ushort ChannelId { get; }
 
         public override string ToString()
         {

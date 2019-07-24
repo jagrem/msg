@@ -8,25 +8,8 @@ namespace Msg.Core.Transport.Frames.Serialization
     {
         public static byte[] Serialize(Frame frame)
         {
-            if (frame.Header.Size < FrameHeaders.FixedLengthInBytes)
-            {
-                throw new MalformedFrameException("Frame size must be at least the size of the mandatory frame header.");
-            }
-
-            if ((frame.Header.DataOffset * FrameHeaders.DataOffsetMultiplicationFactor) < FrameHeaders.FixedLengthInBytes)
-            {
-                throw new MalformedFrameException("Data offset must be at least the size of the mandatory frame header.");
-            }
-
-            if (FrameHeaders.FixedLengthInBytes + frame.ExtendedHeader.Data.Length + frame.Body.Payload.Length != frame.Header.Size)
-            {
-                throw new MalformedFrameException("Frame size must match the number of bytes in the frame.");
-            }
-
             var frameBytes = new byte[frame.Header.Size];
-
             var extendedHeaderLength = (uint)frame.ExtendedHeader.Data.Length;
-            var dataOffset = (FrameHeaders.FixedLengthInBytes + extendedHeaderLength) / FrameHeaders.DataOffsetMultiplicationFactor;
 
             uint size = frame.Header.Size;
             var sizeBytes = BitConverter.GetBytes(size);
@@ -35,7 +18,7 @@ namespace Msg.Core.Transport.Frames.Serialization
             frameBytes[2] = sizeBytes[2];
             frameBytes[3] = sizeBytes[3];
 
-            frameBytes[4] = (byte)dataOffset;
+            frameBytes[4] = frame.Header.DataOffset;
             frameBytes[5] = (byte)frame.Header.Type;
 
             ushort channelId = frame.Header.ChannelId;
@@ -46,7 +29,7 @@ namespace Msg.Core.Transport.Frames.Serialization
             Array.Copy(frame.ExtendedHeader.Data, 0, frameBytes, 8, extendedHeaderLength);
 
             var bodyLength = frame.Body.Payload.Length;
-            Array.Copy(frame.Body.Payload, 0, frameBytes, dataOffset, bodyLength);
+            Array.Copy(frame.Body.Payload, 0, frameBytes, frame.Header.DataOffset.SizeInBytes, bodyLength);
 
             return frameBytes;
         }
@@ -99,7 +82,7 @@ namespace Msg.Core.Transport.Frames.Serialization
 
             var channelId = BitConverter.ToUInt16(channelIdBytes, 0);
 
-            var header = new FrameHeader(size, dataOffset, (FrameHeaderType)type, channelId);
+            var header = new FrameHeader(new FrameSize(size), new DataOffset(dataOffset), (FrameHeaderType)type, channelId);
 
             var offsetToBody = dataOffset * FrameHeaders.DataOffsetMultiplicationFactor;
 

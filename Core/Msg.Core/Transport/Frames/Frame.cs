@@ -1,4 +1,7 @@
-﻿namespace Msg.Core.Transport.Frames
+﻿using System;
+using Msg.Core.Transport.Frames.Constants;
+
+namespace Msg.Core.Transport.Frames
 {
     public class Frame
     {
@@ -8,6 +11,16 @@
 
         public Frame(FrameHeader header, FrameExtendedHeader extendedHeader, FrameBody body)
         {
+            if (header.Size != FrameHeaders.FixedLengthInBytes + extendedHeader.Data.Length + body.Payload.Length)
+            {
+                throw new ArgumentException("Frame size must match the number of bytes in the frame.", nameof(header));
+            }
+
+            if (header.DataOffset.SizeInBytes != FrameHeaders.FixedLengthInBytes + extendedHeader.Data.Length)
+            {
+                throw new ArgumentException("Offset must match the number of bytes in the headers.", nameof(header));
+            }
+
             Header = header;
             ExtendedHeader = extendedHeader;
             Body = body;

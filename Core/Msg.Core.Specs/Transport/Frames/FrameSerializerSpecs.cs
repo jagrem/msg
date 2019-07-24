@@ -159,50 +159,5 @@ namespace Msg.Core.Specs.Transport.Frames
             frame.ExtendedHeader.Data.Should().Equal(new byte[] { 1, 2, 3, 4 });
             frame.Body.Payload.Should().Equal(new byte[] { 5, 6, 7, 8 });
         }
-
-        [Fact]
-        public void Given_a_frame_with_size_less_than_the_mandatory_frame_header_When_serialized_Then_a_MalformedFrameException_is_thrown()
-        {
-            // Arrange
-            var frame = new Frame(new FrameHeader(1, 2, FrameHeaderType.AMQP, 0), new FrameExtendedHeader(new byte[0]), new FrameBody(new byte[0]));
-
-            // Act
-            Action action = () => FrameSerializer.Serialize(frame);
-
-            // Assert
-            action
-                .Should().Throw<MalformedFrameException>()
-                .WithMessage("Frame size must be at least the size of the mandatory frame header.");
-        }
-
-        [Fact]
-        public void Given_a_data_offset_less_than_the_mandatory_header_size_When_serialized_Then_a_MalformedFrameException_is_thrown()
-        {
-            // Arrange
-            var frame = new Frame(new FrameHeader(8, 1, FrameHeaderType.AMQP, 0), new FrameExtendedHeader(new byte[0]), new FrameBody(new byte[0]));
-
-            // Act
-            Action action = () => FrameSerializer.Serialize(frame);
-
-            // Assert
-            action
-                .Should().Throw<MalformedFrameException>()
-                .WithMessage("Data offset must be at least the size of the mandatory frame header.");
-        }
-
-        [Fact]
-        public void Given_a_frame_where_the_size_is_less_than_the_number_of_bytes_in_the_frame_When_serialized_Then_a_MalformedFrameException_is_thrown()
-        {
-            // Arrange
-            var frame = new Frame(new FrameHeader(9, 2, FrameHeaderType.AMQP, 0), new FrameExtendedHeader(new byte[0]), new FrameBody(new byte[0]));
-
-            // Act
-            Action action = () => FrameSerializer.Serialize(frame);
-
-            // Assert
-            action
-                .Should().Throw<MalformedFrameException>()
-                .WithMessage("Frame size must match the number of bytes in the frame.");
-        }
     }
 }
