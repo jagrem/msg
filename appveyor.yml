@@ -1,6 +1,15 @@
+version: "1.0.{build}"
+image: Visual Studio 2017
+branches:
+  only:
+    - master
+init:
+  - cmd: git config --global core.autocrlf true
 before_build:
-  - nuget restore
-
-test:
-  assemblies:
-    - '**\*.specs.dll'
+  - cmd: dotnet --version
+build_script:
+  - cmd: dotnet publish
+test_script:
+  - cmd: dotnet test
+on_finish:
+deploy: off
