@@ -1,9 +1,8 @@
 language: csharp
-solution: Msg.sln
-
+mono: none
+dotnet: 2.1.300
 install:
- - nuget restore Msg.sln
- - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+  - dotnet restore
 script:
- - xbuild /p:Configuration=Release Msg.sln
- - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Core/Msg.Core.Specs.csproj /config:Release
+  - dotnet build
+  - dotnet test
