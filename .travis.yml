@@ -5,4 +5,4 @@ install:
   - dotnet restore
 script:
   - dotnet build
-  - dotnet test
+  - dotnet test ./Core/Msg.Core.Specs/Msg.Core.Specs.csproj
