@@ -113,7 +113,7 @@ namespace Msg.Core.Specs.Transport.Frames
             var results = TypeParser.Parse(stream);
 
             // Arrange
-            results.Should().BeEquivalentTo((expectedType, expectedValue));
+            results.Should().BeEquivalentTo<(Type,object)>((IEnumerable<(Type,object)>) new[] { (expectedType, expectedValue) });
         }
     }
 }

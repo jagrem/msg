@@ -52,7 +52,7 @@ namespace Msg.Core.Specs.Transport.Connections
         }
 
         [Fact]
-        public void Given_the_server_does_not_support_the_preferred_version_When_opening_a_connection_Then_an_UnsupportedVersionException_is_thrown()
+        public async Task Given_the_server_does_not_support_the_preferred_version_When_opening_a_connection_Then_an_UnsupportedVersionException_is_thrown()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
@@ -86,14 +86,14 @@ namespace Msg.Core.Specs.Transport.Connections
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            act
-                .Should().Throw<OpenConnectionFailedException>()
+            (await act
+                .Should().ThrowAsync<OpenConnectionFailedException>())
                 .WithInnerException<UnsupportedVersionException>();
         }
 
 
         [Fact]
-        public void Given_the_server_does_not_accept_the_prefered_protocol_When_opening_a_connection_Then_an_UnexpectedProtocolException_is_thrown()
+        public async Task Given_the_server_does_not_accept_the_prefered_protocol_When_opening_a_connection_Then_an_UnexpectedProtocolException_is_thrown()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
@@ -127,8 +127,8 @@ namespace Msg.Core.Specs.Transport.Connections
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            act
-                .Should().Throw<OpenConnectionFailedException>()
+            (await act
+                .Should().ThrowAsync<OpenConnectionFailedException>())
                 .WithInnerException<UnexpectedProtocolException>();
         }
     }
