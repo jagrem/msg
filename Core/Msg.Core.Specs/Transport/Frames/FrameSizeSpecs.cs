@@ -16,7 +16,7 @@ namespace Msg.Core.Specs.Transport.Frames
             // Assert
             action
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Frame size must be at least as large as the minimum allowable header size.\nParameter name: value");
+                .WithMessage("Frame size must be at least as large as the minimum allowable header size. (Parameter 'value')");
         }
 
         [Fact]

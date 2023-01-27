@@ -21,7 +21,7 @@ namespace Msg.Core.Specs.Transport.Frames.Amqp.Serialization
             // Assert
             action
                 .Should().Throw<ArgumentException>()
-                .WithMessage("The frame must be of type AMQP.\nParameter name: frame");
+                .WithMessage("The frame must be of type AMQP. (Parameter 'frame')");
         }
     }
 }

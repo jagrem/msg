@@ -16,7 +16,7 @@ namespace Msg.Core.Specs.Transport.Frames
             // Assert
             action
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Frame size must match the number of bytes in the frame.\nParameter name: header");
+                .WithMessage("Frame size must match the number of bytes in the frame. (Parameter 'header')");
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace Msg.Core.Specs.Transport.Frames
             // Assert
             action
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Offset must match the number of bytes in the headers.\nParameter name: header");
+                .WithMessage("Offset must match the number of bytes in the headers. (Parameter 'header')");
         }
 
         [Fact]

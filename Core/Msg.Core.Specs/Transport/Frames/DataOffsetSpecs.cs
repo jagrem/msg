@@ -16,7 +16,7 @@ namespace Msg.Core.Specs.Transport.Frames
             // Assert
             action
                 .Should().Throw<ArgumentException>()
-                .WithMessage("Data offset size must be at least equivalent to the minimum allowable header size.\nParameter name: value");
+                .WithMessage("Data offset size must be at least equivalent to the minimum allowable header size. (Parameter 'value')");
         }
 
         [Fact]
