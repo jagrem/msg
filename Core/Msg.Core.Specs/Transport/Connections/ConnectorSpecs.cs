@@ -6,17 +6,15 @@ using System;
 using Msg.Core.Transport.Connections.Common;
 using Msg.Core.Transport.Common.Protocol;
 using Msg.Core.Transport.Common.Versioning;
-using Msg.Core.Transport.Connections.Tcp;
 using Msg.Core.Transport;
 using NSubstitute;
-using NSubstitute.ReturnsExtensions;
 
 namespace Msg.Core.Specs.Transport.Connections
 {
     public class ConnectorSpecs
     {
         [Fact(Skip = "This test is broken")]
-        public async Task Given_the_server_accepts_the_prefered_protocol_and_version_When_opening_a_connection_Then_the_connection_should_be_opened()
+        public async Task Given_the_server_accepts_the_preferred_protocol_and_version_When_opening_a_connection_Then_the_connection_should_be_opened()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
@@ -93,7 +91,7 @@ namespace Msg.Core.Specs.Transport.Connections
 
 
         [Fact]
-        public async Task Given_the_server_does_not_accept_the_prefered_protocol_When_opening_a_connection_Then_an_UnexpectedProtocolException_is_thrown()
+        public async Task Given_the_server_does_not_accept_the_preferred_protocol_When_opening_a_connection_Then_an_UnexpectedProtocolException_is_thrown()
         {
             //-----------------------------------------------------------------------------------------------------------
             // Arrange
@@ -105,10 +103,10 @@ namespace Msg.Core.Specs.Transport.Connections
                 .OpenConnectionAsync()
                 .Returns(Task.FromResult(transportLayerConnection));
 
-            byte[] preferedProtocolHeaderBytes = new ProtocolHeader(ProtocolIds.AMQP, new AmqpVersion(1, 0, 0));
+            byte[] preferredProtocolHeaderBytes = new ProtocolHeader(ProtocolIds.AMQP, new AmqpVersion(1, 0, 0));
 
             transportLayerConnection
-                .SendAsync(preferedProtocolHeaderBytes)
+                .SendAsync(preferredProtocolHeaderBytes)
                 .Returns(8L);
 
             byte[] actualProtocolHeaderBytes = new ProtocolHeader((ProtocolId)2, new AmqpVersion(1, 0, 0));
