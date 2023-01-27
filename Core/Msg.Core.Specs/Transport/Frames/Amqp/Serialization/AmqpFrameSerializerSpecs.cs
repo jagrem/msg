@@ -14,7 +14,7 @@ namespace Msg.Core.Specs.Transport.Frames.Amqp.Serialization
         {
             // Act
             Action action = () => AmqpFrameSerializer.Deserialize(new Frame(
-                new FrameHeader(new FrameSize(13), new DataOffset(2), FrameHeaderType.SASL, 1),
+                new FrameHeader(new FrameSize(13), new DataOffset(2), FrameHeaderType.SASL, new ChannelId(1)),
                 new FrameExtendedHeader(new byte[0]),
                 new FrameBody(Encoding.ASCII.GetBytes("Begin"))));
 

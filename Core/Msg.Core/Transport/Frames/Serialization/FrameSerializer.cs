@@ -21,7 +21,7 @@ namespace Msg.Core.Transport.Frames.Serialization
             frameBytes[4] = frame.Header.DataOffset;
             frameBytes[5] = (byte)frame.Header.Type;
 
-            ushort channelId = frame.Header.ChannelId;
+            ushort channelId = frame.Header.ChannelId.Value;
             var channelIdBytes = BitConverter.GetBytes(channelId);
             frameBytes[6] = channelIdBytes[0];
             frameBytes[7] = channelIdBytes[1];
@@ -82,7 +82,7 @@ namespace Msg.Core.Transport.Frames.Serialization
 
             var channelId = BitConverter.ToUInt16(channelIdBytes, 0);
 
-            var header = new FrameHeader(new FrameSize(size), new DataOffset(dataOffset), (FrameHeaderType)type, channelId);
+            var header = new FrameHeader(new FrameSize(size), new DataOffset(dataOffset), (FrameHeaderType)type, new ChannelId(channelId));
 
             var offsetToBody = dataOffset * FrameHeaders.DataOffsetMultiplicationFactor;
 

@@ -2,7 +2,7 @@
 {
     public abstract class Channel
     {
-        public int ChannelId { get; private set; }
+        public ChannelId ChannelId { get; private set; }
     }
 }
 
