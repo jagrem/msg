@@ -1,6 +1,5 @@
 ﻿using System;
 using FluentAssertions;
-using Msg.Core.Transport;
 using Msg.Core.Transport.Common.Protocol;
 using Msg.Core.Transport.Common.Versioning;
 using Xunit;
@@ -27,7 +26,7 @@ namespace Msg.Core.Specs.Transport.Common.Protocol
             //-----------------------------------------------------------------------------------------------------------
             // Assert
             //-----------------------------------------------------------------------------------------------------------
-            result.Should().ContainInOrder((byte)'A', (byte)'M', (byte)'Q', (byte)'P');
+            result[0..4].Should().ContainInOrder((byte)'A', (byte)'M', (byte)'Q', (byte)'P');
         }
 
         [Fact]
